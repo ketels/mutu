@@ -117,7 +117,16 @@ export default function SkjulDetaljPage({
           )}
           {shed.items.map((item) => (
             <div key={item._id} className="flex items-center gap-3 p-3.5">
-              <div className="h-10 w-10 shrink-0 rounded-[10px] bg-photo" />
+              <div className="h-10 w-10 shrink-0 overflow-hidden rounded-[10px] bg-photo">
+                {item.photoUrl && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={item.photoUrl}
+                    alt=""
+                    className="h-full w-full object-cover"
+                  />
+                )}
+              </div>
               <div className="min-w-0">
                 <p className="flex items-center gap-2 text-[14.5px] font-bold">
                   {item.name}

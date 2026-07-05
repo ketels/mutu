@@ -84,6 +84,9 @@ export const get = query({
           return {
             _id: item._id,
             name: item.name,
+            photoUrl: item.photoId
+              ? await ctx.storage.getUrl(item.photoId)
+              : null,
             ownerName: owner?.name ?? "Okänd",
             isMine: item.ownerId === userId,
           };
