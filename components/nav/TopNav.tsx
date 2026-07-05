@@ -45,7 +45,9 @@ export function TopNav() {
   );
 }
 
-export function ProfileButton({ initial = "E" }: { initial?: string }) {
+export function ProfileButton() {
+  const viewer = useQuery(api.users.viewer);
+  const initial = viewer?.name?.[0]?.toUpperCase() ?? "·";
   return (
     <Link
       href="/profil"
