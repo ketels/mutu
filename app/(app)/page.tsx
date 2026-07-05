@@ -26,7 +26,8 @@ export default function UtforskaPage() {
       <MobileHeader logo />
       <div className="px-6 pt-6 md:px-0 md:pt-10">
         <h1 className="heading text-[26px] leading-tight md:text-[34px]">
-          Låna av folk du litar på.
+          Låna av folk <br className="md:hidden" />
+          du litar på
         </h1>
         <p className="mt-1.5 text-[14.5px] text-muted">
           {feed

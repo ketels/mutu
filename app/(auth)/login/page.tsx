@@ -16,7 +16,8 @@ export default function LoginPage() {
       <div className="w-full max-w-sm">
         <p className="heading text-center text-[34px] lowercase">mutu.</p>
         <h1 className="heading mt-8 text-[25px] leading-tight">
-          Låna av folk du litar på.
+          Låna av folk <br />
+          du litar på
         </h1>
 
         {sent ? (
