@@ -24,7 +24,7 @@ export default function UtforskaPage() {
   return (
     <div>
       <MobileHeader logo />
-      <div className="px-6 pt-4 md:px-0 md:pt-10">
+      <div className="px-6 pt-6 md:px-0 md:pt-10">
         <h1 className="heading text-[26px] leading-tight md:text-[34px]">
           Låna av folk du litar på.
         </h1>

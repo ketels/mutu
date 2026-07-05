@@ -27,7 +27,7 @@ export default function NySakPage() {
   return (
     <div>
       <MobileHeader title="Lägg till en sak" />
-      <div className="max-w-md px-6 pt-4 md:px-0 md:pt-10">
+      <div className="max-w-md px-6 pt-6 md:px-0 md:pt-10">
         <h1 className="heading hidden text-[34px] md:block">
           Lägg till en sak
         </h1>

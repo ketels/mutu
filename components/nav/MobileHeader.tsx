@@ -12,7 +12,7 @@ export function MobileHeader({
   right?: ReactNode;
 }) {
   return (
-    <header className="sticky top-0 z-20 flex h-14 items-center justify-between bg-bg/90 px-6 backdrop-blur md:hidden">
+    <header className="sticky top-0 z-20 flex h-16 items-center justify-between border-b border-divider bg-bg/90 px-6 backdrop-blur md:hidden">
       {logo ? (
         <span className="heading text-[22px] lowercase">mutu.</span>
       ) : (

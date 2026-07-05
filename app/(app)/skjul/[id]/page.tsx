@@ -28,14 +28,14 @@ export default function SkjulDetaljPage({
 
   return (
     <div>
-      <header className="sticky top-0 z-20 flex h-14 items-center justify-between bg-bg/90 px-4 backdrop-blur md:hidden">
+      <header className="sticky top-0 z-20 flex h-16 items-center justify-between border-b border-divider bg-bg/90 px-4 backdrop-blur md:hidden">
         <Link href="/skjul" aria-label="Tillbaka" className="p-2 text-ink">
           <ChevronLeft size={22} />
         </Link>
         <ProfileButton />
       </header>
 
-      <div className="px-6 pt-2 md:px-0 md:pt-10">
+      <div className="px-6 pt-4 md:px-0 md:pt-10">
         <div className="flex items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <ShedDot colorIdx={shed.colorIdx} size={12} />

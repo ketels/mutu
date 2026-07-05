@@ -34,7 +34,7 @@ export default function PersonPage({
 
   return (
     <div>
-      <header className="sticky top-0 z-20 flex h-14 items-center justify-between bg-bg/90 px-4 backdrop-blur md:hidden">
+      <header className="sticky top-0 z-20 flex h-16 items-center justify-between border-b border-divider bg-bg/90 px-4 backdrop-blur md:hidden">
         <button
           type="button"
           onClick={() => router.back()}
@@ -46,7 +46,7 @@ export default function PersonPage({
         <ProfileButton />
       </header>
 
-      <div className="px-6 pt-2 md:px-0 md:pt-10">
+      <div className="px-6 pt-4 md:px-0 md:pt-10">
         <div className="flex items-center gap-4">
           <span className="flex h-14 w-14 items-center justify-center rounded-full bg-photo font-mono text-[18px] font-bold text-body">
             {person.initials}

@@ -56,7 +56,7 @@ export default function LanPage() {
           </Link>
         }
       />
-      <div className="px-6 pt-4 md:px-0 md:pt-10">
+      <div className="px-6 pt-6 md:px-0 md:pt-10">
         <div className="hidden items-center justify-between md:flex">
           <h1 className="heading text-[34px]">Lån</h1>
           <Link

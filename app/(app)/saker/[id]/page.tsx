@@ -34,14 +34,14 @@ export default function AndraSakPage({
 
   return (
     <div>
-      <header className="sticky top-0 z-20 flex h-14 items-center justify-between bg-bg/90 px-4 backdrop-blur md:hidden">
+      <header className="sticky top-0 z-20 flex h-16 items-center justify-between border-b border-divider bg-bg/90 px-4 backdrop-blur md:hidden">
         <Link href="/saker" aria-label="Tillbaka" className="p-2 text-ink">
           <ChevronLeft size={22} />
         </Link>
         <ProfileButton />
       </header>
 
-      <div className="max-w-md px-6 pt-2 md:px-0 md:pt-10">
+      <div className="max-w-md px-6 pt-4 md:px-0 md:pt-10">
         <h1 className="heading text-[25px] md:text-[34px]">Ändra sak</h1>
         <EditForm key={item._id} item={item} sheds={sheds} />
       </div>
