@@ -61,11 +61,11 @@ export function PhotoUpload({
           </span>
         )}
       </button>
+      {/* Utan capture-attribut får mobilen visa valet kamera/bibliotek */}
       <input
         ref={inputRef}
         type="file"
         accept="image/*"
-        capture="environment"
         className="hidden"
         onChange={async (e) => {
           const file = e.target.files?.[0];
