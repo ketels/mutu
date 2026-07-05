@@ -38,7 +38,7 @@ export default function JoinPage({
   return (
     <div className="flex min-h-dvh flex-col items-center justify-center px-6">
       <div className="w-full max-w-sm text-center">
-        <p className="heading text-[25px] lowercase">mutu</p>
+        <p className="heading text-[25px] lowercase">mutu.</p>
         {preview === undefined ? null : preview === null ? (
           <p className="mt-6 text-[14.5px] text-muted">
             Den här inbjudningslänken är inte giltig längre. Be om en ny.

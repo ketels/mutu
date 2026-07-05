@@ -73,7 +73,7 @@ function buildEmail(kind: EmailKind, d: EmailData) {
   const site = process.env.SITE_URL ?? "https://mutu.vercel.app";
   const wrap = (title: string, body: string) => ({
     html: `<div style="font-family:system-ui,sans-serif;max-width:480px;margin:0 auto;padding:24px">
-  <p style="font-size:22px;font-weight:800;letter-spacing:-0.03em;margin:0 0 16px">mutu</p>
+  <p style="font-size:22px;font-weight:800;letter-spacing:-0.03em;margin:0 0 16px">mutu.</p>
   <h1 style="font-size:19px;margin:0 0 8px">${title}</h1>
   <p style="font-size:15px;color:#45453F;line-height:1.5;margin:0 0 20px">${body}</p>
   <a href="${site}/lan" style="display:inline-block;background:#2F5D50;color:#fff;font-weight:700;font-size:14px;padding:12px 22px;border-radius:999px;text-decoration:none">Öppna Mutu</a>

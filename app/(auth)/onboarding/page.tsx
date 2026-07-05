@@ -36,7 +36,7 @@ export default function OnboardingPage() {
   return (
     <div className="flex min-h-dvh flex-col items-center justify-center px-6">
       <div className="w-full max-w-sm">
-        <p className="heading text-center text-[25px] lowercase">mutu</p>
+        <p className="heading text-center text-[25px] lowercase">mutu.</p>
 
         {step === "name" && (
           <form

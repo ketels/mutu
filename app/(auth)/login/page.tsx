@@ -14,7 +14,7 @@ export default function LoginPage() {
   return (
     <div className="flex min-h-dvh flex-col items-center justify-center px-6">
       <div className="w-full max-w-sm">
-        <p className="heading text-center text-[34px] lowercase">mutu</p>
+        <p className="heading text-center text-[34px] lowercase">mutu.</p>
         <h1 className="heading mt-8 text-[25px] leading-tight">
           Låna av folk du litar på.
         </h1>

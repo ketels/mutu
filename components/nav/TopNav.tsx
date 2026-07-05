@@ -13,7 +13,7 @@ export function TopNav() {
     <header className="sticky top-0 z-30 hidden border-b border-divider bg-card md:block">
       <div className="mx-auto flex h-[70px] max-w-6xl items-center gap-9 px-12">
         <Link href="/" className="heading text-[22px] lowercase">
-          mutu
+          mutu.
         </Link>
         <nav className="flex items-center gap-7">
           {NAV_ITEMS.map((item) => {

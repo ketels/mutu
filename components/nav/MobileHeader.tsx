@@ -14,7 +14,7 @@ export function MobileHeader({
   return (
     <header className="sticky top-0 z-20 flex h-14 items-center justify-between bg-bg/90 px-6 backdrop-blur md:hidden">
       {logo ? (
-        <span className="heading text-[22px] lowercase">mutu</span>
+        <span className="heading text-[22px] lowercase">mutu.</span>
       ) : (
         <span className="heading text-[17px]">{title}</span>
       )}
