@@ -9,12 +9,15 @@
  */
 
 import type * as auth from "../auth.js";
+import type * as crons from "../crons.js";
+import type * as emails from "../emails.js";
 import type * as explore from "../explore.js";
 import type * as http from "../http.js";
 import type * as invites from "../invites.js";
 import type * as items from "../items.js";
 import type * as lib_access from "../lib/access.js";
 import type * as lib_dates from "../lib/dates.js";
+import type * as lib_format from "../lib/format.js";
 import type * as lib_geo from "../lib/geo.js";
 import type * as loans from "../loans.js";
 import type * as messages from "../messages.js";
@@ -30,12 +33,15 @@ import type {
 
 declare const fullApi: ApiFromModules<{
   auth: typeof auth;
+  crons: typeof crons;
+  emails: typeof emails;
   explore: typeof explore;
   http: typeof http;
   invites: typeof invites;
   items: typeof items;
   "lib/access": typeof lib_access;
   "lib/dates": typeof lib_dates;
+  "lib/format": typeof lib_format;
   "lib/geo": typeof lib_geo;
   loans: typeof loans;
   messages: typeof messages;

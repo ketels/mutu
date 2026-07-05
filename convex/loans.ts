@@ -1,4 +1,5 @@
 import { v } from "convex/values";
+import { internal } from "./_generated/api";
 import { type Id } from "./_generated/dataModel";
 import {
   mutation,
@@ -112,6 +113,10 @@ export const request = mutation({
       lastReadAt: Date.now(),
     });
 
+    await ctx.scheduler.runAfter(0, internal.emails.loanEvent, {
+      loanId,
+      kind: "request",
+    });
     return loanId;
   },
 });
@@ -134,6 +139,10 @@ export const approve = mutation({
       proposalStart: loan.startDay,
       proposalEnd: loan.endDay,
       proposalState: "accepted",
+    });
+    await ctx.scheduler.runAfter(0, internal.emails.loanEvent, {
+      loanId,
+      kind: "approved",
     });
   },
 });
@@ -176,6 +185,10 @@ export const propose = mutation({
       proposalState: "open",
     });
     await ctx.db.patch(loanId, { status: "proposed", startDay, endDay });
+    await ctx.scheduler.runAfter(0, internal.emails.loanEvent, {
+      loanId,
+      kind: "proposed",
+    });
   },
 });
 
@@ -198,6 +211,10 @@ export const acceptProposal = mutation({
         await ctx.db.patch(m._id, { proposalState: "accepted" });
     }
     await ctx.db.patch(loanId, { status: "approved" });
+    await ctx.scheduler.runAfter(0, internal.emails.loanEvent, {
+      loanId,
+      kind: "approved",
+    });
   },
 });
 
@@ -236,6 +253,10 @@ export const decline = mutation({
       kind: "system",
       body: "Förfrågan nekades",
     });
+    await ctx.scheduler.runAfter(0, internal.emails.loanEvent, {
+      loanId,
+      kind: "declined",
+    });
   },
 });
 
@@ -272,6 +293,10 @@ export const markReturned = mutation({
       loanId,
       kind: "system",
       body: "Återlämnad — tack för lånet!",
+    });
+    await ctx.scheduler.runAfter(0, internal.emails.loanEvent, {
+      loanId,
+      kind: "returned",
     });
   },
 });
