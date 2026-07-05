@@ -1,0 +1,129 @@
+@import "tailwindcss";
+
+@theme {
+  /* Ytor */
+  --color-bg: #fbfbf8;
+  --color-canvas: #efeee8;
+  --color-card: #ffffff;
+  --color-photo: #e9e8e2;
+  --color-busy: #edece5;
+
+  /* Text */
+  --color-ink: #191918;
+  --color-body: #45453f;
+  --color-muted: #71716a;
+  --color-faint: #9b9b92;
+  --color-disabled: #c9c8c0;
+  --color-disabled-strong: #b4b3aa;
+
+  /* Ramar & dividers */
+  --color-border: #e0dfd8;
+  --color-divider: #e9e8e2;
+  --color-divider-weak: #f0efea;
+  --color-dash: #d8d7cf;
+
+  /* Semantik */
+  --color-primary: #2f5d50;
+  --color-primary-light: #eef2f0;
+  --color-warn: #9a4f38;
+  --color-warn-light: #faf1ee;
+  --color-ochre: #a66a2c;
+  --color-ochre-light: #f5efe6;
+
+  /* Skjulpalett (index 0–4) */
+  --color-shed-0: #2f5d50;
+  --color-shed-0-light: #eef2f0;
+  --color-shed-1: #a66a2c;
+  --color-shed-1-light: #f5efe6;
+  --color-shed-2: #9a4f38;
+  --color-shed-2-light: #faf1ee;
+  --color-shed-3: #39586b;
+  --color-shed-3-light: #eaeef2;
+  --color-shed-4: #66603b;
+  --color-shed-4-light: #f1efe3;
+
+  /* Form */
+  --radius-card: 16px;
+  --radius-card-lg: 24px;
+  --radius-field: 12px;
+  --radius-day: 8px;
+  --radius-bar: 7px;
+
+  --shadow-card: 0 12px 40px rgba(25, 25, 24, 0.08);
+  --shadow-sheet: 0 24px 70px rgba(25, 25, 24, 0.16);
+
+  --font-sans: var(--font-schibsted);
+
+  /* Animationer */
+  --ease-sheet: cubic-bezier(0.2, 0.9, 0.3, 1);
+  --animate-sheet-up: sheet-up 0.3s var(--ease-sheet);
+  --animate-fade-in: fade-in 0.2s ease;
+  --animate-bubble-up: bubble-up 0.25s ease;
+  --animate-toast-up: toast-up 0.25s var(--ease-sheet);
+
+  @keyframes sheet-up {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes bubble-up {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes toast-up {
+    from {
+      opacity: 0;
+      transform: translate(-50%, 12px);
+    }
+    to {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+  }
+}
+
+@utility scrollbar-none {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Rubriker: tight tracking enligt handoff */
+.heading {
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+/* Versal etikett */
+.label-caps {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--color-faint);
+}

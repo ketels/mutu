@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&amp;display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;padding:0;background:#EFEEE8;}
+*{box-sizing:border-box}
+@keyframes protoUp{from{transform:translateY(30px);opacity:0}to{transform:translateY(0);opacity:1}}
+@keyframes protoFade{from{opacity:0}to{opacity:1}}
+</style>
+</helmet>
+<div style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:32px;font-family:'Schibsted Grotesk',sans-serif;color:#191918">
+<div style="width:390px;height:844px;background:#FBFBF8;border:1px solid #E0DFD8;border-radius:28px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 24px 70px rgba(25,25,24,.16);position:relative">
+
+  <!-- ========== UTFORSKA ========== -->
+  <sc-if value="{{ vUtforska }}" hint-placeholder-val="{{ true }}">
+  <div style="flex:1;overflow-y:auto;padding:0 22px 100px">
+    <div style="position:sticky;top:0;z-index:5;background:rgba(251,251,248,.94);backdrop-filter:blur(10px);margin:0 -22px;padding:22px 22px 12px;border-bottom:1px solid #F0EFEA;display:flex;align-items:center;justify-content:space-between">
+      <div style="font-size:21px;font-weight:800;letter-spacing:-0.03em">mutu.</div>
+      <div style="width:34px;height:34px;border-radius:50%;background:#191918;color:#FBFBF8;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700">E</div>
+    </div>
+    <div style="font-size:25px;font-weight:800;letter-spacing:-0.03em;line-height:1.15;margin:20px 0 6px">Låna av folk<br>du litar på</div>
+    <div style="font-size:14px;color:#71716A;margin-bottom:16px">{{ itemCount }} saker i dina skjul just nu</div>
+    <input value="{{ query }}" onChange="{{ setQuery }}" placeholder="Sök stege, symaskin, släpkärra…" style="width:100%;border:1px solid #E0DFD8;background:#FFFFFF;border-radius:12px;padding:12px 15px;font-size:15px;font-family:'Schibsted Grotesk',sans-serif;color:#191918;outline:none">
+    <div style="display:flex;gap:8px;margin:14px 0 18px;flex-wrap:wrap">
+      <sc-for list="{{ filters }}" as="f" hint-placeholder-count="4">
+        <button onClick="{{ f.select }}" style="display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;background:{{ f.bg }};color:{{ f.fg }};border:1px solid {{ f.border }};border-radius:999px;padding:7px 14px;font-family:'Schibsted Grotesk',sans-serif;cursor:pointer">
+          <sc-if value="{{ f.dot }}" hint-placeholder-val="{{ false }}"><span style="width:7px;height:7px;border-radius:50%;background:{{ f.dot }}"></span></sc-if>
+          {{ f.name }}
+        </button>
+      </sc-for>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+      <sc-for list="{{ items }}" as="it" hint-placeholder-count="6">
+        <div onClick="{{ it.open }}" style="display:flex;flex-direction:column;gap:8px;cursor:pointer" style-active="opacity:.7">
+          <div style="height:140px;border-radius:14px;background:#E9E8E2;display:flex;align-items:end;padding:10px"><span style="font-family:ui-monospace,Menlo,monospace;font-size:10px;color:#71716A;background:#FBFBF8;border-radius:4px;padding:2px 6px">{{ it.imgLabel }}</span></div>
+          <div style="font-size:15px;font-weight:700;letter-spacing:-0.01em">{{ it.name }}</div>
+          <div style="display:flex;align-items:center;gap:6px;font-size:12.5px;color:#71716A"><span style="width:6px;height:6px;border-radius:50%;background:{{ it.dotColor }}"></span>{{ it.meta }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+  </sc-if>
+
+  <!-- ========== MINA SAKER (matris) ========== -->
+  <sc-if value="{{ vMina }}" hint-placeholder-val="{{ false }}">
+  <div style="flex:1;overflow-y:auto;padding:0 22px 100px">
+    <div style="position:sticky;top:0;z-index:5;background:rgba(251,251,248,.94);backdrop-filter:blur(10px);margin:0 -22px;padding:22px 22px 12px;border-bottom:1px solid #F0EFEA;display:flex;align-items:center;justify-content:space-between"><span style="font-size:25px;font-weight:800;letter-spacing:-0.03em">Mina saker</span><div style="width:34px;height:34px;border-radius:50%;background:#191918;color:#FBFBF8;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700">E</div></div>
+    <div style="font-size:14px;color:#71716A;margin:14px 0 16px;line-height:1.5">Tryck på en sak för att ändra den. Prickarna styr vilka skjul som ser vad — svep i sidled för fler skjul.</div>
+    <div style="position:relative;margin:0 -22px">
+      <div style="overflow-x:auto">
+        <div style="min-width:max-content;padding-right:30px">
+          <div style="display:flex;align-items:end;border-bottom:1px solid #E9E8E2;padding-bottom:10px">
+            <div style="width:168px;flex:none;position:sticky;left:0;z-index:2;background:#FBFBF8" style-after="content:'';position:absolute;top:0;bottom:0;right:-14px;width:14px;background:linear-gradient(90deg,#FBFBF8,rgba(251,251,248,0))"></div>
+            <sc-for list="{{ shedCols }}" as="sc" hint-placeholder-count="5">
+              <div style="width:62px;flex:none;text-align:center"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:{{ sc.color }}"></span><div style="font-size:10px;font-weight:700;color:#71716A;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:0 3px">{{ sc.name }}</div></div>
+            </sc-for>
+          </div>
+          <sc-for list="{{ matrixRows }}" as="row" hint-placeholder-count="5">
+            <div style="display:flex;align-items:center;border-bottom:1px solid #F0EFEA">
+              <div onClick="{{ row.edit }}" style="width:168px;flex:none;position:sticky;left:0;z-index:2;background:#FBFBF8;padding:14px 10px 14px 22px;cursor:pointer" style-after="content:'';position:absolute;top:0;bottom:0;right:-14px;width:14px;background:linear-gradient(90deg,#FBFBF8,rgba(251,251,248,0))" style-active="opacity:.6">
+                <div style="font-size:15px;font-weight:700;display:flex;align-items:center;gap:5px">{{ row.name }}<span style="color:#C9C8C0;font-size:12px">›</span></div>
+                <div style="font-size:12px;color:#9B9B92;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ row.status }}</div>
+              </div>
+              <sc-for list="{{ row.cells }}" as="c" hint-placeholder-count="5">
+                <div style="width:62px;flex:none;text-align:center"><button onClick="{{ c.toggle }}" style="width:26px;height:26px;border-radius:50%;background:{{ c.bg }};border:{{ c.border }};color:#FBFBF8;font-size:12px;font-weight:800;cursor:pointer;padding:0;font-family:'Schibsted Grotesk',sans-serif">{{ c.check }}</button></div>
+              </sc-for>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      <div style="position:absolute;top:0;bottom:0;right:0;width:26px;background:linear-gradient(270deg,#FBFBF8 15%,rgba(251,251,248,0));pointer-events:none"></div>
+    </div>
+  </div>
+  </sc-if>
+
+  <!-- ========== ÄNDRA SAK ========== -->
+  <sc-if value="{{ vEdit }}" hint-placeholder-val="{{ false }}">
+  <div style="flex:1;overflow-y:auto;padding:0 22px 100px;animation:protoFade .2s ease">
+    <div style="position:sticky;top:0;z-index:5;background:rgba(251,251,248,.94);backdrop-filter:blur(10px);margin:0 -22px 18px;padding:22px 22px 12px;border-bottom:1px solid #F0EFEA;display:flex;align-items:center;gap:12px">
+      <button onClick="{{ closeEdit }}" style="width:34px;height:34px;border-radius:50%;border:1px solid #E0DFD8;background:none;font-size:16px;cursor:pointer;font-family:'Schibsted Grotesk',sans-serif">‹</button>
+      <div style="font-size:22px;font-weight:800;letter-spacing:-0.03em;flex:1">Ändra sak</div>
+      <div style="width:34px;height:34px;border-radius:50%;background:#191918;color:#FBFBF8;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex:none">E</div>
+    </div>
+    <div style="height:150px;border:1.5px dashed #D8D7CF;border-radius:16px;background:#F4F3EE;display:flex;align-items:center;justify-content:center;margin-bottom:18px"><span style="font-family:ui-monospace,Menlo,monospace;font-size:10px;color:#71716A;background:#FBFBF8;border-radius:4px;padding:3px 8px">foto · tryck för att byta</span></div>
+    <div style="font-size:12px;font-weight:700;color:#9B9B92;text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px">Namn</div>
+    <input value="{{ editName }}" onChange="{{ setEditName }}" style="width:100%;border:1px solid #E0DFD8;background:#FFFFFF;border-radius:12px;padding:12px 15px;font-size:15px;font-weight:600;font-family:'Schibsted Grotesk',sans-serif;color:#191918;outline:none;margin-bottom:16px">
+    <div style="font-size:12px;font-weight:700;color:#9B9B92;text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px">Beskrivning</div>
+    <input value="{{ editDesc }}" onChange="{{ setEditDesc }}" style="width:100%;border:1px solid #E0DFD8;background:#FFFFFF;border-radius:12px;padding:12px 15px;font-size:14.5px;font-family:'Schibsted Grotesk',sans-serif;color:#191918;outline:none;margin-bottom:18px">
+    <div style="font-size:12px;font-weight:700;color:#9B9B92;text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px">Vilka skjul får låna?</div>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <sc-for list="{{ editSheds }}" as="es" hint-placeholder-count="5">
+        <div onClick="{{ es.toggle }}" style="display:flex;align-items:center;gap:12px;border:1.5px solid {{ es.rowBorder }};background:{{ es.rowBg }};border-radius:12px;padding:12px 14px;cursor:pointer">
+          <span style="width:8px;height:8px;border-radius:50%;background:{{ es.dot }};flex:none"></span>
+          <div style="flex:1"><div style="font-size:14.5px;font-weight:700">{{ es.name }}</div><div style="font-size:12px;color:#71716A">{{ es.meta }}</div></div>
+          <span style="width:22px;height:22px;border-radius:50%;background:{{ es.boxBg }};border:1.5px solid {{ es.boxBorder }};color:#FBFBF8;font-size:12px;font-weight:800;text-align:center;line-height:22px;flex:none">{{ es.check }}</span>
+        </div>
+      </sc-for>
+    </div>
+    <div style="font-size:12.5px;color:#9B9B92;margin-top:12px;line-height:1.5">{{ editStatus }}</div>
+    <button onClick="{{ removeItem }}" style="width:100%;margin-top:20px;border:1px solid #E8D5CE;background:none;color:#9A4F38;border-radius:12px;padding:13px;font-size:14.5px;font-weight:700;cursor:pointer;font-family:'Schibsted Grotesk',sans-serif">Ta bort från Mutuu</button>
+  </div>
+  </sc-if>
+
+  <!-- ========== SKJUL ========== -->
+  <sc-if value="{{ vSkjul }}" hint-placeholder-val="{{ false }}">
+  <div style="flex:1;overflow-y:auto;padding:0 22px 100px">
+    <div style="position:sticky;top:0;z-index:5;background:rgba(251,251,248,.94);backdrop-filter:blur(10px);margin:0 -22px;padding:22px 22px 12px;border-bottom:1px solid #F0EFEA;display:flex;align-items:center;justify-content:space-between"><span style="font-size:25px;font-weight:800;letter-spacing:-0.03em">Skjul</span><div style="width:34px;height:34px;border-radius:50%;background:#191918;color:#FBFBF8;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700">E</div></div>
+    <div style="font-size:14px;color:#71716A;margin:14px 0 20px;line-height:1.5">Dina kretsar. Det du lägger i ett skjul kan alla där inne låna.</div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <sc-for list="{{ shedList }}" as="sh" hint-placeholder-count="3">
+        <div onClick="{{ sh.open }}" style="border:1px solid #E0DFD8;background:#FFFFFF;border-radius:16px;padding:18px;cursor:pointer" style-active="opacity:.7">
+          <div style="display:flex;align-items:center;gap:10px"><span style="width:10px;height:10px;border-radius:50%;background:{{ sh.color }}"></span><div style="font-size:17px;font-weight:800;letter-spacing:-0.02em;flex:1">{{ sh.name }}</div><span style="font-size:13px;color:#9B9B92">›</span></div>
+          <div style="font-size:13px;color:#71716A;margin-top:6px">{{ sh.meta }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+  </sc-if>
+
+  <!-- ========== SKJUL-DETALJ ========== -->
+  <sc-if value="{{ vSkjulDetalj }}" hint-placeholder-val="{{ false }}">
+  <div style="flex:1;overflow-y:auto;padding:0 22px 100px;animation:protoFade .2s ease">
+    <div style="position:sticky;top:0;z-index:5;background:rgba(251,251,248,.94);backdrop-filter:blur(10px);margin:0 -22px 18px;padding:22px 22px 12px;border-bottom:1px solid #F0EFEA;display:flex;align-items:center;gap:12px">
+      <button onClick="{{ closeShed }}" style="width:34px;height:34px;border-radius:50%;border:1px solid #E0DFD8;background:none;font-size:16px;cursor:pointer;font-family:'Schibsted Grotesk',sans-serif">‹</button>
+      <span style="width:10px;height:10px;border-radius:50%;background:{{ shed.color }}"></span>
+      <div style="font-size:22px;font-weight:800;letter-spacing:-0.03em;flex:1">{{ shed.name }}</div>
+      <button onClick="{{ toastInvite }}" style="flex:none;white-space:nowrap;font-size:13px;font-weight:700;border:1px solid #E0DFD8;background:none;border-radius:999px;padding:8px 14px;cursor:pointer;font-family:'Schibsted Grotesk',sans-serif">Bjud in</button>
+      <div style="width:34px;height:34px;border-radius:50%;background:#191918;color:#FBFBF8;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex:none">E</div>
+    </div>
+    <div style="display:flex;margin-bottom:20px">
+      <sc-for list="{{ shed.avatars }}" as="a" hint-placeholder-count="4">
+        <span style="width:32px;height:32px;border-radius:50%;background:#E9E8E2;border:2px solid #FBFBF8;margin-right:-8px;font-size:11.5px;font-weight:700;text-align:center;line-height:30px">{{ a }}</span>
+      </sc-for>
+    </div>
+    <div style="font-size:12px;font-weight:700;color:#9B9B92;text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px">Du delar hit</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px">
+      <sc-for list="{{ shed.myChips }}" as="ch" hint-placeholder-count="3">
+        <span style="font-size:13px;font-weight:600;background:{{ shed.chipBg }};border-radius:999px;padding:8px 14px">{{ ch }}</span>
+      </sc-for>
+      <sc-if value="{{ shed.nothingShared }}" hint-placeholder-val="{{ false }}">
+        <span style="font-size:13px;color:#9B9B92">Inget än — slå på i Mina saker.</span>
+      </sc-if>
+    </div>
+    <div style="font-size:12px;font-weight:700;color:#9B9B92;text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px">I skjulet</div>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <sc-for list="{{ shed.items }}" as="si" hint-placeholder-count="4">
+        <div onClick="{{ si.open }}" style="display:flex;align-items:center;gap:12px;border:1px solid #E0DFD8;background:#FFFFFF;border-radius:12px;padding:11px 13px;cursor:pointer" style-active="opacity:.7">
+          <div style="width:40px;height:40px;border-radius:10px;background:#E9E8E2;flex:none"></div>
+          <div style="flex:1"><div style="font-size:14.5px;font-weight:700">{{ si.name }}</div><div style="font-size:12px;color:#9B9B92">{{ si.meta }}</div></div>
+          <span style="font-size:13px;color:#9B9B92">›</span>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+  </sc-if>
+
+  <!-- ========== LÅN ========== -->
+  <sc-if value="{{ vLan }}" hint-placeholder-val="{{ false }}">
+  <div style="flex:1;overflow-y:auto;padding:0 22px 100px">
+    <div style="position:sticky;top:0;z-index:5;background:rgba(251,251,248,.94);backdrop-filter:blur(10px);margin:0 -22px 18px;padding:22px 22px 12px;border-bottom:1px solid #F0EFEA;display:flex;align-items:center;justify-content:space-between">
+      <div style="font-size:25px;font-weight:800;letter-spacing:-0.03em;flex:1">Lån</div>
+      <button onClick="{{ toggleKalender }}" style="font-size:13px;font-weight:700;border:1px solid {{ kalBorder }};background:{{ kalBg }};color:{{ kalFg }};border-radius:999px;padding:8px 14px;cursor:pointer;font-family:'Schibsted Grotesk',sans-serif;margin-right:12px">{{ kalLabel }}</button>
+      <div style="width:34px;height:34px;border-radius:50%;background:#191918;color:#FBFBF8;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex:none">E</div>
+    </div>
+
+    <sc-if value="{{ vLanLista }}" hint-placeholder-val="{{ true }}">
+      <sc-if value="{{ showReturnBanner }}" hint-placeholder-val="{{ true }}">
+        <div style="border:1.5px solid #9A4F38;background:#FAF1EE;border-radius:14px;padding:14px 15px;margin-bottom:20px;display:flex;align-items:center;gap:12px">
+          <div style="width:40px;height:40px;border-radius:10px;background:#E9E8E2;flex:none"></div>
+          <div style="flex:1">
+            <div style="font-size:14.5px;font-weight:800;color:#9A4F38">Lämna tillbaka idag</div>
+            <div style="font-size:13px;color:#71716A;margin-top:1px">Skottkärra till Amira, Björkvägen 7</div>
+          </div>
+          <button onClick="{{ markReturned }}" style="font-size:13px;font-weight:700;background:#9A4F38;color:#FBFBF8;border:none;border-radius:999px;padding:9px 14px;cursor:pointer;font-family:'Schibsted Grotesk',sans-serif">Klart ✓</button>
+        </div>
+      </sc-if>
+      <sc-if value="{{ showReturnedNote }}" hint-placeholder-val="{{ false }}">
+        <div style="border:1px solid #E0DFD8;background:#FFFFFF;border-radius:14px;padding:13px 15px;margin-bottom:20px;font-size:13.5px;color:#71716A;animation:protoFade .3s ease">✓ Skottkärran återlämnad till Amira. Snyggt!</div>
+      </sc-if>
+
+      <div style="font-size:12px;font-weight:700;color:#9B9B92;text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px">Du lånar</div>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:22px">
+        <sc-for list="{{ loansIn }}" as="ln" hint-placeholder-count="2">
+          <div onClick="{{ ln.openChat }}" style="border:1px solid #E0DFD8;background:#FFFFFF;border-radius:14px;padding:14px 15px;cursor:pointer" style-active="opacity:.7">
+            <div style="display:flex;align-items:center;gap:12px;margin-bottom:{{ ln.barMargin }}">
+              <div style="width:40px;height:40px;border-radius:10px;background:#E9E8E2;flex:none"></div>
+              <div style="flex:1"><div style="font-size:14.5px;font-weight:700">{{ ln.title }}</div><div style="font-size:12px;color:#9B9B92">{{ ln.sub }}</div></div>
+              <span style="font-size:11.5px;font-weight:800;color:{{ ln.stFg }};background:{{ ln.stBg }};border-radius:999px;padding:5px 10px;white-space:nowrap">{{ ln.status }}</span>
+            </div>
+            <sc-if value="{{ ln.showBar }}" hint-placeholder-val="{{ false }}">
+              <div style="height:6px;border-radius:3px;background:#F0EFEA;position:relative"><span style="position:absolute;left:0;top:0;bottom:0;width:{{ ln.pct }};border-radius:3px;background:{{ ln.barColor }}"></span></div>
+              <div style="display:flex;justify-content:space-between;font-size:11px;color:#9B9B92;margin-top:5px"><span>{{ ln.barL }}</span><span>{{ ln.barR }}</span></div>
+            </sc-if>
+          </div>
+        </sc-for>
+      </div>
+
+      <div style="font-size:12px;font-weight:700;color:#9B9B92;text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px">Du lånar ut</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="border:1px solid #E0DFD8;background:#FFFFFF;border-radius:14px;padding:14px 15px">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px">
+            <div style="width:40px;height:40px;border-radius:10px;background:#E9E8E2;flex:none"></div>
+            <div style="flex:1"><div style="font-size:14.5px;font-weight:700">Skruvdragare → Jonas</div><div style="font-size:12px;color:#9B9B92">tors 9 → sön 12 juli</div></div>
+            <span style="font-size:11.5px;font-weight:800;color:#A66A2C;background:#F5EFE6;border-radius:999px;padding:5px 10px">UTLÅNAD</span>
+          </div>
+          <div style="height:6px;border-radius:3px;background:#F0EFEA;position:relative"><span style="position:absolute;left:0;top:0;bottom:0;width:40%;border-radius:3px;background:#A66A2C"></span></div>
+          <div style="display:flex;justify-content:space-between;font-size:11px;color:#9B9B92;margin-top:5px"><span>Dag 2 av 4</span><span>Hem sön 12</span></div>
+        </div>
+        <div style="border:1px solid #E0DFD8;background:#FFFFFF;border-radius:14px;padding:14px 15px">
+          <div style="display:flex;align-items:center;gap:12px">
+            <div style="width:40px;height:40px;border-radius:10px;background:#E9E8E2;flex:none"></div>
+            <div style="flex:1"><div style="font-size:14.5px;font-weight:700">Partytält → Sara</div><div style="font-size:12px;color:#9B9B92">{{ saraSub }}</div></div>
+            <sc-if value="{{ saraDecided }}" hint-placeholder-val="{{ false }}">
+              <span style="font-size:11.5px;font-weight:800;color:{{ saraStFg }};background:{{ saraStBg }};border-radius:999px;padding:5px 10px">{{ saraStatus }}</span>
+            </sc-if>
+          </div>
+          <sc-if value="{{ saraPending }}" hint-placeholder-val="{{ true }}">
+            <div style="font-size:13.5px;color:#45453F;background:#F4F3EE;border-radius:10px;padding:10px 12px;margin:12px 0;line-height:1.45">"Hej! Fyller 40 och tänkte ha fest i trädgården. Hämtar fredag em!"</div>
+            <div style="display:flex;gap:8px">
+              <button onClick="{{ saraApprove }}" style="flex:1;background:#2F5D50;color:#FBFBF8;border:none;border-radius:10px;padding:11px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Schibsted Grotesk',sans-serif">Låna ut</button>
+              <button onClick="{{ saraDeny }}" style="flex:1;border:1px solid #E0DFD8;background:none;color:#71716A;border-radius:10px;padding:11px;font-size:14px;font-weight:600;cursor:pointer;font-family:'Schibsted Grotesk',sans-serif">Kan inte</button>
+            </div>
+          </sc-if>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ vLanKalender }}" hint-placeholder-val="{{ false }}">
+      <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:6px">
+        <sc-for list="{{ weekdays }}" as="wd" hint-placeholder-count="7">
+          <div style="text-align:center;font-size:10.5px;font-weight:700;color:#9B9B92">{{ wd }}</div>
+        </sc-for>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:18px">
+        <sc-for list="{{ kalDays }}" as="d" hint-placeholder-count="21">
+          <div style="height:44px;border-radius:9px;background:{{ d.bg }};color:{{ d.fg }};display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:13px;font-weight:{{ d.weight }};gap:2px">
+            {{ d.n }}
+            <span style="display:flex;gap:2px">
+              <sc-for list="{{ d.dots }}" as="dot" hint-placeholder-count="0">
+                <span style="width:4px;height:4px;border-radius:50%;background:{{ dot }}"></span>
+              </sc-for>
+            </span>
+          </div>
+        </sc-for>
+      </div>
+      <div style="font-size:12px;font-weight:700;color:#9B9B92;text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px">Kommande</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <sc-for list="{{ upcoming }}" as="u" hint-placeholder-count="3">
+          <div style="display:flex;align-items:center;gap:12px;border:1px solid #E0DFD8;background:#FFFFFF;border-radius:12px;padding:12px 15px">
+            <span style="width:8px;height:8px;border-radius:50%;background:{{ u.color }};flex:none"></span>
+            <div style="flex:1"><div style="font-size:14px;font-weight:700">{{ u.title }}</div><div style="font-size:12px;color:#9B9B92">{{ u.sub }}</div></div>
+          </div>
+        </sc-for>
+      </div>
+    </sc-if>
+  </div>
+  </sc-if>
+
+  <!-- ========== CHATT ========== -->
+  <sc-if value="{{ vChat }}" hint-placeholder-val="{{ false }}">
+  <div style="flex:1;display:flex;flex-direction:column;animation:protoFade .2s ease;overflow:hidden">
+    <div style="display:flex;align-items:center;gap:12px;padding:24px 22px 14px;border-bottom:1px solid #E9E8E2;background:#FFFFFF;flex:none">
+      <button onClick="{{ closeChat }}" style="width:34px;height:34px;border-radius:50%;border:1px solid #E0DFD8;background:none;font-size:16px;cursor:pointer;font-family:'Schibsted Grotesk',sans-serif">‹</button>
+      <div style="width:38px;height:38px;border-radius:50%;background:#E9E8E2;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700">{{ chatInitial }}</div>
+      <div style="flex:1">
+        <div style="font-size:15.5px;font-weight:700">{{ chatOwner }}</div>
+        <div style="font-size:12px;color:#9B9B92">{{ chatItemName }}</div>
+      </div>
+    </div>
+    <div style="flex:1;overflow-y:auto;padding:20px 22px;display:flex;flex-direction:column;gap:14px">
+      <sc-for list="{{ chatMsgs }}" as="m" hint-placeholder-count="2">
+        <sc-if value="{{ m.isNote }}" hint-placeholder-val="{{ false }}">
+          <div style="align-self:center;font-size:11.5px;font-weight:700;color:#9B9B92;background:#F0EFEA;border-radius:999px;padding:5px 12px">{{ m.text }}</div>
+        </sc-if>
+        <sc-if value="{{ m.isMine }}" hint-placeholder-val="{{ false }}">
+          <div style="align-self:flex-end;max-width:280px;background:#191918;color:#FBFBF8;border-radius:16px 16px 4px 16px;padding:12px 15px;font-size:14px;line-height:1.5;animation:protoUp .25s ease">{{ m.text }}</div>
+        </sc-if>
+        <sc-if value="{{ m.isPeriod }}" hint-placeholder-val="{{ false }}">
+          <div style="align-self:flex-end;max-width:280px;border:1px solid #E0DFD8;background:#FFFFFF;border-radius:14px;padding:12px 15px;animation:protoUp .25s ease">
+            <div style="font-size:11px;font-weight:700;color:#9B9B92;text-transform:uppercase;letter-spacing:.07em;margin-bottom:4px">Önskad period</div>
+            <div style="font-size:14px;font-weight:800">{{ m.text }}</div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ m.isTheirs }}" hint-placeholder-val="{{ false }}">
+          <div style="align-self:flex-start;max-width:280px;background:#F0EFEA;border-radius:16px 16px 16px 4px;padding:12px 15px;font-size:14px;line-height:1.5;animation:protoUp .25s ease">{{ m.text }}</div>
+        </sc-if>
+        <sc-if value="{{ m.isProposal }}" hint-placeholder-val="{{ false }}">
+          <div style="align-self:flex-start;width:280px;border:1.5px solid #2F5D50;background:#FFFFFF;border-radius:16px;padding:14px 15px;animation:protoUp .25s ease">
+            <div style="font-size:11px;font-weight:700;color:#2F5D50;text-transform:uppercase;letter-spacing:.07em;margin-bottom:4px">{{ chatOwnerFirst }} föreslår</div>
+            <div style="font-size:15px;font-weight:800;margin-bottom:12px">{{ m.text }}</div>
+            <sc-if value="{{ m.open }}" hint-placeholder-val="{{ true }}">
+              <div style="display:flex;gap:8px">
+                <button onClick="{{ m.accept }}" style="flex:1;background:#2F5D50;color:#FBFBF8;border:none;border-radius:10px;padding:10px;font-size:13.5px;font-weight:700;cursor:pointer;font-family:'Schibsted Grotesk',sans-serif">Funkar!</button>
+                <button onClick="{{ m.decline }}" style="flex:1;border:1px solid #E0DFD8;background:none;color:#71716A;border-radius:10px;padding:10px;font-size:13.5px;font-weight:600;cursor:pointer;font-family:'Schibsted Grotesk',sans-serif">Annat datum</button>
+              </div>
+            </sc-if>
+            <sc-if value="{{ m.accepted }}" hint-placeholder-val="{{ false }}">
+              <div style="font-size:13.5px;font-weight:800;color:#2F5D50">✓ Godkänt — ligger nu i din kalender</div>
+            </sc-if>
+          </div>
+        </sc-if>
+        <sc-if value="{{ m.isTyping }}" hint-placeholder-val="{{ false }}">
+          <div style="align-self:flex-start;background:#F0EFEA;border-radius:16px 16px 16px 4px;padding:14px 18px;font-size:14px;color:#9B9B92;letter-spacing:2px">•••</div>
+        </sc-if>
+      </sc-for>
+    </div>
+    <div style="padding:14px 22px 28px;border-top:1px solid #E9E8E2;background:#FFFFFF;flex:none">
+      <div style="display:flex;align-items:center;gap:10px;border:1px solid #E0DFD8;background:#FBFBF8;border-radius:999px;padding:12px 18px;color:#9B9B92;font-size:14px">Skriv ett meddelande…</div>
+    </div>
+  </div>
+  </sc-if>
+
+  <!-- ========== SAK-DETALJ (sheet) ========== -->
+  <sc-if value="{{ vItem }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closeItem }}" style="position:absolute;inset:0;background:rgba(25,25,24,.4);z-index:20;animation:protoFade .2s ease"></div>
+    <div style="position:absolute;left:0;right:0;bottom:0;max-height:88%;background:#FBFBF8;border-radius:24px 24px 0 0;z-index:21;animation:protoUp .3s cubic-bezier(.2,.9,.3,1);display:flex;flex-direction:column;overflow:hidden">
+      <div style="flex:1;overflow-y:auto;padding:10px 22px 0">
+        <div style="width:38px;height:4px;border-radius:2px;background:#D8D7CF;margin:4px auto 12px"></div>
+        <div style="height:130px;border-radius:16px;background:#E9E8E2;display:flex;align-items:end;padding:10px;margin-bottom:14px"><span style="font-family:ui-monospace,Menlo,monospace;font-size:10px;color:#71716A;background:#FBFBF8;border-radius:4px;padding:2px 6px">{{ detail.imgLabel }}</span></div>
+        <div style="font-size:22px;font-weight:800;letter-spacing:-0.03em">{{ detail.name }}</div>
+        <div style="display:flex;align-items:center;gap:6px;font-size:13px;color:#71716A;margin:4px 0 10px"><span style="width:6px;height:6px;border-radius:50%;background:{{ detail.dotColor }}"></span>{{ detail.ownerMeta }}</div>
+        <div style="font-size:14px;line-height:1.5;color:#45453F;margin-bottom:16px">{{ detail.desc }}</div>
+
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+          <div style="font-size:12px;font-weight:700;color:#9B9B92;text-transform:uppercase;letter-spacing:.07em">Tillgänglighet · juli</div>
+          <div style="display:flex;gap:10px">
+            <span style="display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;color:#71716A"><span style="width:10px;height:10px;border-radius:3px;background:#EDECE5"></span>Upptagen</span>
+            <span style="display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;color:#71716A"><span style="width:10px;height:10px;border-radius:3px;background:#2F5D50"></span>Ditt val</span>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:4px">
+          <sc-for list="{{ weekdays }}" as="wd2" hint-placeholder-count="7">
+            <div style="text-align:center;font-size:10.5px;font-weight:700;color:#9B9B92">{{ wd2 }}</div>
+          </sc-for>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px">
+          <sc-for list="{{ availDays }}" as="ad" hint-placeholder-count="21">
+            <button onClick="{{ ad.pick }}" style="height:38px;border-radius:{{ ad.radius }};background:{{ ad.bg }};color:{{ ad.fg }};border:none;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:{{ ad.weight }};text-decoration:{{ ad.deco }};cursor:pointer;font-family:'Schibsted Grotesk',sans-serif;padding:0">{{ ad.n }}</button>
+          </sc-for>
+        </div>
+        <div style="font-size:12px;color:#9B9B92;margin-top:8px">{{ availHint }}</div>
+        <div style="border:1px solid #E0DFD8;background:#FFFFFF;border-radius:14px;padding:13px 16px;margin-top:14px;display:flex;justify-content:space-between;align-items:center">
+          <div><div style="font-size:11px;font-weight:700;color:#9B9B92;text-transform:uppercase;letter-spacing:.07em">Ditt val</div><div style="font-size:15px;font-weight:800;margin-top:2px">{{ selLabel }}</div></div>
+          <span style="font-size:13px;font-weight:700;color:#2F5D50">{{ selDur }}</span>
+        </div>
+        <div style="font-size:12px;font-weight:700;color:#9B9B92;text-transform:uppercase;letter-spacing:.07em;margin:16px 0 6px">Meddelande till {{ ownerFirstName }}</div>
+        <textarea value="{{ itemMsg }}" onChange="{{ setItemMsg }}" placeholder="{{ msgPlaceholder }}" rows="{{ msgRows }}" style="width:100%;border:1px solid #E0DFD8;background:#FFFFFF;border-radius:12px;padding:12px 15px;font-size:14.5px;line-height:1.5;font-family:'Schibsted Grotesk',sans-serif;color:#191918;outline:none;resize:none"></textarea>
+      </div>
+      <div style="padding:14px 22px 28px;flex:none">
+        <button onClick="{{ sendRequest }}" style="width:100%;background:{{ reqBg }};color:#FBFBF8;border:none;border-radius:14px;padding:16px;font-size:16px;font-weight:700;cursor:pointer;font-family:'Schibsted Grotesk',sans-serif;transition:background .15s">{{ reqLabel }}</button>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- ========== TOAST ========== -->
+  <sc-if value="{{ hasToast }}" hint-placeholder-val="{{ false }}">
+    <div style="position:absolute;left:22px;right:22px;bottom:104px;background:#191918;color:#FBFBF8;border-radius:12px;padding:13px 16px;font-size:13.5px;font-weight:600;z-index:40;animation:protoUp .25s ease;text-align:center">{{ toastText }}</div>
+  </sc-if>
+
+  <!-- ========== TABBAR ========== -->
+  <div style="position:absolute;left:0;right:0;bottom:0;display:flex;border-top:1px solid #E9E8E2;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);padding:12px 12px 26px;z-index:10">
+    <sc-for list="{{ tabs }}" as="tb" hint-placeholder-count="4">
+      <button onClick="{{ tb.go }}" style="flex:1;border:none;background:none;font-size:11.5px;font-weight:{{ tb.weight }};color:{{ tb.fg }};cursor:pointer;font-family:'Schibsted Grotesk',sans-serif;display:flex;flex-direction:column;align-items:center;gap:5px;padding:0;position:relative">
+        <span style="width:18px;height:18px;border:2px solid {{ tb.fg }};border-radius:{{ tb.icon }}"></span>
+        {{ tb.label }}
+        <sc-if value="{{ tb.badge }}" hint-placeholder-val="{{ false }}">
+          <span style="position:absolute;top:-3px;right:24%;width:9px;height:9px;border-radius:50%;background:#9A4F38;border:2px solid #FFFFFF"></span>
+        </sc-if>
+      </button>
+    </sc-for>
+  </div>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;: {&quot;width&quot;: 480, &quot;height&quot;: 920}}">
+class Component extends DCLogic {
+  state = {
+    tab: 'utforska',
+    query: '',
+    filter: 'alla',
+    openItemId: null,
+    selStart: null,
+    selEnd: null,
+    itemMsg: '',
+    chats: {},          // itemId -> { msgs: [...], status }
+    chatFor: null,
+    activeShedId: null,
+    lanView: 'lista',
+    myShared: { m1: ['v', 'g'], m2: ['g'], m3: ['v'], m4: ['v', 'g', 'f'], m5: [] },
+    returned: false,
+    sara: 'pending',    // pending | approved | denied
+    toast: null,
+    lanBadge: false,
+    editItemId: null,
+    myNames: {},
+    myDescs: {},
+  };
+
+  SHEDS = [
+    { id: 'v', name: 'Vänner', color: '#2F5D50', chipBg: '#EEF2F0', avatars: ['JS', 'MA', 'LK', '+3'], metaBase: '6 personer' },
+    { id: 'g', name: 'Grannar', color: '#A66A2C', chipBg: '#F5EFE6', avatars: ['AB', 'JL', 'BJ', '+8'], metaBase: '11 personer på Björkvägen' },
+    { id: 'f', name: 'Familjen', color: '#9A4F38', chipBg: '#FAF1EE', avatars: ['MÖ', 'GÖ', 'TÖ'], metaBase: '4 personer' },
+    { id: 'b', name: 'Bokklubben', color: '#39586B', chipBg: '#EAEEF2', avatars: ['KL', 'ME', '+2'], metaBase: '5 personer' },
+    { id: 'k', name: 'Kollegorna', color: '#66603B', chipBg: '#F1EFE3', avatars: ['DA', 'RH', '+4'], metaBase: '7 personer' },
+  ];
+
+  ITEMS = [
+    { id: 1, name: 'Slagborrmaskin', owner: 'Johan', ownerFull: 'Johan Lindqvist', shed: 'g', dist: '300 m', desc: 'Bosch Professional 18 V. Två batterier och laddare följer med.', booked: [[20, 21]], counter: false },
+    { id: 2, name: 'Utskjutsstege 6 m', owner: 'Berit', ownerFull: 'Berit Johansson', shed: 'g', dist: '450 m', desc: 'Aluminium, når upp till taknocken. Bäst att vara två som bär.', booked: [[11, 12]], counter: true },
+    { id: 3, name: 'Högtryckstvätt', owner: 'Marcus', ownerFull: 'Marcus Ek', shed: 'v', dist: '200 m', desc: 'Kärcher K5 med terrassmunstycke. 8 m slang ingår.', booked: [[8, 17]], counter: false },
+    { id: 4, name: 'Symaskin', owner: 'Lena', ownerFull: 'Lena Sandberg', shed: 'v', dist: '1,2 km', desc: 'Husqvarna Viking. Perfekt för gardiner och lagningar.', booked: [], counter: false },
+    { id: 5, name: 'Skottkärra', owner: 'Amira', ownerFull: 'Amira Bakir', shed: 'g', dist: '150 m', desc: 'Rejäl byggkärra, 100 liter. Står i carporten.', booked: [[6, 10]], counter: false },
+    { id: 6, name: 'Häcksax', owner: 'Per', ownerFull: 'Per Lund', shed: 'g', dist: '100 m', desc: 'Elektrisk, 60 cm svärd. Ta med förlängningskabel.', booked: [], counter: false },
+    { id: 7, name: 'Cykelkärra', owner: 'Sara', ownerFull: 'Sara Nyström', shed: 'v', dist: '600 m', desc: 'Thule för två barn. Regnskydd och flagga ingår.', booked: [], counter: false },
+    { id: 8, name: 'Partytält 3×6 m', owner: 'Fam. Öberg', ownerFull: 'Familjen Öberg', shed: 'f', dist: '2 km', desc: 'Vitt partytält med tre väggar. Packas i två väskor.', booked: [], counter: false },
+  ];
+
+  MY_ITEMS = [
+    { id: 'm1', name: 'Skruvdragare', status: 'Utlånad till Jonas t.o.m. sön', desc: 'Makita 18 V med två batterier. Bits i locket.' },
+    { id: 'm2', name: 'Stege 4 m', status: 'Hemma', desc: 'Aluminiumstege, fälls ihop till 2 m. Står i garaget.' },
+    { id: 'm3', name: 'Slipmaskin', status: 'Hemma', desc: 'Excenterslip med dammpåse. Papper i olika kornstorlek finns.' },
+    { id: 'm4', name: 'Partytält 3×6 m', status: 'Hemma', desc: 'Vitt partytält med tre väggar. Packas i två väskor.' },
+    { id: 'm5', name: 'Fogsvans', status: 'Delas inte än', desc: 'Vanlig fogsvans, nyslipade tänder.' },
+  ];
+
+  DAYS = Array.from({ length: 21 }, (_, i) => i + 6); // 6..26 juli
+  TODAY = 10;
+
+  shedById(id) { return this.SHEDS.find(s => s.id === id); }
+  isBooked(item, d) { return item.booked.some(([a, b]) => d >= a && d <= b); }
+  fmt(d) {
+    const names = ['mån', 'tis', 'ons', 'tors', 'fre', 'lör', 'sön'];
+    return names[(d - 6) % 7] + ' ' + d;
+  }
+  fmtRange(a, b) { return a === b ? this.fmt(a) + ' juli' : this.fmt(a) + ' → ' + this.fmt(b) + ' juli'; }
+
+  showToast(text) {
+    clearTimeout(this._toastT);
+    this.setState({ toast: text });
+    this._toastT = setTimeout(() => this.setState({ toast: null }), 2600);
+  }
+
+  sendRequest(item) {
+    const { selStart, selEnd } = this.state;
+    if (!selStart) return;
+    const a = selStart, b = selEnd || selStart;
+    const first = item.ownerFull.split(' ')[0];
+    const custom = this.state.itemMsg.trim();
+    const msgs = [
+      { k: 'note', text: 'Förfrågan skickad · idag' },
+      { k: 'mine', text: custom || ('Hej! Skulle jag kunna få låna ' + item.name.toLowerCase() + '? Lovar att vara rädd om den.') },
+      { k: 'period', text: this.fmtRange(a, b) },
+      { k: 'typing' },
+    ];
+    this.setState(s => ({
+      chats: { ...s.chats, [item.id]: { msgs, status: 'väntar', range: [a, b] } },
+      chatFor: item.id, openItemId: null, selStart: null, selEnd: null, itemMsg: '',
+    }));
+    clearTimeout(this._replyT);
+    this._replyT = setTimeout(() => {
+      this.setState(s => {
+        const c = s.chats[item.id]; if (!c) return null;
+        const base = c.msgs.filter(m => m.k !== 'typing');
+        let add, status = c.status, range = c.range;
+        if (item.counter) {
+          const na = c.range[0] + 2, nb = c.range[1] + 2;
+          add = [
+            { k: 'theirs', text: 'Hej Elin! De dagarna är tyvärr bokade — målaren behöver den. Funkar det två dagar senare?' },
+            { k: 'proposal', text: this.fmtRange(na, nb), state: 'open', na, nb },
+          ];
+          status = 'förslag';
+        } else {
+          add = [
+            { k: 'theirs', text: 'Absolut, det går bra! Den står i garaget — knacka på när du kommer.' },
+            { k: 'proposal', text: this.fmtRange(c.range[0], c.range[1]), state: 'accepted', na: c.range[0], nb: c.range[1] },
+          ];
+          status = 'godkänt';
+        }
+        return { chats: { ...s.chats, [item.id]: { msgs: base.concat(add), status, range } }, lanBadge: true };
+      });
+    }, 1900);
+  }
+
+  acceptProposal(itemId) {
+    this.setState(s => {
+      const c = s.chats[itemId];
+      const msgs = c.msgs.map(m => m.k === 'proposal' ? { ...m, state: 'accepted' } : m);
+      const p = c.msgs.find(m => m.k === 'proposal');
+      return { chats: { ...s.chats, [itemId]: { ...c, msgs, status: 'godkänt', range: [p.na, p.nb] } } };
+    });
+    this.showToast('Lånet ligger nu i din kalender');
+  }
+
+  declineProposal(itemId) {
+    this.setState(s => {
+      const c = s.chats[itemId];
+      const msgs = c.msgs
+        .map(m => m.k === 'proposal' ? { ...m, state: 'hidden' } : m)
+        .concat([{ k: 'mine', text: 'Hmm, det passar sämre — jag återkommer med nya datum!' }]);
+      return { chats: { ...s.chats, [itemId]: { ...c, msgs, status: 'väntar' } } };
+    });
+  }
+
+  componentWillUnmount() { clearTimeout(this._replyT); clearTimeout(this._toastT); }
+
+  renderVals() {
+    const st = this.state;
+    const inChat = st.chatFor != null;
+    const inItem = st.openItemId != null && !inChat;
+
+    // ---- filters + items ----
+    const q = st.query.trim().toLowerCase();
+    const filters = [{ id: 'alla', name: 'Alla skjul', dot: null }].concat(
+      this.SHEDS.map(s => ({ id: s.id, name: s.name, dot: s.color }))
+    ).map(f => ({
+      ...f,
+      bg: st.filter === f.id ? '#191918' : '#FFFFFF',
+      fg: st.filter === f.id ? '#FBFBF8' : '#191918',
+      border: st.filter === f.id ? '#191918' : '#E0DFD8',
+      select: () => this.setState({ filter: f.id }),
+    }));
+
+    const visible = this.ITEMS.filter(it =>
+      (st.filter === 'alla' || it.shed === st.filter) &&
+      (!q || it.name.toLowerCase().includes(q))
+    );
+    const items = visible.map(it => ({
+      ...it,
+      imgLabel: 'foto: ' + it.name.toLowerCase(),
+      dotColor: this.shedById(it.shed).color,
+      meta: it.owner + ' · ' + it.dist + (this.isBooked(it, this.TODAY) ? ' · utlånad' : ' · ledig'),
+      open: () => this.setState({ openItemId: it.id, selStart: null, selEnd: null, itemMsg: '' }),
+    }));
+
+    // ---- item detail + availability ----
+    const item = this.ITEMS.find(i => i.id === st.openItemId) || this.ITEMS[0];
+    const shedOfItem = this.shedById(item.shed);
+    const detail = {
+      name: item.name,
+      imgLabel: 'foto: ' + item.name.toLowerCase(),
+      dotColor: shedOfItem.color,
+      ownerMeta: item.ownerFull + ' · via ' + shedOfItem.name + ' · ' + item.dist,
+      desc: item.desc,
+    };
+    const a = st.selStart, b = st.selEnd;
+    const availDays = this.DAYS.map(d => {
+      const booked = this.isBooked(item, d);
+      const past = d < this.TODAY;
+      const inSel = a != null && (b != null ? (d >= a && d <= b) : d === a);
+      const edgeL = inSel && d === a, edgeR = inSel && d === (b || a);
+      return {
+        n: d,
+        bg: inSel ? '#2F5D50' : (booked ? '#EDECE5' : 'transparent'),
+        fg: inSel ? '#FBFBF8' : (booked || past ? '#B4B3AA' : '#191918'),
+        weight: inSel || d === this.TODAY ? 800 : 400,
+        deco: booked ? 'line-through' : 'none',
+        radius: edgeL && edgeR ? '8px' : edgeL ? '8px 0 0 8px' : edgeR ? '0 8px 8px 0' : inSel ? '0' : '8px',
+        pick: () => {
+          if (booked || past) { this.showToast('Upptagen den dagen — välj en ledig'); return; }
+          this.setState(s => {
+            if (s.selStart == null || s.selEnd != null || d < s.selStart) return { selStart: d, selEnd: null };
+            for (let x = s.selStart; x <= d; x++) if (this.isBooked(item, x)) { this.showToast('Perioden krockar med upptagna dagar'); return { selStart: d, selEnd: null }; }
+            return { selEnd: d };
+          });
+        },
+      };
+    });
+    const hasSel = a != null;
+    const selLabel = hasSel ? this.fmtRange(a, b || a) : 'Välj dagar i kalendern';
+    const selDur = hasSel ? ((b || a) - a + 1) + (((b || a) - a) === 0 ? ' dag' : ' dagar') : '';
+    const ownerFirst = item.ownerFull.split(' ')[0];
+
+    // ---- chat ----
+    const chatItem = this.ITEMS.find(i => i.id === st.chatFor) || item;
+    const chat = st.chats[st.chatFor] || { msgs: [] };
+    const chatMsgs = chat.msgs.filter(m => m.state !== 'hidden').map((m, i) => ({
+      key: i,
+      text: m.text,
+      isNote: m.k === 'note', isMine: m.k === 'mine', isPeriod: m.k === 'period',
+      isTheirs: m.k === 'theirs', isTyping: m.k === 'typing',
+      isProposal: m.k === 'proposal',
+      open: m.k === 'proposal' && m.state === 'open',
+      accepted: m.k === 'proposal' && m.state === 'accepted',
+      accept: () => this.acceptProposal(st.chatFor),
+      decline: () => this.declineProposal(st.chatFor),
+    }));
+
+    // ---- matrix ----
+    const shedCols = this.SHEDS.map(s => ({ name: s.name, color: s.color }));
+    const matrixRows = this.MY_ITEMS.map(mi => ({
+      name: st.myNames[mi.id] ?? mi.name, status: mi.status,
+      edit: () => this.setState({ editItemId: mi.id }),
+      cells: this.SHEDS.map(s => {
+        const on = (st.myShared[mi.id] || []).includes(s.id);
+        return {
+          bg: on ? s.color : 'transparent',
+          border: on ? 'none' : '1.5px solid #D8D7CF',
+          check: on ? '✓' : '',
+          toggle: () => this.setState(prev => {
+            const cur = prev.myShared[mi.id] || [];
+            const next = on ? cur.filter(x => x !== s.id) : cur.concat(s.id);
+            return { myShared: { ...prev.myShared, [mi.id]: next } };
+          }),
+        };
+      }),
+    }));
+
+    // ---- sheds ----
+    const countShared = id => this.MY_ITEMS.filter(mi => (st.myShared[mi.id] || []).includes(id)).length;
+    const shedList = this.SHEDS.map(s => ({
+      ...s,
+      meta: s.metaBase + ' · ' + (this.ITEMS.filter(i => i.shed === s.id).length + countShared(s.id)) + ' saker · du delar ' + countShared(s.id),
+      open: () => this.setState({ activeShedId: s.id }),
+    }));
+    const activeShed = this.shedById(st.activeShedId) || this.SHEDS[0];
+    const myChips = this.MY_ITEMS.filter(mi => (st.myShared[mi.id] || []).includes(activeShed.id)).map(mi => st.myNames[mi.id] ?? mi.name);
+
+    // ---- edit item ----
+    const editRaw = this.MY_ITEMS.find(m => m.id === st.editItemId) || this.MY_ITEMS[0];
+    const editSheds = this.SHEDS.map(s => {
+      const on = (st.myShared[editRaw.id] || []).includes(s.id);
+      return {
+        name: s.name, meta: s.metaBase, dot: s.color,
+        rowBorder: on ? s.color : '#E0DFD8',
+        rowBg: on ? s.chipBg : '#FFFFFF',
+        boxBg: on ? s.color : 'transparent',
+        boxBorder: on ? s.color : '#D8D7CF',
+        check: on ? '✓' : '',
+        toggle: () => this.setState(prev => {
+          const cur = prev.myShared[editRaw.id] || [];
+          return { myShared: { ...prev.myShared, [editRaw.id]: on ? cur.filter(x => x !== s.id) : cur.concat(s.id) } };
+        }),
+      };
+    });
+    const editShedCount = (st.myShared[editRaw.id] || []).length;
+    const shed = {
+      ...activeShed,
+      myChips,
+      nothingShared: myChips.length === 0,
+      items: this.ITEMS.filter(i => i.shed === activeShed.id).map(i => ({
+        name: i.name,
+        meta: i.owner + ' · ' + i.dist + (this.isBooked(i, this.TODAY) ? ' · utlånad' : ' · ledig'),
+        open: () => this.setState({ openItemId: i.id, selStart: null, selEnd: null, itemMsg: '' }),
+      })),
+    };
+
+    // ---- loans ----
+    const loansIn = [];
+    Object.keys(st.chats).forEach(id => {
+      const c = st.chats[id];
+      const it = this.ITEMS.find(x => x.id === Number(id));
+      const godkant = c.status === 'godkänt';
+      loansIn.push({
+        title: it.name + ' ← ' + it.owner,
+        sub: this.fmtRange(c.range[0], c.range[1]),
+        status: c.status === 'godkänt' ? 'GODKÄNT' : c.status === 'förslag' ? 'NYTT FÖRSLAG' : 'VÄNTAR',
+        stFg: godkant ? '#2F5D50' : c.status === 'förslag' ? '#FBFBF8' : '#A66A2C',
+        stBg: godkant ? '#EEF2F0' : c.status === 'förslag' ? '#9A4F38' : '#F5EFE6',
+        showBar: false, barMargin: '0', pct: '0%', barColor: '#2F5D50', barL: '', barR: '',
+        openChat: () => this.setState({ chatFor: Number(id), lanBadge: false }),
+      });
+    });
+    loansIn.push({
+      title: 'Högtryckstvätt ← Marcus',
+      sub: 'ons 8 → fre 17 juli',
+      status: 'PÅGÅR', stFg: '#A66A2C', stBg: '#F5EFE6',
+      showBar: true, barMargin: '10px', pct: '65%', barColor: '#A66A2C', barL: 'Dag 6 av 9', barR: 'Lämnas fre 17',
+      openChat: () => this.showToast('Chatten med Marcus öppnas här'),
+    });
+
+    // ---- kalender ----
+    const weekdays = ['M', 'T', 'O', 'T', 'F', 'L', 'S'];
+    const kalDays = this.DAYS.map(d => {
+      const dots = [];
+      if (d >= 8 && d <= 17) dots.push('#2F5D50');            // högtryckstvätt (vänner)
+      if (d >= 9 && d <= 12) dots.push('#A66A2C');            // skruvdragare ut (grannar-jonas)
+      if (st.sara === 'approved' && d >= 24 && d <= 26) dots.push('#9A4F38');
+      Object.keys(st.chats).forEach(id => {
+        const c = st.chats[id];
+        if (c.status === 'godkänt' && d >= c.range[0] && d <= c.range[1]) dots.push('#A66A2C');
+      });
+      const today = d === this.TODAY;
+      return { n: d, dots: dots.slice(0, 3), bg: today ? '#191918' : 'transparent', fg: today ? '#FBFBF8' : (d < this.TODAY ? '#C9C8C0' : '#191918'), weight: today ? 800 : 400 };
+    });
+    const upcoming = [];
+    if (!st.returned) upcoming.push({ color: '#9A4F38', title: 'Lämna tillbaka skottkärran', sub: 'Till Amira · idag fredag 10 juli' });
+    upcoming.push({ color: '#A66A2C', title: 'Skruvdragaren kommer hem', sub: 'Jonas lämnar · söndag 12 juli' });
+    Object.keys(st.chats).forEach(id => {
+      const c = st.chats[id];
+      if (c.status === 'godkänt') {
+        const it = this.ITEMS.find(x => x.id === Number(id));
+        upcoming.push({ color: this.shedById(it.shed).color, title: 'Hämta ' + it.name.toLowerCase() + ' hos ' + it.owner, sub: this.fmtRange(c.range[0], c.range[1]) });
+      }
+    });
+    upcoming.push({ color: '#2F5D50', title: 'Lämna högtryckstvätten', sub: 'Till Marcus · fredag 17 juli' });
+    if (st.sara === 'approved') upcoming.push({ color: '#9A4F38', title: 'Sara hämtar partytältet', sub: 'Fredag 24 juli' });
+
+    // ---- tabs ----
+    const defs = [
+      { key: 'utforska', label: 'Utforska', icon: '50%' },
+      { key: 'mina', label: 'Mina saker', icon: '5px' },
+      { key: 'skjul', label: 'Skjul', icon: '3px' },
+      { key: 'lan', label: 'Lån', icon: '50% 50% 4px 4px' },
+    ];
+    const tabs = defs.map(d => ({
+      ...d,
+      fg: st.tab === d.key && !inChat ? '#191918' : '#9B9B92',
+      weight: st.tab === d.key && !inChat ? 700 : 600,
+      badge: d.key === 'lan' && st.lanBadge,
+      go: () => this.setState({ tab: d.key, chatFor: null, openItemId: null, activeShedId: null, editItemId: null, lanBadge: d.key === 'lan' ? false : st.lanBadge }),
+    }));
+
+    return {
+      vUtforska: st.tab === 'utforska' && !inChat,
+      vMina: st.tab === 'mina' && !inChat && !st.editItemId,
+      vEdit: st.tab === 'mina' && !inChat && !!st.editItemId,
+      editName: st.myNames[editRaw.id] ?? editRaw.name,
+      setEditName: e => this.setState(s => ({ myNames: { ...s.myNames, [editRaw.id]: e.target.value } })),
+      editDesc: st.myDescs[editRaw.id] ?? editRaw.desc,
+      setEditDesc: e => this.setState(s => ({ myDescs: { ...s.myDescs, [editRaw.id]: e.target.value } })),
+      editSheds,
+      editStatus: editRaw.status + ' · Syns i ' + editShedCount + (editShedCount === 1 ? ' skjul' : ' skjul') + '. Ändringar sparas direkt.',
+      closeEdit: () => this.setState({ editItemId: null }),
+      removeItem: () => { this.setState({ editItemId: null }); this.showToast('Här skulle saken tas bort'); },
+      vSkjul: st.tab === 'skjul' && !st.activeShedId && !inChat,
+      vSkjulDetalj: st.tab === 'skjul' && !!st.activeShedId && !inChat,
+      vLan: st.tab === 'lan' && !inChat,
+      vLanLista: st.lanView === 'lista',
+      vLanKalender: st.lanView === 'kalender',
+      vChat: inChat,
+      vItem: inItem,
+
+      itemCount: this.ITEMS.length,
+      query: st.query,
+      setQuery: e => this.setState({ query: e.target.value }),
+      filters, items,
+
+      detail, availDays, weekdays,
+      availHint: hasSel ? 'Tryck på en senare dag för att förlänga perioden.' : 'Tryck på en ledig dag för att börja välja.',
+      selLabel, selDur,
+      ownerFirstName: ownerFirst,
+      itemMsg: st.itemMsg,
+      setItemMsg: e => this.setState({ itemMsg: e.target.value }),
+      msgPlaceholder: 'Hej ' + ownerFirst + '! Berätta gärna vad du ska använda den till…',
+      msgRows: 3,
+      reqLabel: hasSel ? 'Fråga ' + ownerFirst + ' · ' + this.fmtRange(a, b || a) : 'Välj period först',
+      reqBg: hasSel ? '#2F5D50' : '#C9C8C0',
+      sendRequest: () => this.sendRequest(item),
+      closeItem: () => this.setState({ openItemId: null }),
+
+      chatMsgs,
+      chatOwner: chatItem.ownerFull,
+      chatOwnerFirst: chatItem.ownerFull.split(' ')[0],
+      chatInitial: chatItem.ownerFull[0],
+      chatItemName: chatItem.name,
+      closeChat: () => this.setState({ chatFor: null, tab: 'lan' }),
+
+      shedCols, matrixRows,
+      shedList, shed,
+      closeShed: () => this.setState({ activeShedId: null }),
+      toastInvite: () => this.showToast('Inbjudningslänk kopierad'),
+
+      loansIn,
+      showReturnBanner: !st.returned,
+      showReturnedNote: st.returned,
+      markReturned: () => { this.setState({ returned: true }); this.showToast('Amira får en notis. Tack för lånet!'); },
+      saraPending: st.sara === 'pending',
+      saraDecided: st.sara !== 'pending',
+      saraSub: st.sara === 'pending' ? 'Önskar 24–26 juli · väntar på ditt svar' : st.sara === 'approved' ? 'fre 24 → sön 26 juli' : 'Förfrågan nekad',
+      saraStatus: st.sara === 'approved' ? 'GODKÄNT' : 'NEKAT',
+      saraStFg: st.sara === 'approved' ? '#2F5D50' : '#71716A',
+      saraStBg: st.sara === 'approved' ? '#EEF2F0' : '#F0EFEA',
+      saraApprove: () => { this.setState({ sara: 'approved' }); this.showToast('Sara får en notis — 24–26 juli ligger i kalendern'); },
+      saraDeny: () => this.setState({ sara: 'denied' }),
+
+      toggleKalender: () => this.setState(s => ({ lanView: s.lanView === 'lista' ? 'kalender' : 'lista' })),
+      kalLabel: st.lanView === 'lista' ? 'Kalender' : 'Lista',
+      kalBorder: st.lanView === 'kalender' ? '#191918' : '#E0DFD8',
+      kalBg: st.lanView === 'kalender' ? '#191918' : 'transparent',
+      kalFg: st.lanView === 'kalender' ? '#FBFBF8' : '#191918',
+      kalDays, upcoming,
+
+      hasToast: !!st.toast,
+      toastText: st.toast,
+      tabs,
+    };
+  }
+}
+</script>
+</body>
+</html>

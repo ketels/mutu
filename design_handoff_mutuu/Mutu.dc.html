@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;padding:0;background:#EFEEE8;}
+*{box-sizing:border-box}
+</style>
+</helmet>
+
+<section style="font-family:'Schibsted Grotesk',sans-serif;color:#191918;padding:48px">
+  <div id="5a" style="max-width:3200px;margin-bottom:72px">
+    <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:8px">
+      <a href="#5a" style="font-size:12px;font-weight:800;background:#191918;color:#FBFBF8;border-radius:6px;padding:3px 8px;text-decoration:none">5a</a>
+      <div style="font-size:30px;font-weight:800;letter-spacing:-0.03em">Sakens tillgänglighet</div>
+      <div style="font-size:15px;color:#71716A">Se lediga dagar direkt på saken — välj period innan du frågar</div>
+    </div>
+    <div style="font-size:14px;color:#71716A;margin-bottom:36px;max-width:680px">Kalendern på saksidan visar när den är upptagen (grå överstruket) och vad du valt (grönt spann). Du frågar aldrig i blindo — och ägaren slipper säga nej.</div>
+
+    <div style="display:flex;gap:40px;align-items:flex-start;flex-wrap:wrap">
+
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="font-size:13px;font-weight:700;color:#71716A;text-transform:uppercase;letter-spacing:.08em">T1 · Sak med tillgänglighet</div>
+        <div data-screen-label="Sak tillgänglighet" style="width:390px;height:844px;background:#FBFBF8;border:1px solid #E0DFD8;border-radius:24px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 12px 40px rgba(25,25,24,.08)">
+          <div style="height:210px;background:#E9E8E2;position:relative;flex:none">
+            <span style="position:absolute;top:22px;left:20px;width:34px;height:34px;border-radius:50%;background:#FBFBF8;display:flex;align-items:center;justify-content:center;font-size:16px;color:#191918">‹</span>
+            <span style="position:absolute;bottom:14px;left:20px;font-family:ui-monospace,Menlo,monospace;font-size:10px;color:#71716A;background:#FBFBF8;border-radius:4px;padding:2px 6px">foto: högtryckstvätt</span>
+          </div>
+          <div style="flex:1;padding:20px 22px 0;overflow:hidden">
+            <div style="display:flex;align-items:center;gap:12px">
+              <div style="flex:1">
+                <div style="font-size:22px;font-weight:800;letter-spacing:-0.03em">Högtryckstvätt</div>
+                <div style="display:flex;align-items:center;gap:6px;font-size:13px;color:#71716A;margin-top:3px"><span style="width:6px;height:6px;border-radius:50%;background:#A66A2C"></span>Marcus · via Grannar · 200 m</div>
+              </div>
+              <span style="flex:none;white-space:nowrap;font-size:12px;font-weight:800;color:#A66A2C;background:#F5EFE6;border-radius:999px;padding:6px 12px">LEDIG 18 JULI</span>
+            </div>
+
+            <div style="display:flex;align-items:center;justify-content:space-between;margin:20px 0 10px">
+              <div style="font-size:12px;font-weight:700;color:#9B9B92;text-transform:uppercase;letter-spacing:.07em">Tillgänglighet · juli</div>
+              <div style="display:flex;gap:12px">
+                <span style="display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;color:#71716A"><span style="width:10px;height:10px;border-radius:3px;background:#EDECE5"></span>Upptagen</span>
+                <span style="display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;color:#71716A"><span style="width:10px;height:10px;border-radius:3px;background:#2F5D50"></span>Ditt val</span>
+              </div>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:4px">
+              <div style="text-align:center;font-size:10.5px;font-weight:700;color:#9B9B92">M</div><div style="text-align:center;font-size:10.5px;font-weight:700;color:#9B9B92">T</div><div style="text-align:center;font-size:10.5px;font-weight:700;color:#9B9B92">O</div><div style="text-align:center;font-size:10.5px;font-weight:700;color:#9B9B92">T</div><div style="text-align:center;font-size:10.5px;font-weight:700;color:#9B9B92">F</div><div style="text-align:center;font-size:10.5px;font-weight:700;color:#9B9B92">L</div><div style="text-align:center;font-size:10.5px;font-weight:700;color:#9B9B92">S</div>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px">
+              <div style="height:38px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;color:#C9C8C0">6</div>
+              <div style="height:38px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;color:#C9C8C0">7</div>
+              <div style="height:38px;border-radius:8px;background:#EDECE5;display:flex;align-items:center;justify-content:center;font-size:13px;color:#B4B3AA;text-decoration:line-through">8</div>
+              <div style="height:38px;border-radius:8px;background:#EDECE5;display:flex;align-items:center;justify-content:center;font-size:13px;color:#B4B3AA;text-decoration:line-through">9</div>
+              <div style="height:38px;border-radius:8px;background:#EDECE5;display:flex;align-items:center;justify-content:center;font-size:13px;color:#B4B3AA;text-decoration:line-through;outline:1.5px solid #191918;outline-offset:-1.5px">10</div>
+              <div style="height:38px;border-radius:8px;background:#EDECE5;display:flex;align-items:center;justify-content:center;font-size:13px;color:#B4B3AA;text-decoration:line-through">11</div>
+              <div style="height:38px;border-radius:8px;background:#EDECE5;display:flex;align-items:center;justify-content:center;font-size:13px;color:#B4B3AA;text-decoration:line-through">12</div>
+              <div style="height:38px;border-radius:8px;background:#EDECE5;display:flex;align-items:center;justify-content:center;font-size:13px;color:#B4B3AA;text-decoration:line-through">13</div>
+              <div style="height:38px;border-radius:8px;background:#EDECE5;display:flex;align-items:center;justify-content:center;font-size:13px;color:#B4B3AA;text-decoration:line-through">14</div>
+              <div style="height:38px;border-radius:8px;background:#EDECE5;display:flex;align-items:center;justify-content:center;font-size:13px;color:#B4B3AA;text-decoration:line-through">15</div>
+              <div style="height:38px;border-radius:8px;background:#EDECE5;display:flex;align-items:center;justify-content:center;font-size:13px;color:#B4B3AA;text-decoration:line-through">16</div>
+              <div style="height:38px;border-radius:8px;background:#EDECE5;display:flex;align-items:center;justify-content:center;font-size:13px;color:#B4B3AA;text-decoration:line-through">17</div>
+              <div style="height:38px;border-radius:8px 0 0 8px;background:#2F5D50;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#FBFBF8">18</div>
+              <div style="height:38px;border-radius:0 8px 8px 0;background:#2F5D50;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#FBFBF8">19</div>
+              <div style="height:38px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px">20</div>
+              <div style="height:38px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px">21</div>
+              <div style="height:38px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px">22</div>
+              <div style="height:38px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px">23</div>
+              <div style="height:38px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px">24</div>
+              <div style="height:38px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px">25</div>
+              <div style="height:38px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px">26</div>
+            </div>
+            <div style="font-size:12px;color:#9B9B92;margin-top:8px">Upptagen 8–17 juli. Idag = inringad. Dra över dagar för att välja period.</div>
+
+            <div style="border:1px solid #E0DFD8;background:#FFFFFF;border-radius:14px;padding:14px 16px;margin-top:16px;display:flex;justify-content:space-between;align-items:center">
+              <div><div style="font-size:11px;font-weight:700;color:#9B9B92;text-transform:uppercase;letter-spacing:.07em">Ditt val</div><div style="font-size:15px;font-weight:800;margin-top:2px">Lör 18 → sön 19 juli</div></div>
+              <span style="font-size:13px;font-weight:700;color:#2F5D50">2 dagar</span>
+            </div>
+          </div>
+          <div style="padding:14px 22px 30px">
+            <div style="background:#2F5D50;color:#FBFBF8;border-radius:14px;padding:16px;text-align:center;font-size:16px;font-weight:700">Fråga Marcus · 18–19 juli</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="4a" style="max-width:3200px;margin-bottom:72px">
+    <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:8px">
+      <a href="#4a" style="font-size:12px;font-weight:800;background:#191918;color:#FBFBF8;border-radius:6px;padding:3px 8px;text-decoration:none">4a</a>
+      <div style="font-size:30px;font-weight:800;letter-spacing:-0.03em">Lånekalendern · Desktop</div>
+      <div style="font-size:15px;color:#71716A">Lånen som spann över dagarna · komplement till <a href="#3a" style="color:#71716A">3a</a></div>
+    </div>
+    <div style="font-size:14px;color:#71716A;margin-bottom:36px;max-width:680px">På desktop ritas varje lån som en stapel över sina dagar, i skjulets färg. Streckad stapel = förfrågan som väntar på svar. Till höger: det som händer idag och närmast.</div>
+
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <div style="font-size:13px;font-weight:700;color:#71716A;text-transform:uppercase;letter-spacing:.08em">D4 · Kalender</div>
+      <div data-screen-label="Desktop Kalender" style="width:1440px;background:#FBFBF8;border:1px solid #E0DFD8;border-radius:20px;overflow:hidden;box-shadow:0 12px 40px rgba(25,25,24,.08)">
+        <div style="display:flex;align-items:center;gap:36px;padding:20px 48px;border-bottom:1px solid #E9E8E2;background:#FFFFFF">
+          <div style="font-size:22px;font-weight:800;letter-spacing:-0.03em">mutuu</div>
+          <div style="display:flex;gap:28px;flex:1">
+            <span style="font-size:14.5px;font-weight:600;color:#9B9B92">Utforska</span>
+            <span style="font-size:14.5px;font-weight:600;color:#9B9B92">Mina saker</span>
+            <span style="font-size:14.5px;font-weight:600;color:#9B9B92">Skjul</span>
+            <span style="font-size:14.5px;font-weight:700;border-bottom:2px solid #191918;padding-bottom:2px">Lån</span>
+          </div>
+          <div style="width:36px;height:36px;border-radius:50%;background:#191918;color:#FBFBF8;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700">E</div>
+        </div>
+        <div style="padding:40px 48px 48px;display:grid;grid-template-columns:1fr 340px;gap:40px;align-items:start">
+
+          <div>
+            <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px">
+              <div style="font-size:34px;font-weight:800;letter-spacing:-0.03em;flex:1">Juli 2026</div>
+              <span style="width:36px;height:36px;border-radius:50%;border:1px solid #E0DFD8;display:flex;align-items:center;justify-content:center;font-size:16px;color:#9B9B92">‹</span>
+              <span style="width:36px;height:36px;border-radius:50%;border:1px solid #E0DFD8;display:flex;align-items:center;justify-content:center;font-size:16px">›</span>
+              <div style="display:flex;gap:14px;margin-left:12px">
+                <span style="display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;color:#71716A"><span style="width:8px;height:8px;border-radius:50%;background:#2F5D50"></span>Vänner</span>
+                <span style="display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;color:#71716A"><span style="width:8px;height:8px;border-radius:50%;background:#A66A2C"></span>Grannar</span>
+                <span style="display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;color:#71716A"><span style="width:8px;height:8px;border-radius:50%;background:#9A4F38"></span>Familjen</span>
+              </div>
+            </div>
+
+            <div style="display:grid;grid-template-columns:repeat(7,1fr);border-bottom:1px solid #E9E8E2;padding-bottom:8px;margin-bottom:8px">
+              <div style="font-size:11.5px;font-weight:700;color:#9B9B92;text-transform:uppercase;letter-spacing:.06em;padding-left:10px">Mån</div>
+              <div style="font-size:11.5px;font-weight:700;color:#9B9B92;text-transform:uppercase;letter-spacing:.06em;padding-left:10px">Tis</div>
+              <div style="font-size:11.5px;font-weight:700;color:#9B9B92;text-transform:uppercase;letter-spacing:.06em;padding-left:10px">Ons</div>
+              <div style="font-size:11.5px;font-weight:700;color:#9B9B92;text-transform:uppercase;letter-spacing:.06em;padding-left:10px">Tors</div>
+              <div style="font-size:11.5px;font-weight:700;color:#9B9B92;text-transform:uppercase;letter-spacing:.06em;padding-left:10px">Fre</div>
+              <div style="font-size:11.5px;font-weight:700;color:#9B9B92;text-transform:uppercase;letter-spacing:.06em;padding-left:10px">Lör</div>
+              <div style="font-size:11.5px;font-weight:700;color:#9B9B92;text-transform:uppercase;letter-spacing:.06em;padding-left:10px">Sön</div>
+            </div>
+
+            <!-- Vecka 1: 29 jun – 5 jul -->
+            <div style="display:grid;grid-template-columns:repeat(7,1fr);border-bottom:1px solid #F0EFEA">
+              <div style="height:78px;padding:8px 10px;font-size:13px;color:#C9C8C0;border-right:1px solid #F6F5F0">29</div>
+              <div style="height:78px;padding:8px 10px;font-size:13px;color:#C9C8C0;border-right:1px solid #F6F5F0">30</div>
+              <div style="height:78px;padding:8px 10px;font-size:13px;border-right:1px solid #F6F5F0">1</div>
+              <div style="height:78px;padding:8px 10px;font-size:13px;border-right:1px solid #F6F5F0">2</div>
+              <div style="height:78px;padding:8px 10px;font-size:13px;border-right:1px solid #F6F5F0">3</div>
+              <div style="height:78px;padding:8px 10px;font-size:13px;border-right:1px solid #F6F5F0">4</div>
+              <div style="height:78px;padding:8px 10px;font-size:13px">5</div>
+            </div>
+
+            <!-- Vecka 2: 6–12 jul -->
+            <div style="position:relative;border-bottom:1px solid #F0EFEA">
+              <div style="display:grid;grid-template-columns:repeat(7,1fr)">
+                <div style="height:118px;padding:8px 10px;font-size:13px;border-right:1px solid #F6F5F0">6</div>
+                <div style="height:118px;padding:8px 10px;font-size:13px;border-right:1px solid #F6F5F0">7</div>
+                <div style="height:118px;padding:8px 10px;font-size:13px;border-right:1px solid #F6F5F0">8</div>
+                <div style="height:118px;padding:8px 10px;font-size:13px;border-right:1px solid #F6F5F0">9</div>
+                <div style="height:118px;padding:8px 10px;font-size:13px;border-right:1px solid #F6F5F0;background:#F4F3EE"><span style="display:inline-block;background:#191918;color:#FBFBF8;border-radius:999px;padding:2px 9px;font-weight:800;margin:-2px 0 0 -6px">10</span></div>
+                <div style="height:118px;padding:8px 10px;font-size:13px;border-right:1px solid #F6F5F0">11</div>
+                <div style="height:118px;padding:8px 10px;font-size:13px">12</div>
+              </div>
+              <div style="position:absolute;left:0;right:0;top:38px;display:grid;grid-template-columns:repeat(7,1fr);gap:0;pointer-events:none">
+                <div style="grid-column:3/8;margin:0 6px;background:#A66A2C;color:#FBFBF8;border-radius:7px 0 0 7px;padding:5px 10px;font-size:12px;font-weight:700;white-space:nowrap;overflow:hidden">Högtryckstvätt ← Marcus</div>
+              </div>
+              <div style="position:absolute;left:0;right:0;top:68px;display:grid;grid-template-columns:repeat(7,1fr);gap:0;pointer-events:none">
+                <div style="grid-column:4/8;margin:0 6px;background:#2F5D50;color:#FBFBF8;border-radius:7px;padding:5px 10px;font-size:12px;font-weight:700;white-space:nowrap;overflow:hidden">Skruvdragare → Jonas</div>
+              </div>
+              <div style="position:absolute;left:0;right:0;top:92px;display:grid;grid-template-columns:repeat(7,1fr);gap:0;pointer-events:none">
+                <div style="grid-column:5/6;margin:0 6px;background:#FAF1EE;border:1.5px solid #9A4F38;color:#9A4F38;border-radius:7px;padding:3px 8px;font-size:11.5px;font-weight:800;white-space:nowrap;overflow:hidden">Lämna skottkärran</div>
+              </div>
+            </div>
+
+            <!-- Vecka 3: 13–19 jul -->
+            <div style="position:relative;border-bottom:1px solid #F0EFEA">
+              <div style="display:grid;grid-template-columns:repeat(7,1fr)">
+                <div style="height:98px;padding:8px 10px;font-size:13px;border-right:1px solid #F6F5F0">13</div>
+                <div style="height:98px;padding:8px 10px;font-size:13px;border-right:1px solid #F6F5F0">14</div>
+                <div style="height:98px;padding:8px 10px;font-size:13px;border-right:1px solid #F6F5F0">15</div>
+                <div style="height:98px;padding:8px 10px;font-size:13px;border-right:1px solid #F6F5F0">16</div>
+                <div style="height:98px;padding:8px 10px;font-size:13px;border-right:1px solid #F6F5F0">17</div>
+                <div style="height:98px;padding:8px 10px;font-size:13px;border-right:1px solid #F6F5F0">18</div>
+                <div style="height:98px;padding:8px 10px;font-size:13px">19</div>
+              </div>
+              <div style="position:absolute;left:0;right:0;top:38px;display:grid;grid-template-columns:repeat(7,1fr);gap:0;pointer-events:none">
+                <div style="grid-column:1/6;margin:0 6px;background:#A66A2C;color:#FBFBF8;border-radius:0 7px 7px 0;padding:5px 10px;font-size:12px;font-weight:700;white-space:nowrap;overflow:hidden">Högtryckstvätt ← Marcus · lämnas fre</div>
+              </div>
+              <div style="position:absolute;left:0;right:0;top:68px;display:grid;grid-template-columns:repeat(7,1fr);gap:0;pointer-events:none">
+                <div style="grid-column:1/3;margin:0 6px;background:#A66A2C;color:#FBFBF8;border-radius:7px;padding:5px 10px;font-size:12px;font-weight:700;white-space:nowrap;overflow:hidden">Stege ← Berit</div>
+              </div>
+            </div>
+
+            <!-- Vecka 4: 20–26 jul -->
+            <div style="position:relative;border-bottom:1px solid #F0EFEA">
+              <div style="display:grid;grid-template-columns:repeat(7,1fr)">
+                <div style="height:98px;padding:8px 10px;font-size:13px;border-right:1px solid #F6F5F0">20</div>
+                <div style="height:98px;padding:8px 10px;font-size:13px;border-right:1px solid #F6F5F0">21</div>
+                <div style="height:98px;padding:8px 10px;font-size:13px;border-right:1px solid #F6F5F0">22</div>
+                <div style="height:98px;padding:8px 10px;font-size:13px;border-right:1px solid #F6F5F0">23</div>
+                <div style="height:98px;padding:8px 10px;font-size:13px;border-right:1px solid #F6F5F0">24</div>
+                <div style="height:98px;padding:8px 10px;font-size:13px;border-right:1px solid #F6F5F0">25</div>
+                <div style="height:98px;padding:8px 10px;font-size:13px">26</div>
+              </div>
+              <div style="position:absolute;left:0;right:0;top:38px;display:grid;grid-template-columns:repeat(7,1fr);gap:0;pointer-events:none">
+                <div style="grid-column:5/8;margin:0 6px;background:#FFFFFF;border:1.5px dashed #9A4F38;color:#9A4F38;border-radius:7px;padding:4px 10px;font-size:12px;font-weight:700;white-space:nowrap;overflow:hidden">Partytält → Sara? · väntar på svar</div>
+              </div>
+            </div>
+
+            <!-- Vecka 5: 27–31 jul -->
+            <div style="display:grid;grid-template-columns:repeat(7,1fr)">
+              <div style="height:78px;padding:8px 10px;font-size:13px;border-right:1px solid #F6F5F0">27</div>
+              <div style="height:78px;padding:8px 10px;font-size:13px;border-right:1px solid #F6F5F0">28</div>
+              <div style="height:78px;padding:8px 10px;font-size:13px;border-right:1px solid #F6F5F0">29</div>
+              <div style="height:78px;padding:8px 10px;font-size:13px;border-right:1px solid #F6F5F0">30</div>
+              <div style="height:78px;padding:8px 10px;font-size:13px;border-right:1px solid #F6F5F0">31</div>
+              <div style="height:78px;padding:8px 10px;font-size:13px;color:#C9C8C0;border-right:1px solid #F6F5F0">1</div>
+              <div style="height:78px;padding:8px 10px;font-size:13px;color:#C9C8C0">2</div>
+            </div>
+          </div>
+
+          <div>
+            <div style="font-size:12px;font-weight:700;color:#9B9B92;text-transform:uppercase;letter-spacing:.07em;margin-bottom:12px">Idag · fredag 10 juli</div>
+            <div style="border:1.5px solid #9A4F38;background:#FAF1EE;border-radius:16px;padding:16px;margin-bottom:24px">
+              <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+                <div style="width:44px;height:44px;border-radius:11px;background:#E9E8E2;flex:none"></div>
+                <div style="flex:1">
+                  <div style="font-size:15px;font-weight:800;color:#9A4F38">Lämna tillbaka skottkärran</div>
+                  <div style="font-size:13px;color:#71716A;margin-top:1px">Till Amira, Björkvägen 7</div>
+                </div>
+              </div>
+              <div style="background:#9A4F38;color:#FBFBF8;border-radius:10px;padding:11px;text-align:center;font-size:14px;font-weight:700">Markera som återlämnad</div>
+            </div>
+            <div style="font-size:12px;font-weight:700;color:#9B9B92;text-transform:uppercase;letter-spacing:.07em;margin-bottom:12px">Kommande</div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div style="display:flex;align-items:center;gap:12px;border:1px solid #E0DFD8;background:#FFFFFF;border-radius:12px;padding:13px 15px">
+                <span style="width:8px;height:8px;border-radius:50%;background:#2F5D50;flex:none"></span>
+                <div style="flex:1"><div style="font-size:14px;font-weight:700">Skruvdragaren kommer hem</div><div style="font-size:12px;color:#9B9B92">Jonas lämnar · söndag 12 juli</div></div>
+              </div>
+              <div style="display:flex;align-items:center;gap:12px;border:1px solid #E0DFD8;background:#FFFFFF;border-radius:12px;padding:13px 15px">
+                <span style="width:8px;height:8px;border-radius:50%;background:#A66A2C;flex:none"></span>
+                <div style="flex:1"><div style="font-size:14px;font-weight:700">Hämta stegen hos Berit</div><div style="font-size:12px;color:#9B9B92">Måndag 13 juli · lämnas tis 14</div></div>
+              </div>
+              <div style="display:flex;align-items:center;gap:12px;border:1px solid #E0DFD8;background:#FFFFFF;border-radius:12px;padding:13px 15px">
+                <span style="width:8px;height:8px;border-radius:50%;background:#A66A2C;flex:none"></span>
+                <div style="flex:1"><div style="font-size:14px;font-weight:700">Lämna högtryckstvätten</div><div style="font-size:12px;color:#9B9B92">Till Marcus · fredag 17 juli</div></div>
+              </div>
+              <div style="display:flex;align-items:center;gap:12px;border:1px solid #E0DFD8;background:#FFFFFF;border-radius:12px;padding:13px 15px">
+                <span style="width:8px;height:8px;border-radius:50%;background:#9A4F38;flex:none"></span>
+                <div style="flex:1"><div style="font-size:14px;font-weight:700">Partytält till Sara?</div><div style="font-size:12px;color:#9B9B92">24–26 juli · väntar på ditt svar</div></div>
+                <span style="font-size:11.5px;font-weight:800;color:#FBFBF8;background:#191918;border-radius:999px;padding:5px 10px">SVARA</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="3a" style="max-width:3200px;margin-bottom:72px">
+    <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:8px">
+      <a href="#3a" style="font-size:12px;font-weight:800;background:#191918;color:#FBFBF8;border-radius:6px;padding:3px 8px;text-decoration:none">3a</a>
+      <div style="font-size:30px;font-weight:800;letter-spacing:-0.03em">Lånekollen</div>
+      <div style="font-size:15px;color:#71716A">Förfrågan → dialog om datum → godkänt → kalender</div>
+    </div>
+    <div style="font-size:14px;color:#71716A;margin-bottom:36px;max-width:680px">Låntagaren anger önskad period. Passar det inte kan ägaren föreslå andra datum direkt i konversationen — förslaget är ett kort man bara trycker "Funkar" på. Kalendern samlar allt: när saker ska lämnas, hämtas och när dina utlån kommer hem.</div>
+
+    <div style="display:flex;gap:40px;align-items:flex-start;flex-wrap:wrap">
+
+      <!-- ===== L1. FÖRFRÅGAN MED PERIOD ===== -->
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="font-size:13px;font-weight:700;color:#71716A;text-transform:uppercase;letter-spacing:.08em">L1 · Be om att låna</div>
+        <div data-screen-label="Låneförfrågan" style="width:390px;height:844px;background:#FBFBF8;border:1px solid #E0DFD8;border-radius:24px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 12px 40px rgba(25,25,24,.08)">
+          <div style="flex:1;padding:26px 22px 0">
+            <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px">
+              <span style="width:34px;height:34px;border-radius:50%;border:1px solid #E0DFD8;display:flex;align-items:center;justify-content:center;font-size:16px">‹</span>
+              <div style="font-size:22px;font-weight:800;letter-spacing:-0.03em">Fråga att låna</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:14px;border:1px solid #E0DFD8;background:#FFFFFF;border-radius:14px;padding:13px 14px;margin-bottom:24px">
+              <div style="width:52px;height:52px;border-radius:12px;background:#E9E8E2;flex:none;display:flex;align-items:end;justify-content:center;padding-bottom:4px"><span style="font-family:ui-monospace,Menlo,monospace;font-size:8px;color:#71716A">foto</span></div>
+              <div style="flex:1">
+                <div style="font-size:15.5px;font-weight:700">Utskjutsstege 6 m</div>
+                <div style="display:flex;align-items:center;gap:6px;font-size:12.5px;color:#71716A"><span style="width:6px;height:6px;border-radius:50%;background:#A66A2C"></span>Berit · via Grannar</div>
+              </div>
+            </div>
+            <div style="font-size:12px;font-weight:700;color:#9B9B92;text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px">Hur länge vill du låna?</div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px">
+              <span style="font-size:13.5px;font-weight:600;border:1px solid #E0DFD8;border-radius:10px;padding:9px 14px;color:#45453F">En dag</span>
+              <span style="font-size:13.5px;font-weight:700;background:#191918;color:#FBFBF8;border-radius:10px;padding:9px 14px">Helgen</span>
+              <span style="font-size:13.5px;font-weight:600;border:1px solid #E0DFD8;border-radius:10px;padding:9px 14px;color:#45453F">En vecka</span>
+              <span style="font-size:13.5px;font-weight:600;border:1px solid #E0DFD8;border-radius:10px;padding:9px 14px;color:#45453F">Välj datum</span>
+            </div>
+            <div style="border:1px solid #E0DFD8;background:#FFFFFF;border-radius:14px;padding:16px;margin-bottom:16px">
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <div><div style="font-size:11px;font-weight:700;color:#9B9B92;text-transform:uppercase;letter-spacing:.07em">Hämtar</div><div style="font-size:16px;font-weight:800;margin-top:3px">Lör 11 juli</div></div>
+                <div style="color:#D8D7CF;font-size:18px">→</div>
+                <div style="text-align:right"><div style="font-size:11px;font-weight:700;color:#9B9B92;text-transform:uppercase;letter-spacing:.07em">Lämnar</div><div style="font-size:16px;font-weight:800;margin-top:3px">Sön 12 juli</div></div>
+              </div>
+            </div>
+            <div style="font-size:12px;font-weight:700;color:#9B9B92;text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px">Meddelande till Berit</div>
+            <div style="border:1px solid #E0DFD8;background:#FFFFFF;border-radius:14px;padding:14px 15px;font-size:14.5px;line-height:1.5;color:#45453F;min-height:90px">Hej! Ska rensa hängrännorna i helgen. Hämtar lördag morgon och lämnar tillbaka söndag eftermiddag.<span style="font-weight:400">|</span></div>
+          </div>
+          <div style="padding:0 22px 30px">
+            <div style="background:#2F5D50;color:#FBFBF8;border-radius:14px;padding:17px;text-align:center;font-size:16px;font-weight:700">Skicka förfrågan</div>
+            <div style="text-align:center;font-size:12px;color:#9B9B92;margin-top:10px">Berit får en notis och kan godkänna eller föreslå andra datum.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== L2. DIALOG OM DATUM ===== -->
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="font-size:13px;font-weight:700;color:#71716A;text-transform:uppercase;letter-spacing:.08em">L2 · Dialog om datum</div>
+        <div data-screen-label="Lånedialog" style="width:390px;height:844px;background:#FBFBF8;border:1px solid #E0DFD8;border-radius:24px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 12px 40px rgba(25,25,24,.08)">
+          <div style="display:flex;align-items:center;gap:12px;padding:24px 22px 14px;border-bottom:1px solid #E9E8E2;background:#FFFFFF">
+            <span style="width:34px;height:34px;border-radius:50%;border:1px solid #E0DFD8;display:flex;align-items:center;justify-content:center;font-size:16px">‹</span>
+            <div style="width:38px;height:38px;border-radius:50%;background:#E9E8E2;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700">B</div>
+            <div style="flex:1">
+              <div style="font-size:15.5px;font-weight:700">Berit Johansson</div>
+              <div style="font-size:12px;color:#9B9B92">Utskjutsstege 6 m</div>
+            </div>
+          </div>
+          <div style="flex:1;padding:20px 22px;display:flex;flex-direction:column;gap:14px;overflow:hidden">
+            <div style="align-self:center;font-size:11.5px;font-weight:700;color:#9B9B92;background:#F0EFEA;border-radius:999px;padding:5px 12px">Förfrågan skickad · tors 9 juli</div>
+            <div style="align-self:flex-end;max-width:280px;background:#191918;color:#FBFBF8;border-radius:16px 16px 4px 16px;padding:12px 15px;font-size:14px;line-height:1.5">Hej! Ska rensa hängrännorna i helgen. Hämtar lördag morgon, lämnar söndag eftermiddag.</div>
+            <div style="align-self:flex-end;max-width:280px;border:1px solid #E0DFD8;background:#FFFFFF;border-radius:14px;padding:12px 15px">
+              <div style="font-size:11px;font-weight:700;color:#9B9B92;text-transform:uppercase;letter-spacing:.07em;margin-bottom:4px">Önskad period</div>
+              <div style="font-size:14px;font-weight:800">Lör 11 → sön 12 juli</div>
+            </div>
+            <div style="align-self:flex-start;max-width:280px;background:#F0EFEA;border-radius:16px 16px 16px 4px;padding:12px 15px;font-size:14px;line-height:1.5">Hej Elin! Helgen är tyvärr bokad — målaren behöver den. Måndag funkar bra?</div>
+            <div style="align-self:flex-start;width:280px;border:1.5px solid #2F5D50;background:#FFFFFF;border-radius:16px;padding:14px 15px">
+              <div style="font-size:11px;font-weight:700;color:#2F5D50;text-transform:uppercase;letter-spacing:.07em;margin-bottom:4px">Berit föreslår</div>
+              <div style="font-size:15px;font-weight:800;margin-bottom:12px">Mån 13 → tis 14 juli</div>
+              <div style="display:flex;gap:8px">
+                <div style="flex:1;background:#2F5D50;color:#FBFBF8;border-radius:10px;padding:10px;text-align:center;font-size:13.5px;font-weight:700">Funkar!</div>
+                <div style="flex:1;border:1px solid #E0DFD8;color:#71716A;border-radius:10px;padding:10px;text-align:center;font-size:13.5px;font-weight:600">Annat datum</div>
+              </div>
+            </div>
+          </div>
+          <div style="padding:14px 22px 30px;border-top:1px solid #E9E8E2;background:#FFFFFF">
+            <div style="display:flex;align-items:center;gap:10px;border:1px solid #E0DFD8;background:#FBFBF8;border-radius:999px;padding:12px 18px;color:#9B9B92;font-size:14px">Skriv ett meddelande…</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== L3. LÅN-ÖVERSIKT ===== -->
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="font-size:13px;font-weight:700;color:#71716A;text-transform:uppercase;letter-spacing:.08em">L3 · Pågående lån</div>
+        <div data-screen-label="Lån-översikt" style="width:390px;height:844px;background:#FBFBF8;border:1px solid #E0DFD8;border-radius:24px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 12px 40px rgba(25,25,24,.08)">
+          <div style="flex:1;padding:26px 22px 0;overflow:hidden">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px">
+              <div style="font-size:26px;font-weight:800;letter-spacing:-0.03em">Lån</div>
+              <span style="display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:700;border:1px solid #E0DFD8;border-radius:999px;padding:8px 14px"><span style="width:12px;height:12px;border:2px solid #191918;border-radius:3px;position:relative"><span style="position:absolute;top:2px;left:1px;right:1px;height:1.5px;background:#191918"></span></span>Kalender</span>
+            </div>
+            <div style="border:1.5px solid #9A4F38;background:#FAF1EE;border-radius:14px;padding:14px 15px;margin-bottom:20px;display:flex;align-items:center;gap:12px">
+              <div style="width:40px;height:40px;border-radius:10px;background:#E9E8E2;flex:none"></div>
+              <div style="flex:1">
+                <div style="font-size:14.5px;font-weight:800;color:#9A4F38">Lämna tillbaka idag</div>
+                <div style="font-size:13px;color:#71716A;margin-top:1px">Skottkärra till Amira, Björkvägen 7</div>
+              </div>
+              <span style="font-size:13px;font-weight:700;background:#9A4F38;color:#FBFBF8;border-radius:999px;padding:8px 14px">Klart ✓</span>
+            </div>
+            <div style="font-size:12px;font-weight:700;color:#9B9B92;text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px">Du lånar</div>
+            <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:22px">
+              <div style="border:1px solid #E0DFD8;background:#FFFFFF;border-radius:14px;padding:14px 15px">
+                <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px">
+                  <div style="width:40px;height:40px;border-radius:10px;background:#E9E8E2;flex:none"></div>
+                  <div style="flex:1"><div style="font-size:14.5px;font-weight:700">Utskjutsstege 6 m</div><div style="font-size:12px;color:#9B9B92">Berit · mån 13 → tis 14 juli</div></div>
+                  <span style="font-size:11.5px;font-weight:800;color:#2F5D50;background:#EEF2F0;border-radius:999px;padding:5px 10px">GODKÄNT</span>
+                </div>
+                <div style="height:6px;border-radius:3px;background:#F0EFEA;position:relative"><span style="position:absolute;left:0;top:0;bottom:0;width:0%;border-radius:3px;background:#2F5D50"></span></div>
+                <div style="display:flex;justify-content:space-between;font-size:11px;color:#9B9B92;margin-top:5px"><span>Hämtas mån</span><span>2 dagar</span></div>
+              </div>
+              <div style="border:1px solid #E0DFD8;background:#FFFFFF;border-radius:14px;padding:14px 15px">
+                <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px">
+                  <div style="width:40px;height:40px;border-radius:10px;background:#E9E8E2;flex:none"></div>
+                  <div style="flex:1"><div style="font-size:14.5px;font-weight:700">Högtryckstvätt</div><div style="font-size:12px;color:#9B9B92">Marcus · ons 8 → fre 17 juli</div></div>
+                  <span style="font-size:11.5px;font-weight:800;color:#A66A2C;background:#F5EFE6;border-radius:999px;padding:5px 10px">PÅGÅR</span>
+                </div>
+                <div style="height:6px;border-radius:3px;background:#F0EFEA;position:relative"><span style="position:absolute;left:0;top:0;bottom:0;width:65%;border-radius:3px;background:#A66A2C"></span></div>
+                <div style="display:flex;justify-content:space-between;font-size:11px;color:#9B9B92;margin-top:5px"><span>Dag 6 av 9</span><span>Lämnas fre 17</span></div>
+              </div>
+            </div>
+            <div style="font-size:12px;font-weight:700;color:#9B9B92;text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px">Du lånar ut</div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div style="border:1px solid #E0DFD8;background:#FFFFFF;border-radius:14px;padding:14px 15px">
+                <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px">
+                  <div style="width:40px;height:40px;border-radius:10px;background:#E9E8E2;flex:none"></div>
+                  <div style="flex:1"><div style="font-size:14.5px;font-weight:700">Skruvdragare → Jonas</div><div style="font-size:12px;color:#9B9B92">tors 9 → sön 12 juli</div></div>
+                  <span style="font-size:11.5px;font-weight:800;color:#A66A2C;background:#F5EFE6;border-radius:999px;padding:5px 10px">UTLÅNAD</span>
+                </div>
+                <div style="height:6px;border-radius:3px;background:#F0EFEA;position:relative"><span style="position:absolute;left:0;top:0;bottom:0;width:40%;border-radius:3px;background:#A66A2C"></span></div>
+                <div style="display:flex;justify-content:space-between;font-size:11px;color:#9B9B92;margin-top:5px"><span>Dag 2 av 4</span><span>Hem sön 12</span></div>
+              </div>
+              <div style="display:flex;align-items:center;gap:12px;border:1px solid #E0DFD8;background:#FFFFFF;border-radius:14px;padding:13px 15px">
+                <div style="width:40px;height:40px;border-radius:10px;background:#E9E8E2;flex:none"></div>
+                <div style="flex:1"><div style="font-size:14.5px;font-weight:700">Partytält → Sara</div><div style="font-size:12px;color:#9B9B92">Önskar 24–26 juli · väntar på ditt svar</div></div>
+                <span style="font-size:11.5px;font-weight:800;color:#FBFBF8;background:#191918;border-radius:999px;padding:5px 10px">SVARA</span>
+              </div>
+            </div>
+          </div>
+          <div style="display:flex;border-top:1px solid #E9E8E2;background:#FFFFFF;padding:10px 12px 24px">
+            <div style="flex:1;text-align:center;font-size:11.5px;font-weight:600;color:#9B9B92">Utforska</div>
+            <div style="flex:1;text-align:center;font-size:11.5px;font-weight:600;color:#9B9B92">Mina saker</div>
+            <div style="flex:1;text-align:center;font-size:11.5px;font-weight:600;color:#9B9B92">Skjul</div>
+            <div style="flex:1;text-align:center;font-size:11.5px;font-weight:700;color:#191918">Lån</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== L4. KALENDER ===== -->
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="font-size:13px;font-weight:700;color:#71716A;text-transform:uppercase;letter-spacing:.08em">L4 · Lånekalendern</div>
+        <div data-screen-label="Kalender" style="width:390px;height:844px;background:#FBFBF8;border:1px solid #E0DFD8;border-radius:24px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 12px 40px rgba(25,25,24,.08)">
+          <div style="flex:1;padding:26px 22px 0;overflow:hidden">
+            <div style="display:flex;align-items:center;gap:12px;margin-bottom:18px">
+              <span style="width:34px;height:34px;border-radius:50%;border:1px solid #E0DFD8;display:flex;align-items:center;justify-content:center;font-size:16px">‹</span>
+              <div style="font-size:22px;font-weight:800;letter-spacing:-0.03em;flex:1">Juli 2026</div>
+              <span style="font-size:15px;color:#9B9B92;padding:0 6px">‹</span>
+              <span style="font-size:15px;color:#191918;padding:0 6px">›</span>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:6px">
+              <div style="text-align:center;font-size:10.5px;font-weight:700;color:#9B9B92">M</div><div style="text-align:center;font-size:10.5px;font-weight:700;color:#9B9B92">T</div><div style="text-align:center;font-size:10.5px;font-weight:700;color:#9B9B92">O</div><div style="text-align:center;font-size:10.5px;font-weight:700;color:#9B9B92">T</div><div style="text-align:center;font-size:10.5px;font-weight:700;color:#9B9B92">F</div><div style="text-align:center;font-size:10.5px;font-weight:700;color:#9B9B92">L</div><div style="text-align:center;font-size:10.5px;font-weight:700;color:#9B9B92">S</div>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:18px">
+              <div style="height:44px;border-radius:9px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:13px;color:#C9C8C0">29</div>
+              <div style="height:44px;border-radius:9px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:13px;color:#C9C8C0">30</div>
+              <div style="height:44px;border-radius:9px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:13px">1</div>
+              <div style="height:44px;border-radius:9px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:13px">2</div>
+              <div style="height:44px;border-radius:9px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:13px">3</div>
+              <div style="height:44px;border-radius:9px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:13px">4</div>
+              <div style="height:44px;border-radius:9px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:13px">5</div>
+              <div style="height:44px;border-radius:9px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:13px">6</div>
+              <div style="height:44px;border-radius:9px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:13px">7</div>
+              <div style="height:44px;border-radius:9px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:13px;gap:2px">8<span style="display:flex;gap:2px"><span style="width:4px;height:4px;border-radius:50%;background:#A66A2C"></span></span></div>
+              <div style="height:44px;border-radius:9px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:13px;gap:2px">9<span style="display:flex;gap:2px"><span style="width:4px;height:4px;border-radius:50%;background:#A66A2C"></span><span style="width:4px;height:4px;border-radius:50%;background:#2F5D50"></span></span></div>
+              <div style="height:44px;border-radius:9px;background:#191918;color:#FBFBF8;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:13px;font-weight:800;gap:2px">10<span style="display:flex;gap:2px"><span style="width:4px;height:4px;border-radius:50%;background:#E88B6F"></span></span></div>
+              <div style="height:44px;border-radius:9px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:13px">11</div>
+              <div style="height:44px;border-radius:9px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:13px;gap:2px">12<span style="display:flex;gap:2px"><span style="width:4px;height:4px;border-radius:50%;background:#2F5D50"></span></span></div>
+              <div style="height:44px;border-radius:9px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:13px;gap:2px">13<span style="display:flex;gap:2px"><span style="width:4px;height:4px;border-radius:50%;background:#A66A2C"></span></span></div>
+              <div style="height:44px;border-radius:9px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:13px;gap:2px">14<span style="display:flex;gap:2px"><span style="width:4px;height:4px;border-radius:50%;background:#A66A2C"></span></span></div>
+              <div style="height:44px;border-radius:9px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:13px">15</div>
+              <div style="height:44px;border-radius:9px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:13px">16</div>
+              <div style="height:44px;border-radius:9px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:13px;gap:2px">17<span style="display:flex;gap:2px"><span style="width:4px;height:4px;border-radius:50%;background:#A66A2C"></span></span></div>
+              <div style="height:44px;border-radius:9px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:13px">18</div>
+              <div style="height:44px;border-radius:9px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:13px">19</div>
+              <div style="height:44px;border-radius:9px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:13px">20</div>
+              <div style="height:44px;border-radius:9px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:13px">21</div>
+              <div style="height:44px;border-radius:9px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:13px">22</div>
+              <div style="height:44px;border-radius:9px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:13px">23</div>
+              <div style="height:44px;border-radius:9px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:13px;gap:2px">24<span style="display:flex;gap:2px"><span style="width:4px;height:4px;border-radius:50%;background:#9A4F38"></span></span></div>
+              <div style="height:44px;border-radius:9px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:13px">25</div>
+              <div style="height:44px;border-radius:9px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:13px;gap:2px">26<span style="display:flex;gap:2px"><span style="width:4px;height:4px;border-radius:50%;background:#9A4F38"></span></span></div>
+            </div>
+            <div style="font-size:12px;font-weight:700;color:#9B9B92;text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px">Fredag 10 juli · idag</div>
+            <div style="display:flex;align-items:center;gap:12px;border:1.5px solid #9A4F38;background:#FAF1EE;border-radius:14px;padding:13px 15px;margin-bottom:14px">
+              <span style="width:8px;height:8px;border-radius:50%;background:#9A4F38;flex:none"></span>
+              <div style="flex:1"><div style="font-size:14.5px;font-weight:700">Lämna tillbaka skottkärran</div><div style="font-size:12px;color:#71716A">Till Amira, Björkvägen 7</div></div>
+            </div>
+            <div style="font-size:12px;font-weight:700;color:#9B9B92;text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px">Kommande</div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div style="display:flex;align-items:center;gap:12px;border:1px solid #E0DFD8;background:#FFFFFF;border-radius:12px;padding:12px 15px">
+                <span style="width:8px;height:8px;border-radius:50%;background:#2F5D50;flex:none"></span>
+                <div style="flex:1"><div style="font-size:14px;font-weight:700">Skruvdragaren kommer hem</div><div style="font-size:12px;color:#9B9B92">Jonas lämnar · söndag 12 juli</div></div>
+              </div>
+              <div style="display:flex;align-items:center;gap:12px;border:1px solid #E0DFD8;background:#FFFFFF;border-radius:12px;padding:12px 15px">
+                <span style="width:8px;height:8px;border-radius:50%;background:#A66A2C;flex:none"></span>
+                <div style="flex:1"><div style="font-size:14px;font-weight:700">Hämta stegen hos Berit</div><div style="font-size:12px;color:#9B9B92">Måndag 13 juli · lämnas tis 14</div></div>
+              </div>
+              <div style="display:flex;align-items:center;gap:12px;border:1px solid #E0DFD8;background:#FFFFFF;border-radius:12px;padding:12px 15px">
+                <span style="width:8px;height:8px;border-radius:50%;background:#A66A2C;flex:none"></span>
+                <div style="flex:1"><div style="font-size:14px;font-weight:700">Lämna högtryckstvätten</div><div style="font-size:12px;color:#9B9B92">Till Marcus · fredag 17 juli</div></div>
+              </div>
+            </div>
+          </div>
+          <div style="display:flex;border-top:1px solid #E9E8E2;background:#FFFFFF;padding:10px 12px 24px">
+            <div style="flex:1;text-align:center;font-size:11.5px;font-weight:600;color:#9B9B92">Utforska</div>
+            <div style="flex:1;text-align:center;font-size:11.5px;font-weight:600;color:#9B9B92">Mina saker</div>
+            <div style="flex:1;text-align:center;font-size:11.5px;font-weight:600;color:#9B9B92">Skjul</div>
+            <div style="flex:1;text-align:center;font-size:11.5px;font-weight:700;color:#191918">Lån</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="2a" style="max-width:3200px;margin-bottom:72px">
+    <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:8px">
+      <a href="#2a" style="font-size:12px;font-weight:800;background:#191918;color:#FBFBF8;border-radius:6px;padding:3px 8px;text-decoration:none">2a</a>
+      <div style="font-size:30px;font-weight:800;letter-spacing:-0.03em">Mutuu · Desktop</div>
+      <div style="font-size:15px;color:#71716A">Samma system som <a href="#1a" style="color:#71716A">1a</a> · 1440 px</div>
+    </div>
+    <div style="font-size:14px;color:#71716A;margin-bottom:36px;max-width:640px">Toppnavigering istället för flikrad. Delningsmatrisen får plats på bredden med sakfoton, och skjul-detaljen visar personer och saker sida vid sida.</div>
+
+    <div style="display:flex;flex-direction:column;gap:40px">
+
+      <!-- ============ D1. UTFORSKA (desktop) ============ -->
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="font-size:13px;font-weight:700;color:#71716A;text-transform:uppercase;letter-spacing:.08em">D1 · Utforska</div>
+        <div data-screen-label="Desktop Utforska" style="width:1440px;background:#FBFBF8;border:1px solid #E0DFD8;border-radius:20px;overflow:hidden;box-shadow:0 12px 40px rgba(25,25,24,.08)">
+          <div style="display:flex;align-items:center;gap:36px;padding:20px 48px;border-bottom:1px solid #E9E8E2;background:#FFFFFF">
+            <div style="font-size:22px;font-weight:800;letter-spacing:-0.03em">mutuu</div>
+            <div style="display:flex;gap:28px;flex:1">
+              <span style="font-size:14.5px;font-weight:700;border-bottom:2px solid #191918;padding-bottom:2px">Utforska</span>
+              <span style="font-size:14.5px;font-weight:600;color:#9B9B92">Mina saker</span>
+              <span style="font-size:14.5px;font-weight:600;color:#9B9B92">Skjul</span>
+              <span style="font-size:14.5px;font-weight:600;color:#9B9B92">Lån</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;border:1px solid #E0DFD8;background:#FBFBF8;border-radius:10px;padding:9px 14px;color:#9B9B92;font-size:14px;width:320px">
+              <span style="width:12px;height:12px;border:2px solid #9B9B92;border-radius:50%;flex:none"></span>
+              Sök stege, symaskin, släpkärra…
+            </div>
+            <div style="width:36px;height:36px;border-radius:50%;background:#191918;color:#FBFBF8;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700">E</div>
+          </div>
+          <div style="padding:40px 48px 48px">
+            <div style="display:flex;align-items:end;justify-content:space-between;margin-bottom:24px">
+              <div>
+                <div style="font-size:34px;font-weight:800;letter-spacing:-0.03em;line-height:1.1">Låna av folk du litar på.</div>
+                <div style="font-size:15px;color:#71716A;margin-top:8px">23 saker i dina skjul just nu</div>
+              </div>
+              <div style="display:flex;gap:8px">
+                <span style="font-size:13.5px;font-weight:600;background:#191918;color:#FBFBF8;border-radius:999px;padding:8px 16px">Alla skjul</span>
+                <span style="display:inline-flex;align-items:center;gap:7px;font-size:13.5px;font-weight:600;border:1px solid #E0DFD8;border-radius:999px;padding:8px 16px"><span style="width:7px;height:7px;border-radius:50%;background:#2F5D50"></span>Vänner</span>
+                <span style="display:inline-flex;align-items:center;gap:7px;font-size:13.5px;font-weight:600;border:1px solid #E0DFD8;border-radius:999px;padding:8px 16px"><span style="width:7px;height:7px;border-radius:50%;background:#A66A2C"></span>Grannar</span>
+                <span style="display:inline-flex;align-items:center;gap:7px;font-size:13.5px;font-weight:600;border:1px solid #E0DFD8;border-radius:999px;padding:8px 16px"><span style="width:7px;height:7px;border-radius:50%;background:#9A4F38"></span>Familjen</span>
+              </div>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px">
+              <div style="display:flex;flex-direction:column;gap:9px">
+                <div style="height:190px;border-radius:14px;background:#E9E8E2;display:flex;align-items:end;padding:12px"><span style="font-family:ui-monospace,Menlo,monospace;font-size:10px;color:#71716A;background:#FBFBF8;border-radius:4px;padding:2px 6px">foto: slagborr</span></div>
+                <div style="font-size:16px;font-weight:700;letter-spacing:-0.01em">Slagborrmaskin</div>
+                <div style="display:flex;align-items:center;gap:7px;font-size:13px;color:#71716A"><span style="width:6px;height:6px;border-radius:50%;background:#A66A2C"></span>Johan · 300 m · ledig</div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:9px">
+                <div style="height:190px;border-radius:14px;background:#E9E8E2;display:flex;align-items:end;padding:12px"><span style="font-family:ui-monospace,Menlo,monospace;font-size:10px;color:#71716A;background:#FBFBF8;border-radius:4px;padding:2px 6px">foto: stege</span></div>
+                <div style="font-size:16px;font-weight:700;letter-spacing:-0.01em">Utskjutsstege 6 m</div>
+                <div style="display:flex;align-items:center;gap:7px;font-size:13px;color:#71716A"><span style="width:6px;height:6px;border-radius:50%;background:#A66A2C"></span>Berit · 450 m · ledig</div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:9px">
+                <div style="height:190px;border-radius:14px;background:#E9E8E2;display:flex;align-items:end;padding:12px"><span style="font-family:ui-monospace,Menlo,monospace;font-size:10px;color:#71716A;background:#FBFBF8;border-radius:4px;padding:2px 6px">foto: högtryckstvätt</span></div>
+                <div style="font-size:16px;font-weight:700;letter-spacing:-0.01em">Högtryckstvätt</div>
+                <div style="display:flex;align-items:center;gap:7px;font-size:13px;color:#71716A"><span style="width:6px;height:6px;border-radius:50%;background:#2F5D50"></span>Marcus · 200 m · ledig</div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:9px">
+                <div style="height:190px;border-radius:14px;background:#E9E8E2;display:flex;align-items:end;padding:12px"><span style="font-family:ui-monospace,Menlo,monospace;font-size:10px;color:#71716A;background:#FBFBF8;border-radius:4px;padding:2px 6px">foto: partytält</span></div>
+                <div style="font-size:16px;font-weight:700;letter-spacing:-0.01em">Partytält 3×6 m</div>
+                <div style="display:flex;align-items:center;gap:7px;font-size:13px;color:#71716A"><span style="width:6px;height:6px;border-radius:50%;background:#9A4F38"></span>Fam. Öberg · 2 km · ledig</div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:9px">
+                <div style="height:190px;border-radius:14px;background:#E9E8E2;display:flex;align-items:end;padding:12px"><span style="font-family:ui-monospace,Menlo,monospace;font-size:10px;color:#71716A;background:#FBFBF8;border-radius:4px;padding:2px 6px">foto: skottkärra</span></div>
+                <div style="font-size:16px;font-weight:700;letter-spacing:-0.01em">Skottkärra</div>
+                <div style="display:flex;align-items:center;gap:7px;font-size:13px;color:#71716A"><span style="width:6px;height:6px;border-radius:50%;background:#A66A2C"></span>Amira · 150 m · utlånad t. sön</div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:9px">
+                <div style="height:190px;border-radius:14px;background:#E9E8E2;display:flex;align-items:end;padding:12px"><span style="font-family:ui-monospace,Menlo,monospace;font-size:10px;color:#71716A;background:#FBFBF8;border-radius:4px;padding:2px 6px">foto: symaskin</span></div>
+                <div style="font-size:16px;font-weight:700;letter-spacing:-0.01em">Symaskin</div>
+                <div style="display:flex;align-items:center;gap:7px;font-size:13px;color:#71716A"><span style="width:6px;height:6px;border-radius:50%;background:#2F5D50"></span>Lena · 1,2 km · ledig</div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:9px">
+                <div style="height:190px;border-radius:14px;background:#E9E8E2;display:flex;align-items:end;padding:12px"><span style="font-family:ui-monospace,Menlo,monospace;font-size:10px;color:#71716A;background:#FBFBF8;border-radius:4px;padding:2px 6px">foto: cykelkärra</span></div>
+                <div style="font-size:16px;font-weight:700;letter-spacing:-0.01em">Cykelkärra</div>
+                <div style="display:flex;align-items:center;gap:7px;font-size:13px;color:#71716A"><span style="width:6px;height:6px;border-radius:50%;background:#2F5D50"></span>Sara · 600 m · ledig</div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:9px">
+                <div style="height:190px;border-radius:14px;background:#E9E8E2;display:flex;align-items:end;padding:12px"><span style="font-family:ui-monospace,Menlo,monospace;font-size:10px;color:#71716A;background:#FBFBF8;border-radius:4px;padding:2px 6px">foto: häcksax</span></div>
+                <div style="font-size:16px;font-weight:700;letter-spacing:-0.01em">Häcksax</div>
+                <div style="display:flex;align-items:center;gap:7px;font-size:13px;color:#71716A"><span style="width:6px;height:6px;border-radius:50%;background:#A66A2C"></span>Per · 100 m · ledig</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ D2. MINA SAKER (desktop matris) ============ -->
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="font-size:13px;font-weight:700;color:#71716A;text-transform:uppercase;letter-spacing:.08em">D2 · Mina saker — delningsmatrisen</div>
+        <div data-screen-label="Desktop Mina saker" style="width:1440px;background:#FBFBF8;border:1px solid #E0DFD8;border-radius:20px;overflow:hidden;box-shadow:0 12px 40px rgba(25,25,24,.08)">
+          <div style="display:flex;align-items:center;gap:36px;padding:20px 48px;border-bottom:1px solid #E9E8E2;background:#FFFFFF">
+            <div style="font-size:22px;font-weight:800;letter-spacing:-0.03em">mutuu</div>
+            <div style="display:flex;gap:28px;flex:1">
+              <span style="font-size:14.5px;font-weight:600;color:#9B9B92">Utforska</span>
+              <span style="font-size:14.5px;font-weight:700;border-bottom:2px solid #191918;padding-bottom:2px">Mina saker</span>
+              <span style="font-size:14.5px;font-weight:600;color:#9B9B92">Skjul</span>
+              <span style="font-size:14.5px;font-weight:600;color:#9B9B92">Lån</span>
+            </div>
+            <div style="width:36px;height:36px;border-radius:50%;background:#191918;color:#FBFBF8;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700">E</div>
+          </div>
+          <div style="padding:40px 48px 48px">
+            <div style="display:flex;align-items:end;justify-content:space-between;margin-bottom:28px">
+              <div>
+                <div style="font-size:34px;font-weight:800;letter-spacing:-0.03em">Mina saker</div>
+                <div style="font-size:15px;color:#71716A;margin-top:8px">Klicka i matrisen för att styra vilket skjul som ser vad.</div>
+              </div>
+              <span style="font-size:14.5px;font-weight:700;background:#191918;color:#FBFBF8;border-radius:12px;padding:12px 22px">+ Lägg till en sak</span>
+            </div>
+            <div style="border:1px solid #E0DFD8;background:#FFFFFF;border-radius:16px;overflow:hidden">
+              <div style="display:grid;grid-template-columns:64px 1fr 220px 130px 130px 130px;align-items:center;gap:0;padding:14px 24px;border-bottom:1px solid #E9E8E2;background:#FBFBF8">
+                <div></div>
+                <div style="font-size:12px;font-weight:700;color:#9B9B92;text-transform:uppercase;letter-spacing:.07em">Sak</div>
+                <div style="font-size:12px;font-weight:700;color:#9B9B92;text-transform:uppercase;letter-spacing:.07em">Status</div>
+                <div style="text-align:center;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#2F5D50">● Vänner</div>
+                <div style="text-align:center;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#A66A2C">● Grannar</div>
+                <div style="text-align:center;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#9A4F38">● Familjen</div>
+              </div>
+              <div style="display:grid;grid-template-columns:64px 1fr 220px 130px 130px 130px;align-items:center;padding:13px 24px;border-bottom:1px solid #F0EFEA">
+                <div style="width:42px;height:42px;border-radius:10px;background:#E9E8E2"></div>
+                <div style="font-size:15.5px;font-weight:700">Skruvdragare</div>
+                <div style="font-size:13px;color:#9B9B92">Utlånad till Jonas t.o.m. sön</div>
+                <div style="text-align:center"><span style="display:inline-block;width:24px;height:24px;border-radius:50%;background:#2F5D50;color:#FBFBF8;font-size:13px;font-weight:800;line-height:24px">✓</span></div>
+                <div style="text-align:center"><span style="display:inline-block;width:24px;height:24px;border-radius:50%;background:#A66A2C;color:#FBFBF8;font-size:13px;font-weight:800;line-height:24px">✓</span></div>
+                <div style="text-align:center"><span style="display:inline-block;width:24px;height:24px;border-radius:50%;border:1.5px solid #D8D7CF"></span></div>
+              </div>
+              <div style="display:grid;grid-template-columns:64px 1fr 220px 130px 130px 130px;align-items:center;padding:13px 24px;border-bottom:1px solid #F0EFEA">
+                <div style="width:42px;height:42px;border-radius:10px;background:#E9E8E2"></div>
+                <div style="font-size:15.5px;font-weight:700">Stege 4 m</div>
+                <div style="font-size:13px;color:#9B9B92">Hemma</div>
+                <div style="text-align:center"><span style="display:inline-block;width:24px;height:24px;border-radius:50%;border:1.5px solid #D8D7CF"></span></div>
+                <div style="text-align:center"><span style="display:inline-block;width:24px;height:24px;border-radius:50%;background:#A66A2C;color:#FBFBF8;font-size:13px;font-weight:800;line-height:24px">✓</span></div>
+                <div style="text-align:center"><span style="display:inline-block;width:24px;height:24px;border-radius:50%;border:1.5px solid #D8D7CF"></span></div>
+              </div>
+              <div style="display:grid;grid-template-columns:64px 1fr 220px 130px 130px 130px;align-items:center;padding:13px 24px;border-bottom:1px solid #F0EFEA">
+                <div style="width:42px;height:42px;border-radius:10px;background:#E9E8E2"></div>
+                <div style="font-size:15.5px;font-weight:700">Slipmaskin</div>
+                <div style="font-size:13px;color:#9B9B92">Hemma</div>
+                <div style="text-align:center"><span style="display:inline-block;width:24px;height:24px;border-radius:50%;background:#2F5D50;color:#FBFBF8;font-size:13px;font-weight:800;line-height:24px">✓</span></div>
+                <div style="text-align:center"><span style="display:inline-block;width:24px;height:24px;border-radius:50%;border:1.5px solid #D8D7CF"></span></div>
+                <div style="text-align:center"><span style="display:inline-block;width:24px;height:24px;border-radius:50%;border:1.5px solid #D8D7CF"></span></div>
+              </div>
+              <div style="display:grid;grid-template-columns:64px 1fr 220px 130px 130px 130px;align-items:center;padding:13px 24px;border-bottom:1px solid #F0EFEA">
+                <div style="width:42px;height:42px;border-radius:10px;background:#E9E8E2"></div>
+                <div style="font-size:15.5px;font-weight:700">Partytält 3×6 m</div>
+                <div style="font-size:13px;color:#9B9B92">Hemma</div>
+                <div style="text-align:center"><span style="display:inline-block;width:24px;height:24px;border-radius:50%;background:#2F5D50;color:#FBFBF8;font-size:13px;font-weight:800;line-height:24px">✓</span></div>
+                <div style="text-align:center"><span style="display:inline-block;width:24px;height:24px;border-radius:50%;background:#A66A2C;color:#FBFBF8;font-size:13px;font-weight:800;line-height:24px">✓</span></div>
+                <div style="text-align:center"><span style="display:inline-block;width:24px;height:24px;border-radius:50%;background:#9A4F38;color:#FBFBF8;font-size:13px;font-weight:800;line-height:24px">✓</span></div>
+              </div>
+              <div style="display:grid;grid-template-columns:64px 1fr 220px 130px 130px 130px;align-items:center;padding:13px 24px">
+                <div style="width:42px;height:42px;border-radius:10px;background:#E9E8E2"></div>
+                <div style="font-size:15.5px;font-weight:700">Fogsvans</div>
+                <div style="font-size:13px;color:#9B9B92">Delas inte än</div>
+                <div style="text-align:center"><span style="display:inline-block;width:24px;height:24px;border-radius:50%;border:1.5px solid #D8D7CF"></span></div>
+                <div style="text-align:center"><span style="display:inline-block;width:24px;height:24px;border-radius:50%;border:1.5px solid #D8D7CF"></span></div>
+                <div style="text-align:center"><span style="display:inline-block;width:24px;height:24px;border-radius:50%;border:1.5px solid #D8D7CF"></span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ D3. SKJUL-DETALJ (desktop) ============ -->
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="font-size:13px;font-weight:700;color:#71716A;text-transform:uppercase;letter-spacing:.08em">D3 · Inne i ett skjul</div>
+        <div data-screen-label="Desktop Skjul-detalj" style="width:1440px;background:#FBFBF8;border:1px solid #E0DFD8;border-radius:20px;overflow:hidden;box-shadow:0 12px 40px rgba(25,25,24,.08)">
+          <div style="display:flex;align-items:center;gap:36px;padding:20px 48px;border-bottom:1px solid #E9E8E2;background:#FFFFFF">
+            <div style="font-size:22px;font-weight:800;letter-spacing:-0.03em">mutuu</div>
+            <div style="display:flex;gap:28px;flex:1">
+              <span style="font-size:14.5px;font-weight:600;color:#9B9B92">Utforska</span>
+              <span style="font-size:14.5px;font-weight:600;color:#9B9B92">Mina saker</span>
+              <span style="font-size:14.5px;font-weight:700;border-bottom:2px solid #191918;padding-bottom:2px">Skjul</span>
+              <span style="font-size:14.5px;font-weight:600;color:#9B9B92">Lån</span>
+            </div>
+            <div style="width:36px;height:36px;border-radius:50%;background:#191918;color:#FBFBF8;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700">E</div>
+          </div>
+          <div style="padding:40px 48px 48px">
+            <div style="display:flex;align-items:center;gap:14px;margin-bottom:6px">
+              <span style="font-size:14px;color:#9B9B92">Skjul /</span>
+              <span style="width:10px;height:10px;border-radius:50%;background:#A66A2C"></span>
+              <div style="font-size:34px;font-weight:800;letter-spacing:-0.03em;flex:1">Grannar</div>
+              <span style="flex:none;white-space:nowrap;font-size:14.5px;font-weight:700;border:1px solid #E0DFD8;border-radius:12px;padding:12px 22px">Bjud in med länk</span>
+            </div>
+            <div style="font-size:15px;color:#71716A;margin-bottom:32px">11 personer på Björkvägen · 12 saker · 31 lån i år</div>
+            <div style="display:grid;grid-template-columns:340px 1fr;gap:40px;align-items:start">
+              <div>
+                <div style="font-size:12px;font-weight:700;color:#9B9B92;text-transform:uppercase;letter-spacing:.07em;margin-bottom:12px">Personer</div>
+                <div style="border:1px solid #E0DFD8;background:#FFFFFF;border-radius:16px;padding:8px">
+                  <div style="display:flex;align-items:center;gap:12px;padding:10px 12px"><span style="width:34px;height:34px;border-radius:50%;background:#E9E8E2;font-size:12.5px;font-weight:700;text-align:center;line-height:34px">AB</span><div style="flex:1"><div style="font-size:14.5px;font-weight:700">Amira Bakir</div><div style="font-size:12px;color:#9B9B92">Björkvägen 7 · delar 4 saker</div></div></div>
+                  <div style="display:flex;align-items:center;gap:12px;padding:10px 12px"><span style="width:34px;height:34px;border-radius:50%;background:#DEDDD4;font-size:12.5px;font-weight:700;text-align:center;line-height:34px">JL</span><div style="flex:1"><div style="font-size:14.5px;font-weight:700">Johan Lindqvist</div><div style="font-size:12px;color:#9B9B92">Björkvägen 4 · delar 3 saker</div></div></div>
+                  <div style="display:flex;align-items:center;gap:12px;padding:10px 12px"><span style="width:34px;height:34px;border-radius:50%;background:#E9E8E2;font-size:12.5px;font-weight:700;text-align:center;line-height:34px">BJ</span><div style="flex:1"><div style="font-size:14.5px;font-weight:700">Berit Johansson</div><div style="font-size:12px;color:#9B9B92">Björkvägen 12 · delar 2 saker</div></div></div>
+                  <div style="display:flex;align-items:center;gap:12px;padding:10px 12px"><span style="width:34px;height:34px;border-radius:50%;background:#DEDDD4;font-size:12.5px;font-weight:700;text-align:center;line-height:34px">PL</span><div style="flex:1"><div style="font-size:14.5px;font-weight:700">Per Lund</div><div style="font-size:12px;color:#9B9B92">Björkvägen 2 · delar 1 sak</div></div></div>
+                  <div style="padding:12px;text-align:center;font-size:13px;font-weight:700;color:#71716A;border-top:1px solid #F0EFEA">Visa alla 11</div>
+                </div>
+              </div>
+              <div>
+                <div style="font-size:12px;font-weight:700;color:#9B9B92;text-transform:uppercase;letter-spacing:.07em;margin-bottom:12px">Saker i skjulet</div>
+                <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px">
+                  <div style="display:flex;flex-direction:column;gap:8px">
+                    <div style="height:140px;border-radius:12px;background:#E9E8E2;display:flex;align-items:end;padding:10px"><span style="font-family:ui-monospace,Menlo,monospace;font-size:10px;color:#71716A;background:#FBFBF8;border-radius:4px;padding:2px 6px">foto: slagborr</span></div>
+                    <div style="font-size:15px;font-weight:700">Slagborrmaskin</div>
+                    <div style="font-size:12.5px;color:#71716A">Johan · ledig</div>
+                  </div>
+                  <div style="display:flex;flex-direction:column;gap:8px">
+                    <div style="height:140px;border-radius:12px;background:#E9E8E2;display:flex;align-items:end;padding:10px"><span style="font-family:ui-monospace,Menlo,monospace;font-size:10px;color:#71716A;background:#FBFBF8;border-radius:4px;padding:2px 6px">foto: skottkärra</span></div>
+                    <div style="font-size:15px;font-weight:700">Skottkärra</div>
+                    <div style="font-size:12.5px;color:#71716A">Amira · utlånad t. sön</div>
+                  </div>
+                  <div style="display:flex;flex-direction:column;gap:8px">
+                    <div style="height:140px;border-radius:12px;background:#E9E8E2;display:flex;align-items:end;padding:10px"><span style="font-family:ui-monospace,Menlo,monospace;font-size:10px;color:#71716A;background:#FBFBF8;border-radius:4px;padding:2px 6px">foto: stege</span></div>
+                    <div style="font-size:15px;font-weight:700">Utskjutsstege 6 m</div>
+                    <div style="font-size:12.5px;color:#71716A">Berit · ledig</div>
+                  </div>
+                  <div style="display:flex;flex-direction:column;gap:8px">
+                    <div style="height:140px;border-radius:12px;background:#E9E8E2;display:flex;align-items:end;padding:10px"><span style="font-family:ui-monospace,Menlo,monospace;font-size:10px;color:#71716A;background:#FBFBF8;border-radius:4px;padding:2px 6px">foto: häcksax</span></div>
+                    <div style="font-size:15px;font-weight:700">Häcksax</div>
+                    <div style="font-size:12.5px;color:#71716A">Per · ledig</div>
+                  </div>
+                  <div style="display:flex;flex-direction:column;gap:8px">
+                    <div style="height:140px;border-radius:12px;background:#E9E8E2;display:flex;align-items:end;padding:10px"><span style="font-family:ui-monospace,Menlo,monospace;font-size:10px;color:#71716A;background:#FBFBF8;border-radius:4px;padding:2px 6px">foto: skruvdragare</span></div>
+                    <div style="font-size:15px;font-weight:700">Skruvdragare <span style="font-size:11px;font-weight:800;color:#A66A2C;background:#F5EFE6;border-radius:999px;padding:3px 8px;vertical-align:2px">DIN</span></div>
+                    <div style="font-size:12.5px;color:#71716A">Du · utlånad till Jonas</div>
+                  </div>
+                  <div style="display:flex;flex-direction:column;gap:8px">
+                    <div style="height:140px;border-radius:12px;background:#E9E8E2;display:flex;align-items:end;padding:10px"><span style="font-family:ui-monospace,Menlo,monospace;font-size:10px;color:#71716A;background:#FBFBF8;border-radius:4px;padding:2px 6px">foto: stege 4 m</span></div>
+                    <div style="font-size:15px;font-weight:700">Stege 4 m <span style="font-size:11px;font-weight:800;color:#A66A2C;background:#F5EFE6;border-radius:999px;padding:3px 8px;vertical-align:2px">DIN</span></div>
+                    <div style="font-size:12.5px;color:#71716A">Du · ledig</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="1a" style="max-width:2600px">
+    <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:8px">
+      <a href="#1a" style="font-size:12px;font-weight:800;background:#191918;color:#FBFBF8;border-radius:6px;padding:3px 8px;text-decoration:none">1a</a>
+      <div style="font-size:30px;font-weight:800;letter-spacing:-0.03em">Mutuu</div>
+      <div style="font-size:15px;color:#71716A">Hi-fi · responsiv webb, mobil först · svenska</div>
+    </div>
+    <div style="font-size:14px;color:#71716A;margin-bottom:36px;max-width:640px">Skandinaviskt rent. Ett skjul är en krets av människor — markeras endast med en färgprick och namn. Nyhet i UX: <strong style="color:#191918">delningsmatrisen</strong> under Mina saker, där du styr allt du delar mot alla skjul i en enda vy.</div>
+
+    <div style="display:flex;gap:40px;align-items:flex-start;flex-wrap:wrap">
+
+      <!-- ================= 1. UTFORSKA ================= -->
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="font-size:13px;font-weight:700;color:#71716A;text-transform:uppercase;letter-spacing:.08em">01 · Utforska</div>
+        <div data-screen-label="Utforska" style="width:390px;height:844px;background:#FBFBF8;border:1px solid #E0DFD8;border-radius:24px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 12px 40px rgba(25,25,24,.08)">
+          <div style="padding:26px 22px 0">
+            <div style="display:flex;align-items:center;justify-content:space-between">
+              <div style="font-size:21px;font-weight:800;letter-spacing:-0.03em">mutuu</div>
+              <div style="width:34px;height:34px;border-radius:50%;background:#191918;color:#FBFBF8;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700">E</div>
+            </div>
+            <div style="font-size:26px;font-weight:800;letter-spacing:-0.03em;line-height:1.15;margin:26px 0 6px">Låna av folk<br>du litar på.</div>
+            <div style="font-size:14px;color:#71716A;margin-bottom:18px">23 saker i dina skjul just nu</div>
+            <div style="display:flex;align-items:center;gap:10px;border:1px solid #E0DFD8;background:#FFFFFF;border-radius:12px;padding:13px 15px;color:#9B9B92;font-size:15px">
+              <span style="width:14px;height:14px;border:2px solid #9B9B92;border-radius:50%;position:relative;flex:none"><span style="position:absolute;width:2px;height:6px;background:#9B9B92;transform:rotate(-45deg);left:13px;top:11px"></span></span>
+              Sök stege, symaskin, släpkärra…
+            </div>
+            <div style="display:flex;gap:8px;margin:14px 0 4px;flex-wrap:wrap">
+              <span style="font-size:13px;font-weight:600;background:#191918;color:#FBFBF8;border-radius:999px;padding:7px 14px">Alla skjul</span>
+              <span style="display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:#191918;border:1px solid #E0DFD8;border-radius:999px;padding:7px 14px"><span style="width:7px;height:7px;border-radius:50%;background:#2F5D50"></span>Vänner</span>
+              <span style="display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:#191918;border:1px solid #E0DFD8;border-radius:999px;padding:7px 14px"><span style="width:7px;height:7px;border-radius:50%;background:#A66A2C"></span>Grannar</span>
+              <span style="display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:#191918;border:1px solid #E0DFD8;border-radius:999px;padding:7px 14px"><span style="width:7px;height:7px;border-radius:50%;background:#9A4F38"></span>Familjen</span>
+            </div>
+          </div>
+          <div style="flex:1;overflow:hidden;padding:14px 22px 0">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+              <div style="display:flex;flex-direction:column;gap:8px">
+                <div style="height:150px;border-radius:14px;background:#E9E8E2;display:flex;align-items:end;padding:10px"><span style="font-family:ui-monospace,Menlo,monospace;font-size:10px;color:#71716A;background:#FBFBF8;border-radius:4px;padding:2px 6px">foto: slagborr</span></div>
+                <div style="font-size:15px;font-weight:700;letter-spacing:-0.01em">Slagborrmaskin</div>
+                <div style="display:flex;align-items:center;gap:6px;font-size:12.5px;color:#71716A"><span style="width:6px;height:6px;border-radius:50%;background:#A66A2C"></span>Johan · 300 m</div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:8px">
+                <div style="height:150px;border-radius:14px;background:#E9E8E2;display:flex;align-items:end;padding:10px"><span style="font-family:ui-monospace,Menlo,monospace;font-size:10px;color:#71716A;background:#FBFBF8;border-radius:4px;padding:2px 6px">foto: stege</span></div>
+                <div style="font-size:15px;font-weight:700;letter-spacing:-0.01em">Utskjutsstege 6 m</div>
+                <div style="display:flex;align-items:center;gap:6px;font-size:12.5px;color:#71716A"><span style="width:6px;height:6px;border-radius:50%;background:#A66A2C"></span>Berit · 450 m</div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:8px">
+                <div style="height:150px;border-radius:14px;background:#E9E8E2;display:flex;align-items:end;padding:10px"><span style="font-family:ui-monospace,Menlo,monospace;font-size:10px;color:#71716A;background:#FBFBF8;border-radius:4px;padding:2px 6px">foto: högtryckstvätt</span></div>
+                <div style="font-size:15px;font-weight:700;letter-spacing:-0.01em">Högtryckstvätt</div>
+                <div style="display:flex;align-items:center;gap:6px;font-size:12.5px;color:#71716A"><span style="width:6px;height:6px;border-radius:50%;background:#2F5D50"></span>Marcus · 200 m</div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:8px">
+                <div style="height:150px;border-radius:14px;background:#E9E8E2;display:flex;align-items:end;padding:10px"><span style="font-family:ui-monospace,Menlo,monospace;font-size:10px;color:#71716A;background:#FBFBF8;border-radius:4px;padding:2px 6px">foto: partytält</span></div>
+                <div style="font-size:15px;font-weight:700;letter-spacing:-0.01em">Partytält 3×6 m</div>
+                <div style="display:flex;align-items:center;gap:6px;font-size:12.5px;color:#71716A"><span style="width:6px;height:6px;border-radius:50%;background:#9A4F38"></span>Fam. Öberg · 2 km</div>
+              </div>
+            </div>
+          </div>
+          <div style="display:flex;border-top:1px solid #E9E8E2;background:#FFFFFF;padding:10px 12px 24px">
+            <div style="flex:1;text-align:center;font-size:11.5px;font-weight:700;color:#191918">Utforska</div>
+            <div style="flex:1;text-align:center;font-size:11.5px;font-weight:600;color:#9B9B92">Mina saker</div>
+            <div style="flex:1;text-align:center;font-size:11.5px;font-weight:600;color:#9B9B92">Skjul</div>
+            <div style="flex:1;text-align:center;font-size:11.5px;font-weight:600;color:#9B9B92">Lån</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= 2. SAK-DETALJ ================= -->
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="font-size:13px;font-weight:700;color:#71716A;text-transform:uppercase;letter-spacing:.08em">02 · Sak &amp; låneförfrågan</div>
+        <div data-screen-label="Sak-detalj" style="width:390px;height:844px;background:#FBFBF8;border:1px solid #E0DFD8;border-radius:24px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 12px 40px rgba(25,25,24,.08)">
+          <div style="height:300px;background:#E9E8E2;position:relative;flex:none">
+            <span style="position:absolute;top:22px;left:20px;width:34px;height:34px;border-radius:50%;background:#FBFBF8;display:flex;align-items:center;justify-content:center;font-size:16px;color:#191918">‹</span>
+            <span style="position:absolute;bottom:14px;left:20px;font-family:ui-monospace,Menlo,monospace;font-size:10px;color:#71716A;background:#FBFBF8;border-radius:4px;padding:2px 6px">foto: slagborrmaskin</span>
+          </div>
+          <div style="flex:1;padding:22px;display:flex;flex-direction:column">
+            <div style="font-size:24px;font-weight:800;letter-spacing:-0.03em">Slagborrmaskin</div>
+            <div style="display:flex;align-items:center;gap:10px;margin:12px 0 16px">
+              <div style="width:36px;height:36px;border-radius:50%;background:#E9E8E2;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#191918">J</div>
+              <div>
+                <div style="font-size:14px;font-weight:700">Johan Lindqvist</div>
+                <div style="display:flex;align-items:center;gap:6px;font-size:12.5px;color:#71716A"><span style="width:6px;height:6px;border-radius:50%;background:#A66A2C"></span>Via skjulet Grannar · 300 m</div>
+              </div>
+            </div>
+            <div style="font-size:14.5px;line-height:1.55;color:#45453F">Bosch Professional 18 V. Två batterier och laddare följer med, bits ligger i lådan. Funkar bra i betong.</div>
+            <div style="display:flex;gap:22px;border-top:1px solid #E9E8E2;border-bottom:1px solid #E9E8E2;padding:14px 0;margin:16px 0">
+              <div><div style="font-size:11px;font-weight:700;color:#9B9B92;text-transform:uppercase;letter-spacing:.07em">Utlånad</div><div style="font-size:14px;font-weight:700;margin-top:2px">14 gånger</div></div>
+              <div><div style="font-size:11px;font-weight:700;color:#9B9B92;text-transform:uppercase;letter-spacing:.07em">Ledig</div><div style="font-size:14px;font-weight:700;margin-top:2px">Nu</div></div>
+              <div><div style="font-size:11px;font-weight:700;color:#9B9B92;text-transform:uppercase;letter-spacing:.07em">Hämtas</div><div style="font-size:14px;font-weight:700;margin-top:2px">Björkvägen 4</div></div>
+            </div>
+            <div style="font-size:13px;font-weight:700;margin-bottom:8px">Hur länge behöver du den?</div>
+            <div style="display:flex;gap:8px">
+              <span style="font-size:13.5px;font-weight:600;border:1px solid #E0DFD8;border-radius:10px;padding:9px 14px;color:#45453F">Idag</span>
+              <span style="font-size:13.5px;font-weight:700;background:#191918;color:#FBFBF8;border-radius:10px;padding:9px 14px">Helgen</span>
+              <span style="font-size:13.5px;font-weight:600;border:1px solid #E0DFD8;border-radius:10px;padding:9px 14px;color:#45453F">En vecka</span>
+              <span style="font-size:13.5px;font-weight:600;border:1px solid #E0DFD8;border-radius:10px;padding:9px 14px;color:#45453F">Annat</span>
+            </div>
+            <div style="flex:1"></div>
+            <div style="background:#2F5D50;color:#FBFBF8;border-radius:14px;padding:17px;text-align:center;font-size:16px;font-weight:700;letter-spacing:-0.01em">Fråga Johan</div>
+            <div style="text-align:center;font-size:12px;color:#9B9B92;margin-top:10px;padding-bottom:8px">Gratis, som allt på Mutuu. Johan svarar oftast inom en timme.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= 3. MINA SAKER (matris) ================= -->
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="font-size:13px;font-weight:700;color:#71716A;text-transform:uppercase;letter-spacing:.08em">03 · Mina saker — delningsmatrisen</div>
+        <div data-screen-label="Mina saker" style="width:390px;height:844px;background:#FBFBF8;border:1px solid #E0DFD8;border-radius:24px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 12px 40px rgba(25,25,24,.08)">
+          <div style="flex:1;padding:26px 22px 0;overflow:hidden">
+            <div style="font-size:26px;font-weight:800;letter-spacing:-0.03em">Mina saker</div>
+            <div style="font-size:14px;color:#71716A;margin:6px 0 20px;line-height:1.5">En rad per sak, en kolumn per skjul.<br>Tryck på en prick för att dela eller sluta dela.</div>
+            <div style="display:grid;grid-template-columns:1fr 54px 54px 54px;align-items:center;padding:0 0 10px;border-bottom:1px solid #E9E8E2">
+              <div></div>
+              <div style="text-align:center"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#2F5D50"></span><div style="font-size:10.5px;font-weight:700;color:#71716A;margin-top:3px">Vänner</div></div>
+              <div style="text-align:center"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#A66A2C"></span><div style="font-size:10.5px;font-weight:700;color:#71716A;margin-top:3px">Grannar</div></div>
+              <div style="text-align:center"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#9A4F38"></span><div style="font-size:10.5px;font-weight:700;color:#71716A;margin-top:3px">Familjen</div></div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 54px 54px 54px;align-items:center;padding:14px 0;border-bottom:1px solid #F0EFEA">
+              <div><div style="font-size:15px;font-weight:700">Skruvdragare</div><div style="font-size:12px;color:#9B9B92">Utlånad till Jonas t.o.m. sön</div></div>
+              <div style="text-align:center"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;background:#2F5D50;color:#FBFBF8;font-size:12px;font-weight:800;line-height:22px">✓</span></div>
+              <div style="text-align:center"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;background:#A66A2C;color:#FBFBF8;font-size:12px;font-weight:800;line-height:22px">✓</span></div>
+              <div style="text-align:center"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;border:1.5px solid #D8D7CF"></span></div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 54px 54px 54px;align-items:center;padding:14px 0;border-bottom:1px solid #F0EFEA">
+              <div><div style="font-size:15px;font-weight:700">Stege 4 m</div><div style="font-size:12px;color:#9B9B92">Hemma</div></div>
+              <div style="text-align:center"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;border:1.5px solid #D8D7CF"></span></div>
+              <div style="text-align:center"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;background:#A66A2C;color:#FBFBF8;font-size:12px;font-weight:800;line-height:22px">✓</span></div>
+              <div style="text-align:center"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;border:1.5px solid #D8D7CF"></span></div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 54px 54px 54px;align-items:center;padding:14px 0;border-bottom:1px solid #F0EFEA">
+              <div><div style="font-size:15px;font-weight:700">Slipmaskin</div><div style="font-size:12px;color:#9B9B92">Hemma</div></div>
+              <div style="text-align:center"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;background:#2F5D50;color:#FBFBF8;font-size:12px;font-weight:800;line-height:22px">✓</span></div>
+              <div style="text-align:center"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;border:1.5px solid #D8D7CF"></span></div>
+              <div style="text-align:center"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;border:1.5px solid #D8D7CF"></span></div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 54px 54px 54px;align-items:center;padding:14px 0;border-bottom:1px solid #F0EFEA">
+              <div><div style="font-size:15px;font-weight:700">Partytält 3×6 m</div><div style="font-size:12px;color:#9B9B92">Hemma</div></div>
+              <div style="text-align:center"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;background:#2F5D50;color:#FBFBF8;font-size:12px;font-weight:800;line-height:22px">✓</span></div>
+              <div style="text-align:center"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;background:#A66A2C;color:#FBFBF8;font-size:12px;font-weight:800;line-height:22px">✓</span></div>
+              <div style="text-align:center"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;background:#9A4F38;color:#FBFBF8;font-size:12px;font-weight:800;line-height:22px">✓</span></div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 54px 54px 54px;align-items:center;padding:14px 0">
+              <div><div style="font-size:15px;font-weight:700">Fogsvans</div><div style="font-size:12px;color:#9B9B92">Delas inte än</div></div>
+              <div style="text-align:center"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;border:1.5px solid #D8D7CF"></span></div>
+              <div style="text-align:center"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;border:1.5px solid #D8D7CF"></span></div>
+              <div style="text-align:center"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;border:1.5px solid #D8D7CF"></span></div>
+            </div>
+            <div style="margin-top:18px;border:1.5px dashed #D8D7CF;border-radius:14px;padding:15px;text-align:center;font-size:14.5px;font-weight:700;color:#71716A">+ Lägg till en sak</div>
+          </div>
+          <div style="display:flex;border-top:1px solid #E9E8E2;background:#FFFFFF;padding:10px 12px 24px">
+            <div style="flex:1;text-align:center;font-size:11.5px;font-weight:600;color:#9B9B92">Utforska</div>
+            <div style="flex:1;text-align:center;font-size:11.5px;font-weight:700;color:#191918">Mina saker</div>
+            <div style="flex:1;text-align:center;font-size:11.5px;font-weight:600;color:#9B9B92">Skjul</div>
+            <div style="flex:1;text-align:center;font-size:11.5px;font-weight:600;color:#9B9B92">Lån</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= 4. LÄGG TILL ================= -->
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="font-size:13px;font-weight:700;color:#71716A;text-transform:uppercase;letter-spacing:.08em">04 · Lägg till en sak</div>
+        <div data-screen-label="Lägg till" style="width:390px;height:844px;background:#FBFBF8;border:1px solid #E0DFD8;border-radius:24px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 12px 40px rgba(25,25,24,.08)">
+          <div style="flex:1;padding:26px 22px 0">
+            <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px">
+              <span style="width:34px;height:34px;border-radius:50%;border:1px solid #E0DFD8;display:flex;align-items:center;justify-content:center;font-size:16px">‹</span>
+              <div style="font-size:22px;font-weight:800;letter-spacing:-0.03em">Lägg till en sak</div>
+            </div>
+            <div style="height:170px;border:1.5px dashed #D8D7CF;border-radius:16px;background:#F4F3EE;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;margin-bottom:18px">
+              <div style="width:38px;height:30px;border:2px solid #9B9B92;border-radius:6px;position:relative"><span style="position:absolute;top:-7px;left:9px;width:14px;height:6px;background:#F4F3EE;border:2px solid #9B9B92;border-bottom:none;border-radius:3px 3px 0 0"></span></div>
+              <div style="font-size:13.5px;font-weight:600;color:#71716A">Ta ett foto</div>
+            </div>
+            <div style="font-size:12px;font-weight:700;color:#9B9B92;text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px">Vad är det?</div>
+            <div style="border:1px solid #E0DFD8;background:#FFFFFF;border-radius:12px;padding:13px 15px;font-size:15px;font-weight:600;margin-bottom:18px">Häcksax<span style="color:#191918;font-weight:400">|</span></div>
+            <div style="font-size:12px;font-weight:700;color:#9B9B92;text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px">Vilka skjul får låna den?</div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div style="display:flex;align-items:center;gap:12px;border:1.5px solid #2F5D50;background:#EEF2F0;border-radius:12px;padding:13px 14px">
+                <span style="width:8px;height:8px;border-radius:50%;background:#2F5D50;flex:none"></span>
+                <div style="flex:1"><div style="font-size:14.5px;font-weight:700">Vänner</div><div style="font-size:12px;color:#71716A">6 personer</div></div>
+                <span style="width:22px;height:22px;border-radius:50%;background:#2F5D50;color:#FBFBF8;font-size:12px;font-weight:800;text-align:center;line-height:22px">✓</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:12px;border:1.5px solid #A66A2C;background:#F5EFE6;border-radius:12px;padding:13px 14px">
+                <span style="width:8px;height:8px;border-radius:50%;background:#A66A2C;flex:none"></span>
+                <div style="flex:1"><div style="font-size:14.5px;font-weight:700">Grannar</div><div style="font-size:12px;color:#71716A">11 personer på Björkvägen</div></div>
+                <span style="width:22px;height:22px;border-radius:50%;background:#A66A2C;color:#FBFBF8;font-size:12px;font-weight:800;text-align:center;line-height:22px">✓</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:12px;border:1.5px solid #E0DFD8;background:#FFFFFF;border-radius:12px;padding:13px 14px">
+                <span style="width:8px;height:8px;border-radius:50%;background:#9A4F38;flex:none"></span>
+                <div style="flex:1"><div style="font-size:14.5px;font-weight:700">Familjen</div><div style="font-size:12px;color:#71716A">4 personer</div></div>
+                <span style="width:22px;height:22px;border-radius:50%;border:1.5px solid #D8D7CF"></span>
+              </div>
+            </div>
+            <div style="font-size:12.5px;color:#9B9B92;line-height:1.5;margin-top:12px">Bara medlemmar i valda skjul ser häcksaxen. Du kan ändra när som helst i Mina saker.</div>
+          </div>
+          <div style="padding:0 22px 30px">
+            <div style="background:#191918;color:#FBFBF8;border-radius:14px;padding:17px;text-align:center;font-size:16px;font-weight:700">Dela häcksaxen</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= 5. SKJUL ================= -->
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="font-size:13px;font-weight:700;color:#71716A;text-transform:uppercase;letter-spacing:.08em">05 · Skjul</div>
+        <div data-screen-label="Skjul" style="width:390px;height:844px;background:#FBFBF8;border:1px solid #E0DFD8;border-radius:24px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 12px 40px rgba(25,25,24,.08)">
+          <div style="flex:1;padding:26px 22px 0">
+            <div style="font-size:26px;font-weight:800;letter-spacing:-0.03em">Skjul</div>
+            <div style="font-size:14px;color:#71716A;margin:6px 0 20px;line-height:1.5">Dina kretsar. Det du lägger i ett skjul kan alla där inne låna.</div>
+            <div style="display:flex;flex-direction:column;gap:12px">
+              <div style="border:1px solid #E0DFD8;background:#FFFFFF;border-radius:16px;padding:18px">
+                <div style="display:flex;align-items:center;gap:10px"><span style="width:10px;height:10px;border-radius:50%;background:#2F5D50"></span><div style="font-size:17px;font-weight:800;letter-spacing:-0.02em;flex:1">Vänner</div><span style="font-size:13px;color:#9B9B92">›</span></div>
+                <div style="font-size:13px;color:#71716A;margin:6px 0 14px">6 personer · 9 saker · du delar 3</div>
+                <div style="display:flex">
+                  <span style="width:30px;height:30px;border-radius:50%;background:#E9E8E2;border:2px solid #FFFFFF;font-size:11.5px;font-weight:700;text-align:center;line-height:28px">JS</span>
+                  <span style="width:30px;height:30px;border-radius:50%;background:#DEDDD4;border:2px solid #FFFFFF;margin-left:-8px;font-size:11.5px;font-weight:700;text-align:center;line-height:28px">MA</span>
+                  <span style="width:30px;height:30px;border-radius:50%;background:#E9E8E2;border:2px solid #FFFFFF;margin-left:-8px;font-size:11.5px;font-weight:700;text-align:center;line-height:28px">LK</span>
+                  <span style="width:30px;height:30px;border-radius:50%;background:#DEDDD4;border:2px solid #FFFFFF;margin-left:-8px;font-size:11.5px;font-weight:700;text-align:center;line-height:28px">+3</span>
+                </div>
+              </div>
+              <div style="border:1px solid #E0DFD8;background:#FFFFFF;border-radius:16px;padding:18px">
+                <div style="display:flex;align-items:center;gap:10px"><span style="width:10px;height:10px;border-radius:50%;background:#A66A2C"></span><div style="font-size:17px;font-weight:800;letter-spacing:-0.02em;flex:1">Grannar</div><span style="font-size:13px;color:#9B9B92">›</span></div>
+                <div style="font-size:13px;color:#71716A;margin:6px 0 14px">11 personer på Björkvägen · 12 saker · du delar 3</div>
+                <div style="display:flex">
+                  <span style="width:30px;height:30px;border-radius:50%;background:#E9E8E2;border:2px solid #FFFFFF;font-size:11.5px;font-weight:700;text-align:center;line-height:28px">AB</span>
+                  <span style="width:30px;height:30px;border-radius:50%;background:#DEDDD4;border:2px solid #FFFFFF;margin-left:-8px;font-size:11.5px;font-weight:700;text-align:center;line-height:28px">PL</span>
+                  <span style="width:30px;height:30px;border-radius:50%;background:#E9E8E2;border:2px solid #FFFFFF;margin-left:-8px;font-size:11.5px;font-weight:700;text-align:center;line-height:28px">BJ</span>
+                  <span style="width:30px;height:30px;border-radius:50%;background:#DEDDD4;border:2px solid #FFFFFF;margin-left:-8px;font-size:11.5px;font-weight:700;text-align:center;line-height:28px">+8</span>
+                </div>
+              </div>
+              <div style="border:1px solid #E0DFD8;background:#FFFFFF;border-radius:16px;padding:18px">
+                <div style="display:flex;align-items:center;gap:10px"><span style="width:10px;height:10px;border-radius:50%;background:#9A4F38"></span><div style="font-size:17px;font-weight:800;letter-spacing:-0.02em;flex:1">Familjen</div><span style="font-size:13px;color:#9B9B92">›</span></div>
+                <div style="font-size:13px;color:#71716A;margin:6px 0 14px">4 personer · 2 saker · du delar 1</div>
+                <div style="display:flex">
+                  <span style="width:30px;height:30px;border-radius:50%;background:#E9E8E2;border:2px solid #FFFFFF;font-size:11.5px;font-weight:700;text-align:center;line-height:28px">MÖ</span>
+                  <span style="width:30px;height:30px;border-radius:50%;background:#DEDDD4;border:2px solid #FFFFFF;margin-left:-8px;font-size:11.5px;font-weight:700;text-align:center;line-height:28px">GÖ</span>
+                  <span style="width:30px;height:30px;border-radius:50%;background:#E9E8E2;border:2px solid #FFFFFF;margin-left:-8px;font-size:11.5px;font-weight:700;text-align:center;line-height:28px">TÖ</span>
+                </div>
+              </div>
+              <div style="border:1.5px dashed #D8D7CF;border-radius:16px;padding:16px;text-align:center;font-size:14.5px;font-weight:700;color:#71716A">+ Nytt skjul</div>
+            </div>
+          </div>
+          <div style="display:flex;border-top:1px solid #E9E8E2;background:#FFFFFF;padding:10px 12px 24px">
+            <div style="flex:1;text-align:center;font-size:11.5px;font-weight:600;color:#9B9B92">Utforska</div>
+            <div style="flex:1;text-align:center;font-size:11.5px;font-weight:600;color:#9B9B92">Mina saker</div>
+            <div style="flex:1;text-align:center;font-size:11.5px;font-weight:700;color:#191918">Skjul</div>
+            <div style="flex:1;text-align:center;font-size:11.5px;font-weight:600;color:#9B9B92">Lån</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= 6. SKJUL-DETALJ ================= -->
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="font-size:13px;font-weight:700;color:#71716A;text-transform:uppercase;letter-spacing:.08em">06 · Inne i ett skjul</div>
+        <div data-screen-label="Skjul-detalj" style="width:390px;height:844px;background:#FBFBF8;border:1px solid #E0DFD8;border-radius:24px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 12px 40px rgba(25,25,24,.08)">
+          <div style="flex:1;padding:26px 22px 0;overflow:hidden">
+            <div style="display:flex;align-items:center;gap:12px;margin-bottom:18px">
+              <span style="width:34px;height:34px;border-radius:50%;border:1px solid #E0DFD8;display:flex;align-items:center;justify-content:center;font-size:16px">‹</span>
+              <span style="width:10px;height:10px;border-radius:50%;background:#A66A2C"></span>
+              <div style="font-size:22px;font-weight:800;letter-spacing:-0.03em;flex:1">Grannar</div>
+              <span style="flex:none;white-space:nowrap;font-size:13px;font-weight:700;border:1px solid #E0DFD8;border-radius:999px;padding:7px 14px">Bjud in</span>
+            </div>
+            <div style="display:flex;gap:22px;border-bottom:1px solid #E9E8E2;padding-bottom:14px;margin-bottom:18px">
+              <div><div style="font-size:11px;font-weight:700;color:#9B9B92;text-transform:uppercase;letter-spacing:.07em">Personer</div><div style="font-size:15px;font-weight:800;margin-top:2px">11</div></div>
+              <div><div style="font-size:11px;font-weight:700;color:#9B9B92;text-transform:uppercase;letter-spacing:.07em">Saker</div><div style="font-size:15px;font-weight:800;margin-top:2px">12</div></div>
+              <div><div style="font-size:11px;font-weight:700;color:#9B9B92;text-transform:uppercase;letter-spacing:.07em">Lån i år</div><div style="font-size:15px;font-weight:800;margin-top:2px">31</div></div>
+            </div>
+            <div style="font-size:12px;font-weight:700;color:#9B9B92;text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px">Du delar hit</div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px">
+              <span style="font-size:13px;font-weight:600;background:#F5EFE6;color:#191918;border-radius:999px;padding:8px 14px">Skruvdragare</span>
+              <span style="font-size:13px;font-weight:600;background:#F5EFE6;color:#191918;border-radius:999px;padding:8px 14px">Stege 4 m</span>
+              <span style="font-size:13px;font-weight:600;background:#F5EFE6;color:#191918;border-radius:999px;padding:8px 14px">Partytält</span>
+              <span style="font-size:13px;font-weight:700;border:1.5px dashed #D8D7CF;color:#71716A;border-radius:999px;padding:8px 14px">+ Fler</span>
+            </div>
+            <div style="font-size:12px;font-weight:700;color:#9B9B92;text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px">I skjulet</div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div style="display:flex;align-items:center;gap:12px;border:1px solid #E0DFD8;background:#FFFFFF;border-radius:12px;padding:11px 13px">
+                <div style="width:40px;height:40px;border-radius:10px;background:#E9E8E2;flex:none"></div>
+                <div style="flex:1"><div style="font-size:14.5px;font-weight:700">Slagborrmaskin</div><div style="font-size:12px;color:#9B9B92">Johan · 300 m · ledig</div></div>
+                <span style="font-size:13px;color:#9B9B92">›</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:12px;border:1px solid #E0DFD8;background:#FFFFFF;border-radius:12px;padding:11px 13px">
+                <div style="width:40px;height:40px;border-radius:10px;background:#E9E8E2;flex:none"></div>
+                <div style="flex:1"><div style="font-size:14.5px;font-weight:700">Skottkärra</div><div style="font-size:12px;color:#9B9B92">Amira · 150 m · utlånad till sön</div></div>
+                <span style="font-size:13px;color:#9B9B92">›</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:12px;border:1px solid #E0DFD8;background:#FFFFFF;border-radius:12px;padding:11px 13px">
+                <div style="width:40px;height:40px;border-radius:10px;background:#E9E8E2;flex:none"></div>
+                <div style="flex:1"><div style="font-size:14.5px;font-weight:700">Utskjutsstege 6 m</div><div style="font-size:12px;color:#9B9B92">Berit · 450 m · ledig</div></div>
+                <span style="font-size:13px;color:#9B9B92">›</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:12px;border:1px solid #E0DFD8;background:#FFFFFF;border-radius:12px;padding:11px 13px">
+                <div style="width:40px;height:40px;border-radius:10px;background:#E9E8E2;flex:none"></div>
+                <div style="flex:1"><div style="font-size:14.5px;font-weight:700">Häcksax</div><div style="font-size:12px;color:#9B9B92">Per · 100 m · ledig</div></div>
+                <span style="font-size:13px;color:#9B9B92">›</span>
+              </div>
+            </div>
+          </div>
+          <div style="display:flex;border-top:1px solid #E9E8E2;background:#FFFFFF;padding:10px 12px 24px">
+            <div style="flex:1;text-align:center;font-size:11.5px;font-weight:600;color:#9B9B92">Utforska</div>
+            <div style="flex:1;text-align:center;font-size:11.5px;font-weight:600;color:#9B9B92">Mina saker</div>
+            <div style="flex:1;text-align:center;font-size:11.5px;font-weight:700;color:#191918">Skjul</div>
+            <div style="flex:1;text-align:center;font-size:11.5px;font-weight:600;color:#9B9B92">Lån</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= 7. LÅN ================= -->
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="font-size:13px;font-weight:700;color:#71716A;text-transform:uppercase;letter-spacing:.08em">07 · Lån</div>
+        <div data-screen-label="Lån" style="width:390px;height:844px;background:#FBFBF8;border:1px solid #E0DFD8;border-radius:24px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 12px 40px rgba(25,25,24,.08)">
+          <div style="flex:1;padding:26px 22px 0">
+            <div style="font-size:26px;font-weight:800;letter-spacing:-0.03em;margin-bottom:20px">Lån</div>
+            <div style="font-size:12px;font-weight:700;color:#9B9B92;text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px">Ny förfrågan</div>
+            <div style="border:1px solid #E0DFD8;background:#FFFFFF;border-radius:16px;padding:16px;margin-bottom:20px">
+              <div style="display:flex;align-items:center;gap:11px">
+                <div style="width:38px;height:38px;border-radius:50%;background:#F5EFE6;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:#A66A2C">A</div>
+                <div style="flex:1">
+                  <div style="font-size:14.5px;line-height:1.4"><strong>Amira</strong> vill låna <strong>stegen</strong> i helgen</div>
+                  <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:#9B9B92;margin-top:2px"><span style="width:6px;height:6px;border-radius:50%;background:#A66A2C"></span>Via Grannar · för 10 min sedan</div>
+                </div>
+              </div>
+              <div style="font-size:13.5px;color:#45453F;background:#F4F3EE;border-radius:10px;padding:10px 12px;margin:12px 0;line-height:1.45">"Hej! Ska rensa hängrännorna på lördag. Hämtar och lämnar samma dag."</div>
+              <div style="display:flex;gap:8px">
+                <div style="flex:1;background:#2F5D50;color:#FBFBF8;border-radius:10px;padding:11px;text-align:center;font-size:14px;font-weight:700">Låna ut</div>
+                <div style="flex:1;border:1px solid #E0DFD8;color:#71716A;border-radius:10px;padding:11px;text-align:center;font-size:14px;font-weight:600">Kan inte</div>
+              </div>
+            </div>
+            <div style="font-size:12px;font-weight:700;color:#9B9B92;text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px">Pågående</div>
+            <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px">
+              <div style="display:flex;align-items:center;gap:12px;border:1px solid #E0DFD8;background:#FFFFFF;border-radius:12px;padding:12px 13px">
+                <div style="width:40px;height:40px;border-radius:10px;background:#E9E8E2;flex:none"></div>
+                <div style="flex:1"><div style="font-size:14.5px;font-weight:700">Skruvdragare → Jonas</div><div style="font-size:12px;color:#9B9B92">Lämnas tillbaka söndag</div></div>
+                <span style="font-size:11.5px;font-weight:800;color:#2F5D50;background:#EEF2F0;border-radius:999px;padding:5px 10px">UTLÅNAD</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:12px;border:1px solid #E0DFD8;background:#FFFFFF;border-radius:12px;padding:12px 13px">
+                <div style="width:40px;height:40px;border-radius:10px;background:#E9E8E2;flex:none"></div>
+                <div style="flex:1"><div style="font-size:14.5px;font-weight:700">Skottkärra ← Amira</div><div style="font-size:12px;color:#9B9B92">Du lämnar tillbaka på söndag</div></div>
+                <span style="font-size:11.5px;font-weight:800;color:#A66A2C;background:#F5EFE6;border-radius:999px;padding:5px 10px">DU LÅNAR</span>
+              </div>
+            </div>
+            <div style="font-size:12px;font-weight:700;color:#9B9B92;text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px">Historik</div>
+            <div style="font-size:13.5px;color:#71716A;line-height:2">Högtryckstvätt ← Marcus · maj<br>Symaskin ← Lena · april<br>Slipmaskin → Per · mars</div>
+          </div>
+          <div style="display:flex;border-top:1px solid #E9E8E2;background:#FFFFFF;padding:10px 12px 24px">
+            <div style="flex:1;text-align:center;font-size:11.5px;font-weight:600;color:#9B9B92">Utforska</div>
+            <div style="flex:1;text-align:center;font-size:11.5px;font-weight:600;color:#9B9B92">Mina saker</div>
+            <div style="flex:1;text-align:center;font-size:11.5px;font-weight:600;color:#9B9B92">Skjul</div>
+            <div style="flex:1;text-align:center;font-size:11.5px;font-weight:700;color:#191918">Lån</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+</x-dc>
+</body>
+</html>
