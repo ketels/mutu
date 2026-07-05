@@ -1,11 +1,14 @@
 "use client";
 
+import { useQuery } from "convex/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { api } from "@/convex/_generated/api";
 import { isActive, NAV_ITEMS } from "./nav-items";
 
-export function TopNav({ badgeLan = false }: { badgeLan?: boolean }) {
+export function TopNav() {
   const pathname = usePathname();
+  const badgeLan = useQuery(api.messages.hasUnread) ?? false;
   return (
     <header className="sticky top-0 z-30 hidden border-b border-divider bg-card md:block">
       <div className="mx-auto flex h-[70px] max-w-6xl items-center gap-9 px-12">

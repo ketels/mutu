@@ -1,11 +1,14 @@
 "use client";
 
+import { useQuery } from "convex/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { api } from "@/convex/_generated/api";
 import { isActive, NAV_ITEMS } from "./nav-items";
 
-export function BottomNav({ badgeLan = false }: { badgeLan?: boolean }) {
+export function BottomNav() {
   const pathname = usePathname();
+  const badgeLan = useQuery(api.messages.hasUnread) ?? false;
   return (
     <nav className="fixed inset-x-0 bottom-0 z-30 border-t border-divider bg-card/90 pb-[env(safe-area-inset-bottom)] backdrop-blur md:hidden">
       <div className="grid grid-cols-4">

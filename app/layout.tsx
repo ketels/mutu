@@ -1,5 +1,7 @@
+import { ConvexAuthNextjsServerProvider } from "@convex-dev/auth/nextjs/server";
 import type { Metadata, Viewport } from "next";
 import { Schibsted_Grotesk } from "next/font/google";
+import { ConvexClientProvider } from "@/components/ConvexClientProvider";
 import "./globals.css";
 
 const schibsted = Schibsted_Grotesk({
@@ -24,8 +26,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="sv" className={`${schibsted.variable} h-full`}>
-      <body className="min-h-full flex flex-col">{children}</body>
-    </html>
+    <ConvexAuthNextjsServerProvider>
+      <html lang="sv" className={`${schibsted.variable} h-full`}>
+        <body className="min-h-full flex flex-col">
+          <ConvexClientProvider>{children}</ConvexClientProvider>
+        </body>
+      </html>
+    </ConvexAuthNextjsServerProvider>
   );
 }

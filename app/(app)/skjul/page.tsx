@@ -1,9 +1,15 @@
+"use client";
+
+import { useQuery } from "convex/react";
+import Link from "next/link";
+import { api } from "@/convex/_generated/api";
 import { MobileHeader } from "@/components/nav/MobileHeader";
 import { AvatarStack } from "@/components/ui/AvatarStack";
 import { ShedDot } from "@/components/ui/ShedDot";
-import { MOCK_ITEMS, MOCK_SHEDS } from "@/lib/mock";
 
 export default function SkjulPage() {
+  const sheds = useQuery(api.sheds.list);
+
   return (
     <div>
       <MobileHeader title="Skjul" />
@@ -14,36 +20,43 @@ export default function SkjulPage() {
         </p>
 
         <div className="mt-6 flex flex-col gap-3 md:grid md:grid-cols-2">
-          {MOCK_SHEDS.map((s) => {
-            const count = MOCK_ITEMS.filter((i) => i.shedId === s.id).length;
-            return (
-              <div
-                key={s.id}
-                className="rounded-card border border-border bg-card p-[18px]"
-              >
-                <div className="flex items-center gap-2.5">
-                  <ShedDot colorIdx={s.colorIdx} size={10} />
-                  <span className="heading text-[17px] tracking-[-0.02em]">
-                    {s.name}
-                  </span>
-                </div>
-                <p className="mt-1 text-[13px] text-muted">
-                  {s.metaBase} · {count} saker · du delar 0
-                </p>
-                <div className="mt-3.5">
-                  <AvatarStack initials={s.members} />
-                </div>
+          {sheds?.map((s) => (
+            <Link
+              key={s._id}
+              href={`/skjul/${s._id}`}
+              className="rounded-card border border-border bg-card p-[18px] transition-transform active:scale-[0.98]"
+            >
+              <div className="flex items-center gap-2.5">
+                <ShedDot colorIdx={s.colorIdx} size={10} />
+                <span className="heading text-[17px] tracking-[-0.02em]">
+                  {s.name}
+                </span>
               </div>
-            );
-          })}
+              <p className="mt-1 text-[13px] text-muted">
+                {s.memberCount}{" "}
+                {s.memberCount === 1 ? "person" : "personer"} · {s.itemCount}{" "}
+                saker · du delar {s.myShareCount}
+              </p>
+              <div className="mt-3.5">
+                <AvatarStack initials={s.memberInitials} />
+              </div>
+            </Link>
+          ))}
 
-          <button
-            type="button"
-            className="flex min-h-24 items-center justify-center rounded-card border-[1.5px] border-dashed border-dash text-[14.5px] font-semibold text-muted transition-opacity active:opacity-70"
+          <Link
+            href="/skjul/nytt"
+            className="flex min-h-[72px] items-center justify-center rounded-card border-[1.5px] border-dashed border-dash text-[14.5px] font-semibold text-muted transition-opacity active:opacity-70"
           >
             + Nytt skjul
-          </button>
+          </Link>
         </div>
+
+        {sheds?.length === 0 && (
+          <p className="mt-8 text-center text-[14.5px] text-muted">
+            Du är inte med i något skjul än. Skapa ett, eller be en vän om en
+            inbjudningslänk.
+          </p>
+        )}
       </div>
     </div>
   );

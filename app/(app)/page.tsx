@@ -1,20 +1,25 @@
 "use client";
 
+import { useQuery } from "convex/react";
 import { useState } from "react";
+import { api } from "@/convex/_generated/api";
+import { type Id } from "@/convex/_generated/dataModel";
 import { MobileHeader } from "@/components/nav/MobileHeader";
 import { ItemCard } from "@/components/items/ItemCard";
+import { ItemDetail } from "@/components/items/ItemDetail";
 import { Chip } from "@/components/ui/Chip";
-import { MOCK_ITEMS, MOCK_SHEDS, mockShed } from "@/lib/mock";
+import { Sheet } from "@/components/ui/Sheet";
 
 export default function UtforskaPage() {
   const [query, setQuery] = useState("");
-  const [filter, setFilter] = useState("alla");
+  const [filter, setFilter] = useState<Id<"sheds"> | null>(null);
+  const [openItemId, setOpenItemId] = useState<Id<"items"> | null>(null);
 
-  const visible = MOCK_ITEMS.filter(
-    (it) =>
-      (filter === "alla" || it.shedId === filter) &&
-      (!query || it.name.toLowerCase().includes(query.toLowerCase())),
-  );
+  const sheds = useQuery(api.sheds.list);
+  const feed = useQuery(api.explore.feed, {
+    search: query || undefined,
+    shedId: filter ?? undefined,
+  });
 
   return (
     <div>
@@ -24,7 +29,9 @@ export default function UtforskaPage() {
           Låna av folk du litar på.
         </h1>
         <p className="mt-1.5 text-[14.5px] text-muted">
-          {MOCK_ITEMS.length} saker i dina skjul just nu
+          {feed
+            ? `${feed.total} ${feed.total === 1 ? "sak" : "saker"} i dina skjul just nu`
+            : " "}
         </p>
 
         <input
@@ -38,37 +45,45 @@ export default function UtforskaPage() {
         <div className="scrollbar-none -mx-6 mt-4 flex gap-2 overflow-x-auto px-6 pb-1 md:mx-0 md:px-0">
           <Chip
             label="Alla skjul"
-            active={filter === "alla"}
-            onClick={() => setFilter("alla")}
+            active={filter === null}
+            onClick={() => setFilter(null)}
           />
-          {MOCK_SHEDS.map((s) => (
+          {sheds?.map((s) => (
             <Chip
-              key={s.id}
+              key={s._id}
               label={s.name}
               colorIdx={s.colorIdx}
-              active={filter === s.id}
-              onClick={() => setFilter(s.id)}
+              active={filter === s._id}
+              onClick={() => setFilter(filter === s._id ? null : s._id)}
             />
           ))}
         </div>
 
         <div className="mt-6 grid grid-cols-2 gap-x-3.5 gap-y-7 md:grid-cols-4 md:gap-x-6">
-          {visible.map((it) => (
+          {feed?.items.map((it) => (
             <ItemCard
-              key={it.id}
+              key={it._id}
               name={it.name}
-              colorIdx={mockShed(it.shedId).colorIdx}
-              meta={`${it.owner} · ${it.dist} · ${it.available ? "ledig" : "utlånad"}`}
+              photoUrl={it.photoUrl}
+              colorIdx={it.shedColorIdx}
+              meta={`${it.ownerFirst}${it.distance ? ` · ${it.distance}` : ""} · ${it.available ? "ledig" : "utlånad"}`}
+              onClick={() => setOpenItemId(it._id)}
             />
           ))}
         </div>
 
-        {visible.length === 0 && (
+        {feed?.items.length === 0 && (
           <p className="mt-10 text-center text-[14.5px] text-muted">
-            Inget matchade din sökning.
+            {query || filter
+              ? "Inget matchade din sökning."
+              : "Här är det tomt än. Gå med i ett skjul, eller bjud in folk till dina — sakerna dyker upp här."}
           </p>
         )}
       </div>
+
+      <Sheet open={openItemId !== null} onClose={() => setOpenItemId(null)}>
+        {openItemId && <ItemDetail itemId={openItemId} />}
+      </Sheet>
     </div>
   );
 }

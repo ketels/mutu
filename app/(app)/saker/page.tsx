@@ -1,4 +1,8 @@
+"use client";
+
+import Link from "next/link";
 import { MobileHeader } from "@/components/nav/MobileHeader";
+import { SharingMatrix } from "@/components/items/SharingMatrix";
 
 export default function MinaSakerPage() {
   return (
@@ -10,9 +14,15 @@ export default function MinaSakerPage() {
           En rad per sak, en kolumn per skjul. Tryck på en prick för att dela
           eller sluta dela.
         </p>
-        <p className="mt-10 text-center text-[14.5px] text-muted">
-          Delningsmatrisen byggs i etapp 3.
-        </p>
+
+        <SharingMatrix />
+
+        <Link
+          href="/saker/ny"
+          className="mt-6 flex h-12 items-center justify-center rounded-full border-[1.5px] border-dashed border-dash text-[14.5px] font-semibold text-muted transition-opacity active:opacity-70 md:max-w-xs"
+        >
+          + Lägg till en sak
+        </Link>
       </div>
     </div>
   );
