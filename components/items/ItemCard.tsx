@@ -34,10 +34,12 @@ export function ItemCard({
       <div className="mt-2.5 text-[15px] font-bold leading-tight tracking-[-0.01em]">
         {name}
       </div>
-      <div className="mt-1 flex items-center gap-1.5 text-[12.5px] text-muted">
-        <ShedDot colorIdx={colorIdx} size={6} />
-        <span className="truncate">{meta}</span>
-      </div>
+      {meta && (
+        <div className="mt-1 flex items-center gap-1.5 text-[12.5px] text-muted">
+          <ShedDot colorIdx={colorIdx} size={6} />
+          <span className="truncate">{meta}</span>
+        </div>
+      )}
     </button>
   );
 }

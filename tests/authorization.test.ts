@@ -115,6 +115,50 @@ describe("auktorisering", () => {
   });
 });
 
+describe("personer", () => {
+  it("profil kräver delat skjul", async () => {
+    const { t, berit, jonas, utanfor } = await setup();
+    await expect(
+      asUser(t, utanfor).query(api.people.profile, { userId: jonas }),
+    ).rejects.toThrow("delar inget skjul");
+    const profile = await asUser(t, jonas).query(api.people.profile, {
+      userId: berit,
+    });
+    expect(profile?.name).toBe("Berit Lindgren");
+  });
+
+  it("addToShed kräver befintlig koppling", async () => {
+    const { t, berit, utanfor, shed } = await setup();
+    await expect(
+      asUser(t, berit).mutation(api.people.addToShed, {
+        shedId: shed,
+        userId: utanfor,
+      }),
+    ).rejects.toThrow("delar inget skjul");
+  });
+
+  it("addToShed lägger till kopplad person i nytt skjul", async () => {
+    const { t, berit, jonas } = await setup();
+    const nyttSkjul = await asUser(t, berit).mutation(api.sheds.create, {
+      name: "Bokklubben",
+    });
+    const candidates = await asUser(t, berit).query(
+      api.people.inviteCandidates,
+      { shedId: nyttSkjul },
+    );
+    expect(candidates.map((c) => c.name)).toContain("Jonas Ek");
+
+    await asUser(t, berit).mutation(api.people.addToShed, {
+      shedId: nyttSkjul,
+      userId: jonas,
+    });
+    const shedData = await asUser(t, jonas).query(api.sheds.get, {
+      shedId: nyttSkjul,
+    });
+    expect(shedData.members.map((m) => m.name)).toContain("Jonas Ek");
+  });
+});
+
 describe("dubbelbokning", () => {
   it("avvisar förfrågan som krockar med godkänt lån", async () => {
     const { t, berit, jonas, stege } = await setup();

@@ -25,6 +25,7 @@ export const forLoan = query({
         startDay: loan.startDay,
         endDay: loan.endDay,
         iAmOwner: loan.ownerId === userId,
+        otherId,
         itemName: item?.name ?? "Borttagen sak",
         otherName: other?.name ?? "Okänd",
         otherFirst: other?.name?.split(" ")[0] ?? "Okänd",

@@ -21,6 +21,7 @@ import type * as lib_format from "../lib/format.js";
 import type * as lib_geo from "../lib/geo.js";
 import type * as loans from "../loans.js";
 import type * as messages from "../messages.js";
+import type * as people from "../people.js";
 import type * as seed from "../seed.js";
 import type * as sheds from "../sheds.js";
 import type * as users from "../users.js";
@@ -45,6 +46,7 @@ declare const fullApi: ApiFromModules<{
   "lib/geo": typeof lib_geo;
   loans: typeof loans;
   messages: typeof messages;
+  people: typeof people;
   seed: typeof seed;
   sheds: typeof sheds;
   users: typeof users;

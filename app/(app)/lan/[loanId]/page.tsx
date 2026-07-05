@@ -52,13 +52,22 @@ export default function ChatPage({
         <Link href="/lan" aria-label="Tillbaka" className="p-2 text-ink">
           <ChevronLeft size={22} />
         </Link>
-        <span className="flex h-9 w-9 items-center justify-center rounded-full bg-photo font-mono text-[13px] font-bold text-body">
-          {initial}
-        </span>
-        <div className="min-w-0">
-          <p className="truncate text-[14.5px] font-bold">{loan.otherName}</p>
-          <p className="truncate text-[12px] text-muted">{loan.itemName}</p>
-        </div>
+        <Link
+          href={`/person/${loan.otherId}`}
+          className="flex min-w-0 items-center gap-3 transition-opacity active:opacity-70"
+        >
+          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-photo font-mono text-[13px] font-bold text-body">
+            {initial}
+          </span>
+          <span className="min-w-0">
+            <span className="block truncate text-[14.5px] font-bold">
+              {loan.otherName}
+            </span>
+            <span className="block truncate text-[12px] text-muted">
+              {loan.itemName}
+            </span>
+          </span>
+        </Link>
       </header>
 
       <div className="flex-1 overflow-y-auto px-4 py-5">
