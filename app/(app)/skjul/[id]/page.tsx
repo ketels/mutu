@@ -29,18 +29,37 @@ export default function SkjulDetaljPage({
 
   return (
     <div>
-      <header className="sticky top-0 z-20 flex h-16 items-center justify-between border-b border-divider bg-bg/90 px-4 backdrop-blur md:hidden">
-        <Link href="/skjul" aria-label="Tillbaka" className="p-2 text-ink">
+      {/* Mobil: rubrik + Bjud in i headern, enligt mockupen */}
+      <header className="sticky top-0 z-20 flex h-16 items-center gap-1.5 border-b border-divider bg-bg/90 px-4 backdrop-blur md:hidden">
+        <Link
+          href="/skjul"
+          aria-label="Tillbaka"
+          className="-ml-1 shrink-0 p-2 text-ink"
+        >
           <ChevronLeft size={22} />
         </Link>
+        <span className="flex min-w-0 flex-1 items-center gap-2">
+          <ShedDot colorIdx={shed.colorIdx} size={10} />
+          <span className="heading truncate text-[17px]">{shed.name}</span>
+        </span>
+        {shed.canContribute && (
+          <button
+            type="button"
+            className="h-9 shrink-0 rounded-full bg-ink px-3.5 text-[13px] font-bold text-bg transition-transform active:scale-[0.97]"
+            onClick={() => setInviteOpen(true)}
+          >
+            Bjud in
+          </button>
+        )}
         <ProfileButton />
       </header>
 
       <div className="px-6 pt-4 md:px-0 md:pt-10">
-        <div className="flex items-center justify-between gap-4">
+        {/* Desktop: rubrikraden ligger i innehållet som förut */}
+        <div className="hidden items-center justify-between gap-4 md:flex">
           <div className="flex items-center gap-3">
             <ShedDot colorIdx={shed.colorIdx} size={12} />
-            <h1 className="heading text-[25px] md:text-[34px]">{shed.name}</h1>
+            <h1 className="heading text-[34px]">{shed.name}</h1>
           </div>
           {shed.canContribute && (
             <button
@@ -52,7 +71,7 @@ export default function SkjulDetaljPage({
             </button>
           )}
         </div>
-        <p className="mt-1 text-[13.5px] text-muted">
+        <p className="text-[13.5px] text-muted md:mt-1">
           {shed.members.length}{" "}
           {shed.members.length === 1 ? "person" : "personer"} ·{" "}
           {shed.items.length} saker
