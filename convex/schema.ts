@@ -23,8 +23,8 @@ export default defineSchema({
     phone: v.optional(v.string()),
     phoneVerificationTime: v.optional(v.number()),
     isAnonymous: v.optional(v.boolean()),
-    // Mutu-profil (sätts under onboarding)
-    addressText: v.optional(v.string()),
+    // Mutu-profil (sätts under onboarding); ungefärlig position,
+    // avrundad till 3 decimaler — ingen adress lagras
     lat: v.optional(v.number()),
     lng: v.optional(v.number()),
     onboardedAt: v.optional(v.number()),
