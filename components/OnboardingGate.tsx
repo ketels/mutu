@@ -1,6 +1,6 @@
 "use client";
 
-import { useQuery } from "convex/react";
+import { useMutation, useQuery } from "convex/react";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { api } from "@/convex/_generated/api";
@@ -8,6 +8,7 @@ import { api } from "@/convex/_generated/api";
 /** Skickar inloggade användare utan färdig profil till onboarding. */
 export function OnboardingGate() {
   const viewer = useQuery(api.users.viewer);
+  const touch = useMutation(api.users.touch);
   const router = useRouter();
   const pathname = usePathname();
 
@@ -16,6 +17,11 @@ export function OnboardingGate() {
       router.replace("/onboarding");
     }
   }, [viewer, pathname, router]);
+
+  // Stämpla senaste aktivitet en gång per applast (throttlas server-side)
+  useEffect(() => {
+    void touch({});
+  }, [touch]);
 
   return null;
 }

@@ -8,16 +8,20 @@ import { api } from "@/convex/_generated/api";
 import { type LatLng, MapPicker } from "@/components/location/MapPicker";
 import { MobileHeader } from "@/components/nav/MobileHeader";
 import { Button } from "@/components/ui/Button";
+import { useToast } from "@/components/ui/Toast";
 
 export default function ProfilPage() {
   const viewer = useQuery(api.users.viewer);
   const setLocation = useMutation(api.users.setLocation);
+  const deleteAccount = useMutation(api.users.deleteAccount);
   const { signOut } = useAuthActions();
   const router = useRouter();
+  const toast = useToast();
 
   const [editing, setEditing] = useState(false);
   const [pos, setPos] = useState<LatLng | null>(null);
   const [busy, setBusy] = useState(false);
+  const [confirmingDelete, setConfirmingDelete] = useState(false);
 
   const saved: LatLng | null =
     viewer?.lat != null && viewer?.lng != null
@@ -121,6 +125,62 @@ export default function ProfilPage() {
           >
             Logga ut
           </Button>
+        </div>
+
+        <div className="mt-10 max-w-xs">
+          {confirmingDelete ? (
+            <div className="flex flex-col gap-3 rounded-card border border-warn/30 bg-card p-4">
+              <p className="text-[15px] font-bold">
+                Ta bort ditt konto permanent?
+              </p>
+              <p className="text-[13.5px] text-muted">
+                Dina saker, din lånehistorik och dina medlemskap i skjul
+                raderas. Skjul du äger tas över av den som varit medlem
+                längst. Det går inte att ångra.
+              </p>
+              <Button
+                variant="danger"
+                full
+                disabled={busy}
+                onClick={async () => {
+                  setBusy(true);
+                  try {
+                    await deleteAccount({});
+                    try {
+                      await signOut();
+                    } catch {
+                      // sessionen är redan raderad server-side
+                    }
+                    router.replace("/login");
+                  } catch {
+                    toast(
+                      "Du har pågående lån eller öppna förfrågningar — avsluta dem först",
+                    );
+                    setBusy(false);
+                    setConfirmingDelete(false);
+                  }
+                }}
+              >
+                Ja, ta bort mitt konto
+              </Button>
+              <Button
+                variant="outline"
+                full
+                disabled={busy}
+                onClick={() => setConfirmingDelete(false)}
+              >
+                Avbryt
+              </Button>
+            </div>
+          ) : (
+            <Button
+              variant="danger"
+              full
+              onClick={() => setConfirmingDelete(true)}
+            >
+              Ta bort konto
+            </Button>
+          )}
         </div>
       </div>
     </div>

@@ -28,6 +28,9 @@ export default defineSchema({
     lat: v.optional(v.number()),
     lng: v.optional(v.number()),
     onboardedAt: v.optional(v.number()),
+    // Senaste aktivitet (visas aldrig i UI:t) — för framtida gallring
+    // av inaktiva konton. Uppdateras högst var 6:e timme.
+    lastSeenAt: v.optional(v.number()),
   }).index("email", ["email"]),
 
   sheds: defineTable({
