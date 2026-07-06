@@ -1,6 +1,6 @@
 import { v } from "convex/values";
 import { mutation, query } from "./_generated/server";
-import { requireUser } from "./lib/access";
+import { assertCanContribute, requireUser } from "./lib/access";
 
 /** Mina saker + deras delningsstatus, för matrisen. */
 export const mine = query({
@@ -82,15 +82,9 @@ export const create = mutation({
     if (shedIds.length === 0)
       throw new Error("Välj minst ett skjul");
 
-    // Får bara dela in i skjul man själv är medlem i
+    // Kräver medlemskap, och för privata skjul ägarroll
     for (const shedId of shedIds) {
-      const membership = await ctx.db
-        .query("shedMembers")
-        .withIndex("by_shed_user", (q) =>
-          q.eq("shedId", shedId).eq("userId", userId),
-        )
-        .unique();
-      if (!membership) throw new Error("Inte medlem i skjulet");
+      await assertCanContribute(ctx, shedId);
     }
 
     const itemId = await ctx.db.insert("items", {
@@ -169,13 +163,6 @@ export const toggleShare = mutation({
     const userId = await requireUser(ctx);
     const item = await ctx.db.get(itemId);
     if (!item || item.ownerId !== userId) throw new Error("Inte din sak");
-    const membership = await ctx.db
-      .query("shedMembers")
-      .withIndex("by_shed_user", (q) =>
-        q.eq("shedId", shedId).eq("userId", userId),
-      )
-      .unique();
-    if (!membership) throw new Error("Inte medlem i skjulet");
 
     const existing = await ctx.db
       .query("itemShares")
@@ -187,6 +174,8 @@ export const toggleShare = mutation({
       await ctx.db.delete(existing._id);
       return false;
     }
+    // Att sluta dela är alltid tillåtet; att börja dela kräver rättighet
+    await assertCanContribute(ctx, shedId);
     await ctx.db.insert("itemShares", { itemId, shedId });
     return true;
   },

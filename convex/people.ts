@@ -6,7 +6,11 @@ import {
   type MutationCtx,
   type QueryCtx,
 } from "./_generated/server";
-import { assertShedMember, requireUser } from "./lib/access";
+import {
+  assertCanContribute,
+  assertShedMember,
+  requireUser,
+} from "./lib/access";
 import { todayISO } from "./lib/dates";
 import { distanceMeters, formatDistance } from "./lib/geo";
 
@@ -47,7 +51,7 @@ function initials(name: string) {
 export const inviteCandidates = query({
   args: { shedId: v.id("sheds") },
   handler: async (ctx, { shedId }) => {
-    const { userId } = await assertShedMember(ctx, shedId);
+    const { userId } = await assertCanContribute(ctx, shedId);
 
     const existing = new Set(
       (
@@ -88,7 +92,7 @@ export const inviteCandidates = query({
 export const addToShed = mutation({
   args: { shedId: v.id("sheds"), userId: v.id("users") },
   handler: async (ctx, { shedId, userId: targetId }) => {
-    const { userId } = await assertShedMember(ctx, shedId);
+    const { userId } = await assertCanContribute(ctx, shedId);
 
     const connections = await connectionsOf(ctx, userId);
     if (!connections.has(targetId))

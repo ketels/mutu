@@ -37,11 +37,15 @@ export const list = query({
           _id: shed._id,
           name: shed.name,
           colorIdx: shed.colorIdx,
+          kind: shed.kind ?? "delat",
           memberCount: members.length,
           memberInitials,
           itemCount: shares.length,
           myShareCount: mine,
           role: m.role,
+          isMine: m.role === "owner",
+          // Får jag dela in saker här? Ägare alltid; medlemmar bara i delade skjul
+          canShare: m.role === "owner" || shed.kind !== "privat",
         };
       }),
     );
@@ -94,10 +98,19 @@ export const get = query({
       )
     ).filter((x) => x !== null);
 
+    const myMembership = memberRows.find((m) => m.userId === userId);
+    const iAmOwner = myMembership?.role === "owner";
+    const ownerRow = memberRows.find((m) => m.role === "owner");
+    const ownerUser = ownerRow ? await ctx.db.get(ownerRow.userId) : null;
+
     return {
       _id: shed._id,
       name: shed.name,
       colorIdx: shed.colorIdx,
+      kind: shed.kind ?? "delat",
+      iAmOwner,
+      canContribute: iAmOwner || shed.kind !== "privat",
+      ownerFirst: ownerUser?.name?.split(" ")[0] ?? "ägaren",
       members,
       items,
       myItems: items.filter((i) => i.isMine),
@@ -106,8 +119,11 @@ export const get = query({
 });
 
 export const create = mutation({
-  args: { name: v.string() },
-  handler: async (ctx, { name }) => {
+  args: {
+    name: v.string(),
+    kind: v.optional(v.union(v.literal("delat"), v.literal("privat"))),
+  },
+  handler: async (ctx, { name, kind }) => {
     const userId = await requireUser(ctx);
     const trimmed = name.trim();
     if (trimmed.length < 1 || trimmed.length > 60)
@@ -124,6 +140,7 @@ export const create = mutation({
       name: trimmed,
       colorIdx,
       createdBy: userId,
+      kind: kind ?? "delat",
     });
     await ctx.db.insert("shedMembers", { shedId, userId, role: "owner" });
     return shedId;

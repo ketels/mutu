@@ -1,6 +1,6 @@
 import { v } from "convex/values";
 import { mutation, query } from "./_generated/server";
-import { assertShedMember, requireUser } from "./lib/access";
+import { assertCanContribute, requireUser } from "./lib/access";
 
 const THIRTY_DAYS = 30 * 24 * 60 * 60 * 1000;
 
@@ -8,7 +8,7 @@ const THIRTY_DAYS = 30 * 24 * 60 * 60 * 1000;
 export const createForShed = mutation({
   args: { shedId: v.id("sheds") },
   handler: async (ctx, { shedId }) => {
-    const { userId } = await assertShedMember(ctx, shedId);
+    const { userId } = await assertCanContribute(ctx, shedId);
 
     const existing = await ctx.db
       .query("shedInvites")

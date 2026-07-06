@@ -20,6 +20,19 @@ export async function assertShedMember(ctx: Ctx, shedId: Id<"sheds">) {
   return { userId, membership };
 }
 
+/**
+ * Får användaren dela in saker / bjuda in till skjulet?
+ * Delade skjul: alla medlemmar. Privata skjul: bara ägarrollen.
+ */
+export async function assertCanContribute(ctx: Ctx, shedId: Id<"sheds">) {
+  const { userId, membership } = await assertShedMember(ctx, shedId);
+  const shed = await ctx.db.get(shedId);
+  if (!shed) throw new Error("Skjulet finns inte");
+  if (shed.kind === "privat" && membership.role !== "owner")
+    throw new Error("Skjulet är privat — bara ägaren kan lägga till");
+  return { userId, membership, shed };
+}
+
 /** Ägare, eller medlem i något skjul saken delas i. */
 export async function assertCanSeeItem(ctx: Ctx, itemId: Id<"items">) {
   const userId = await requireUser(ctx);

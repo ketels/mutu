@@ -72,7 +72,7 @@ export default function NySakPage() {
             <p className="label-caps mb-2">Vilka skjul får låna den?</p>
             {sheds && (
               <ShedChecklist
-                sheds={sheds}
+                sheds={sheds.filter((s) => s.canShare)}
                 selected={selected}
                 onToggle={(shedId) =>
                   setSelected((prev) =>

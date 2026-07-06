@@ -14,7 +14,17 @@ import { ShedDot } from "@/components/ui/ShedDot";
  */
 export function SharingMatrix() {
   const items = useQuery(api.items.mine);
-  const sheds = useQuery(api.sheds.list);
+  const allSheds = useQuery(api.sheds.list);
+  // Bara skjul man får dela till: egna + andras delade. Egna först.
+  const sheds = allSheds
+    ?.filter((s) => s.canShare)
+    .sort((a, b) =>
+      a.isMine === b.isMine
+        ? a.name.localeCompare(b.name, "sv")
+        : a.isMine
+          ? -1
+          : 1,
+    );
   const toggle = useMutation(api.items.toggleShare).withOptimisticUpdate(
     (localStore, args) => {
       const current = localStore.getQuery(api.items.mine, {});

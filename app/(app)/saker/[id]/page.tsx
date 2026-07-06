@@ -97,7 +97,9 @@ function EditForm({ item, sheds }: { item: ItemData; sheds: ShedData }) {
       <div>
         <p className="label-caps mb-2">Vilka skjul får låna den?</p>
         <ShedChecklist
-          sheds={sheds}
+          sheds={sheds.filter(
+            (s) => s.canShare || item.shedIds.includes(s._id),
+          )}
           selected={item.shedIds}
           onToggle={(shedId) => toggleShare({ itemId: item._id, shedId })}
         />

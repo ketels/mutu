@@ -1,7 +1,7 @@
 "use client";
 
 import { useMutation, useQuery } from "convex/react";
-import { Check, ChevronLeft, ChevronRight } from "lucide-react";
+import { Check, ChevronLeft, ChevronRight, Lock } from "lucide-react";
 import Link from "next/link";
 import { use, useState } from "react";
 import { api } from "@/convex/_generated/api";
@@ -41,19 +41,31 @@ export default function SkjulDetaljPage({
             <ShedDot colorIdx={shed.colorIdx} size={12} />
             <h1 className="heading text-[25px] md:text-[34px]">{shed.name}</h1>
           </div>
-          <button
-            type="button"
-            className="h-10 shrink-0 rounded-full bg-ink px-4 text-[13.5px] font-bold text-bg transition-transform active:scale-[0.97]"
-            onClick={() => setInviteOpen(true)}
-          >
-            Bjud in
-          </button>
+          {shed.canContribute && (
+            <button
+              type="button"
+              className="h-10 shrink-0 rounded-full bg-ink px-4 text-[13.5px] font-bold text-bg transition-transform active:scale-[0.97]"
+              onClick={() => setInviteOpen(true)}
+            >
+              Bjud in
+            </button>
+          )}
         </div>
         <p className="mt-1 text-[13.5px] text-muted">
           {shed.members.length}{" "}
           {shed.members.length === 1 ? "person" : "personer"} ·{" "}
-          {shed.items.length} saker · du delar {shed.myItems.length}
+          {shed.items.length} saker
+          {shed.canContribute && <> · du delar {shed.myItems.length}</>}
         </p>
+        {shed.kind === "privat" && (
+          <p className="mt-1.5 flex items-center gap-1.5 text-[12.5px] text-muted">
+            <Lock size={12} strokeWidth={2.2} />
+            Privat skjul —{" "}
+            {shed.iAmOwner
+              ? "bara du lägger in saker och bjuder in."
+              : `${shed.ownerFirst} lägger in saker och bjuder in.`}
+          </p>
+        )}
 
         <p className="label-caps mt-7">Personer</p>
         <div className="mt-3 flex flex-col divide-y divide-divider-weak rounded-card border border-border bg-card">
@@ -80,31 +92,35 @@ export default function SkjulDetaljPage({
           )}
         </div>
 
-        <p className="label-caps mt-7">Du delar hit</p>
-        {shed.myItems.length === 0 ? (
-          <p className="mt-2 text-[14px] text-muted">
-            Inget än — slå på i{" "}
-            <Link href="/saker" className="font-semibold underline">
-              Mina saker
-            </Link>
-            .
-          </p>
-        ) : (
-          <div className="mt-3 flex flex-wrap gap-2">
-            {shed.myItems.map((item) => (
-              <span
-                key={item._id}
-                className="rounded-full border px-3.5 py-2 text-[13.5px] font-semibold"
-                style={{
-                  background: palette.light,
-                  borderColor: palette.color + "55",
-                  color: palette.color,
-                }}
-              >
-                {item.name}
-              </span>
-            ))}
-          </div>
+        {shed.canContribute && (
+          <>
+            <p className="label-caps mt-7">Du delar hit</p>
+            {shed.myItems.length === 0 ? (
+              <p className="mt-2 text-[14px] text-muted">
+                Inget än — slå på i{" "}
+                <Link href="/saker" className="font-semibold underline">
+                  Mina saker
+                </Link>
+                .
+              </p>
+            ) : (
+              <div className="mt-3 flex flex-wrap gap-2">
+                {shed.myItems.map((item) => (
+                  <span
+                    key={item._id}
+                    className="rounded-full border px-3.5 py-2 text-[13.5px] font-semibold"
+                    style={{
+                      background: palette.light,
+                      borderColor: palette.color + "55",
+                      color: palette.color,
+                    }}
+                  >
+                    {item.name}
+                  </span>
+                ))}
+              </div>
+            )}
+          </>
         )}
 
         <p className="label-caps mt-7">I skjulet</p>

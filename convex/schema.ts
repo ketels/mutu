@@ -34,6 +34,10 @@ export default defineSchema({
     name: v.string(),
     colorIdx: v.number(), // 0–4 → fast dov palett
     createdBy: v.id("users"),
+    // "delat": alla medlemmar delar in saker och bjuder in (gemensam bod).
+    // "privat": bara ägaren delar in och bjuder in; medlemmar ser och lånar.
+    // undefined = "delat" (skjul skapade före fältet fanns).
+    kind: v.optional(v.union(v.literal("delat"), v.literal("privat"))),
   }),
 
   shedMembers: defineTable({

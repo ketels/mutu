@@ -159,6 +159,66 @@ describe("personer", () => {
   });
 });
 
+describe("privata skjul", () => {
+  it("medlem kan inte dela in saker i privat skjul", async () => {
+    const { t, berit, jonas } = await setup();
+    const privat = await asUser(t, berit).mutation(api.sheds.create, {
+      name: "Vänner",
+      kind: "privat",
+    });
+    await asUser(t, berit).mutation(api.people.addToShed, {
+      shedId: privat,
+      userId: jonas,
+    });
+
+    const { jonasSak } = await t.run(async (ctx) => ({
+      jonasSak: await ctx.db.insert("items", { ownerId: jonas, name: "Såg" }),
+    }));
+    await expect(
+      asUser(t, jonas).mutation(api.items.toggleShare, {
+        itemId: jonasSak,
+        shedId: privat,
+      }),
+    ).rejects.toThrow("privat");
+  });
+
+  it("medlem kan inte bjuda in till privat skjul", async () => {
+    const { t, berit, jonas } = await setup();
+    const privat = await asUser(t, berit).mutation(api.sheds.create, {
+      name: "Vänner",
+      kind: "privat",
+    });
+    await asUser(t, berit).mutation(api.people.addToShed, {
+      shedId: privat,
+      userId: jonas,
+    });
+    await expect(
+      asUser(t, jonas).mutation(api.invites.createForShed, { shedId: privat }),
+    ).rejects.toThrow("privat");
+    // Ägaren kan fortfarande
+    const token = await asUser(t, berit).mutation(api.invites.createForShed, {
+      shedId: privat,
+    });
+    expect(token).toBeTruthy();
+  });
+
+  it("delat skjul tillåter medlemmar att dela in och bjuda in", async () => {
+    const { t, jonas, shed } = await setup();
+    const { jonasSak } = await t.run(async (ctx) => ({
+      jonasSak: await ctx.db.insert("items", { ownerId: jonas, name: "Såg" }),
+    }));
+    const on = await asUser(t, jonas).mutation(api.items.toggleShare, {
+      itemId: jonasSak,
+      shedId: shed,
+    });
+    expect(on).toBe(true);
+    const token = await asUser(t, jonas).mutation(api.invites.createForShed, {
+      shedId: shed,
+    });
+    expect(token).toBeTruthy();
+  });
+});
+
 describe("dubbelbokning", () => {
   it("avvisar förfrågan som krockar med godkänt lån", async () => {
     const { t, berit, jonas, stege } = await setup();
