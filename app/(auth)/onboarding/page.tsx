@@ -2,7 +2,7 @@
 
 import { useMutation, useQuery } from "convex/react";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { api } from "@/convex/_generated/api";
 import { type LatLng, MapPicker } from "@/components/location/MapPicker";
 import { Button } from "@/components/ui/Button";
@@ -23,15 +23,13 @@ export default function OnboardingPage() {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  if (viewer === undefined) return null;
-  if (viewer === null) {
-    router.replace("/login");
-    return null;
-  }
-  if (viewer.onboarded) {
-    router.replace("/");
-    return null;
-  }
+  // Omdirigering i effect, inte under render (React varnar annars)
+  useEffect(() => {
+    if (viewer === null) router.replace("/login");
+    else if (viewer?.onboarded) router.replace("/");
+  }, [viewer, router]);
+
+  if (viewer === undefined || viewer === null || viewer.onboarded) return null;
 
   return (
     <div className="flex min-h-dvh flex-col items-center justify-center px-6">
