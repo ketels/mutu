@@ -1,12 +1,6 @@
 import { getAuthUserId } from "@convex-dev/auth/server";
 import { v } from "convex/values";
-import { internal } from "./_generated/api";
-import {
-  action,
-  internalMutation,
-  mutation,
-  query,
-} from "./_generated/server";
+import { mutation, query } from "./_generated/server";
 import { requireUser } from "./lib/access";
 
 export const viewer = query({
@@ -20,7 +14,8 @@ export const viewer = query({
       _id: user._id,
       name: user.name ?? null,
       email: user.email ?? null,
-      addressText: user.addressText ?? null,
+      lat: user.lat ?? null,
+      lng: user.lng ?? null,
       onboarded: user.onboardedAt !== undefined,
     };
   },
@@ -37,15 +32,25 @@ export const setName = mutation({
   },
 });
 
-export const saveLocation = internalMutation({
-  args: {
-    userId: v.id("users"),
-    addressText: v.string(),
-    lat: v.number(),
-    lng: v.number(),
-  },
-  handler: async (ctx, { userId, addressText, lat, lng }) => {
-    await ctx.db.patch(userId, { addressText, lat, lng });
+/**
+ * Sparar användarens ungefärliga position. Avrundas till 3 decimaler
+ * (~100 m) så att en exakt hempunkt aldrig lagras.
+ */
+export const setLocation = mutation({
+  args: { lat: v.number(), lng: v.number() },
+  handler: async (ctx, { lat, lng }) => {
+    const userId = await requireUser(ctx);
+    if (
+      !Number.isFinite(lat) ||
+      !Number.isFinite(lng) ||
+      lat < -90 ||
+      lat > 90 ||
+      lng < -180 ||
+      lng > 180
+    )
+      throw new Error("Ogiltig position");
+    const round3 = (n: number) => Math.round(n * 1000) / 1000;
+    await ctx.db.patch(userId, { lat: round3(lat), lng: round3(lng) });
   },
 });
 
@@ -55,41 +60,8 @@ export const completeOnboarding = mutation({
     const userId = await requireUser(ctx);
     const user = await ctx.db.get(userId);
     if (!user?.name) throw new Error("Namn saknas");
+    if (user.lat === undefined || user.lng === undefined)
+      throw new Error("Plats saknas");
     await ctx.db.patch(userId, { onboardedAt: Date.now() });
-  },
-});
-
-/**
- * Geokodar en adress via Nominatim (en gång per användare vid onboarding)
- * och sparar resultatet. Returnerar det tolkade platsnamnet för bekräftelse.
- */
-export const geocodeAddress = action({
-  args: { address: v.string() },
-  handler: async (ctx, { address }) => {
-    const userId = await getAuthUserId(ctx);
-    if (!userId) throw new Error("Inte inloggad");
-
-    const url =
-      "https://nominatim.openstreetmap.org/search?format=jsonv2&limit=1&countrycodes=se&q=" +
-      encodeURIComponent(address);
-    const res = await fetch(url, {
-      headers: { "User-Agent": "mutu-app/0.1 (delningstjänst)" },
-    });
-    if (!res.ok) throw new Error("Kunde inte slå upp adressen");
-    const hits = (await res.json()) as Array<{
-      lat: string;
-      lon: string;
-      display_name: string;
-    }>;
-    if (hits.length === 0) return null;
-
-    const hit = hits[0];
-    await ctx.runMutation(internal.users.saveLocation, {
-      userId,
-      addressText: address.trim(),
-      lat: parseFloat(hit.lat),
-      lng: parseFloat(hit.lon),
-    });
-    return { displayName: hit.display_name };
   },
 });

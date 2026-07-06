@@ -18,9 +18,9 @@ export const run = internalAction({
     if (existing) return "Redan seedat";
 
     const users = [
-      { name: "Berit Lindgren", email: "berit@dev.mutu", lat: 59.1953, lng: 17.9041 },
-      { name: "Jonas Ek", email: "jonas@dev.mutu", lat: 59.1961, lng: 17.9095 },
-      { name: "Sara Holm", email: "sara@dev.mutu", lat: 59.1929, lng: 17.8987 },
+      { name: "Berit Lindgren", email: "berit@dev.mutu", lat: 59.195, lng: 17.904 },
+      { name: "Jonas Ek", email: "jonas@dev.mutu", lat: 59.196, lng: 17.91 },
+      { name: "Sara Holm", email: "sara@dev.mutu", lat: 59.193, lng: 17.899 },
     ];
 
     const ids: Id<"users">[] = [];
@@ -68,10 +68,9 @@ export const fillData = internalMutation({
     const [berit, jonas, sara] = userIds;
     const today = todayISO();
 
-    // Profiler: adress + koordinater + onboarded
+    // Profiler: koordinater + onboarded
     for (let i = 0; i < userIds.length; i++) {
       await ctx.db.patch(userIds[i], {
-        addressText: `Björkvägen ${3 + i * 4}, Tullinge`,
         lat: users[i].lat,
         lng: users[i].lng,
         onboardedAt: Date.now(),

@@ -1,25 +1,25 @@
 "use client";
 
-import { useAction, useMutation, useQuery } from "convex/react";
+import { useMutation, useQuery } from "convex/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { api } from "@/convex/_generated/api";
+import { type LatLng, MapPicker } from "@/components/location/MapPicker";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Field";
 
-type Step = "name" | "address" | "confirm";
+type Step = "name" | "plats";
 
 export default function OnboardingPage() {
   const router = useRouter();
   const viewer = useQuery(api.users.viewer);
   const setName = useMutation(api.users.setName);
-  const geocode = useAction(api.users.geocodeAddress);
+  const setLocation = useMutation(api.users.setLocation);
   const complete = useMutation(api.users.completeOnboarding);
 
   const [step, setStep] = useState<Step>("name");
   const [name, setNameInput] = useState("");
-  const [address, setAddress] = useState("");
-  const [displayName, setDisplayName] = useState<string | null>(null);
+  const [pos, setPos] = useState<LatLng | null>(null);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -47,7 +47,7 @@ export default function OnboardingPage() {
               setBusy(true);
               try {
                 await setName({ name });
-                setStep("address");
+                setStep("plats");
               } finally {
                 setBusy(false);
               }
@@ -72,84 +72,42 @@ export default function OnboardingPage() {
           </form>
         )}
 
-        {step === "address" && (
-          <form
-            className="mt-8 flex flex-col gap-3"
-            onSubmit={async (e) => {
-              e.preventDefault();
-              if (!address.trim()) return;
-              setBusy(true);
-              setError(null);
-              try {
-                const result = await geocode({ address });
-                if (!result) {
-                  setError(
-                    "Hittade inte adressen — prova med gata, nummer och ort.",
-                  );
-                } else {
-                  setDisplayName(result.displayName);
-                  setStep("confirm");
-                }
-              } catch {
-                setError("Något gick fel vid uppslaget. Försök igen.");
-              } finally {
-                setBusy(false);
-              }
-            }}
-          >
-            <h1 className="heading text-[25px] leading-tight">Var bor du?</h1>
-            <p className="text-[14px] text-muted">
-              Adressen används bara för att visa ungefärligt avstånd till
-              saker, t.ex. &ldquo;300 m&rdquo;. Den visas aldrig exakt för
-              andra.
-            </p>
-            <Input
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
-              placeholder="Björkvägen 12, Tullinge"
-              autoFocus
-              required
-            />
-            <Button type="submit" full disabled={busy || !address.trim()}>
-              {busy ? "Slår upp…" : "Fortsätt"}
-            </Button>
-            {error && <p className="text-[13px] text-warn">{error}</p>}
-          </form>
-        )}
-
-        {step === "confirm" && (
+        {step === "plats" && (
           <div className="mt-8 flex flex-col gap-3">
             <h1 className="heading text-[25px] leading-tight">
-              Stämmer det här läget?
+              Var bor du ungefär?
             </h1>
-            <div className="rounded-card border border-border bg-card p-4 text-[14px] text-body">
-              {displayName}
-            </div>
+            <p className="text-[14px] text-muted">
+              Tryck på kartan för att markera var du bor. Vi sparar bara en
+              ungefärlig position (ca 100 m) — aldrig din adress, och den
+              visas aldrig för andra. Den används bara för avstånd, t.ex.
+              &ldquo;300 m&rdquo;.
+            </p>
+            <MapPicker
+              value={pos}
+              onChange={setPos}
+              className="h-72 rounded-card border border-border"
+            />
             <Button
               full
-              disabled={busy}
+              disabled={busy || !pos}
               onClick={async () => {
+                if (!pos) return;
                 setBusy(true);
+                setError(null);
                 try {
+                  await setLocation(pos);
                   await complete();
                   router.replace("/");
-                } finally {
+                } catch {
+                  setError("Kunde inte spara platsen. Försök igen.");
                   setBusy(false);
                 }
               }}
             >
-              Ja, det stämmer
+              Fortsätt
             </Button>
-            <Button
-              variant="outline"
-              full
-              onClick={() => {
-                setDisplayName(null);
-                setStep("address");
-              }}
-            >
-              Nej, ändra adress
-            </Button>
+            {error && <p className="text-[13px] text-warn">{error}</p>}
           </div>
         )}
       </div>
