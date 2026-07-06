@@ -14,7 +14,7 @@ export default function ProfilPage() {
 
   return (
     <div>
-      <MobileHeader title="Profil" />
+      <MobileHeader title="Profil" back />
       <div className="px-6 pt-6 md:px-0 md:pt-10">
         <h1 className="heading hidden text-[34px] md:block">Profil</h1>
 

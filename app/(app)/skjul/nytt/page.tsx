@@ -19,7 +19,7 @@ export default function NyttSkjulPage() {
 
   return (
     <div>
-      <MobileHeader title="Nytt skjul" />
+      <MobileHeader title="Nytt skjul" back="/skjul" />
       <div className="px-6 pt-6 md:px-0 md:pt-10">
         <h1 className="heading hidden text-[34px] md:block">Nytt skjul</h1>
         <p className="text-[14.5px] text-muted md:mt-1.5">
