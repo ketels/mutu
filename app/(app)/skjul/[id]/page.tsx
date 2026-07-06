@@ -1,12 +1,13 @@
 "use client";
 
 import { useMutation, useQuery } from "convex/react";
-import { Check, ChevronLeft, ChevronRight, Lock } from "lucide-react";
+import { Check, ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { use, useState } from "react";
 import { api } from "@/convex/_generated/api";
 import { type Id } from "@/convex/_generated/dataModel";
 import { ProfileButton } from "@/components/nav/TopNav";
+import { SharedShedToggle } from "@/components/sheds/SharedShedToggle";
 import { Button } from "@/components/ui/Button";
 import { Sheet } from "@/components/ui/Sheet";
 import { ShedDot } from "@/components/ui/ShedDot";
@@ -57,13 +58,9 @@ export default function SkjulDetaljPage({
           {shed.items.length} saker
           {shed.canContribute && <> · du delar {shed.myItems.length}</>}
         </p>
-        {shed.kind === "privat" && (
-          <p className="mt-1.5 flex items-center gap-1.5 text-[12.5px] text-muted">
-            <Lock size={12} strokeWidth={2.2} />
-            Privat skjul —{" "}
-            {shed.iAmOwner
-              ? "bara du lägger in saker och bjuder in."
-              : `${shed.ownerFirst} lägger in saker och bjuder in.`}
+        {shed.kind === "privat" && !shed.iAmOwner && (
+          <p className="mt-1.5 text-[12.5px] text-muted">
+            {shed.ownerFirst} lägger in sakerna och bjuder in här.
           </p>
         )}
 
@@ -157,6 +154,8 @@ export default function SkjulDetaljPage({
             </div>
           ))}
         </div>
+
+        {shed.iAmOwner && <OwnerSettings shed={shed} />}
       </div>
 
       <InviteSheet
@@ -165,6 +164,37 @@ export default function SkjulDetaljPage({
         shedId={shedId}
         shedName={shed.name}
       />
+    </div>
+  );
+}
+
+function OwnerSettings({
+  shed,
+}: {
+  shed: { _id: Id<"sheds">; kind: "delat" | "privat" };
+}) {
+  const setKind = useMutation(api.sheds.setKind);
+  const toast = useToast();
+  const shared = shed.kind === "delat";
+  return (
+    <div className="mt-8 pb-4">
+      <p className="label-caps mb-2">Inställningar</p>
+      <div className="max-w-sm">
+        <SharedShedToggle
+          on={shared}
+          onToggle={async () => {
+            await setKind({
+              shedId: shed._id,
+              kind: shared ? "privat" : "delat",
+            });
+            toast(
+              shared
+                ? "Nu lägger bara du in saker och bjuder in"
+                : "Nu kan alla medlemmar dela in saker och bjuda in",
+            );
+          }}
+        />
+      </div>
     </div>
   );
 }

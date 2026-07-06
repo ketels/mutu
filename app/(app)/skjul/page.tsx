@@ -1,7 +1,7 @@
 "use client";
 
 import { useQuery } from "convex/react";
-import { Lock } from "lucide-react";
+import { Users } from "lucide-react";
 import Link from "next/link";
 import { api } from "@/convex/_generated/api";
 import { MobileHeader } from "@/components/nav/MobileHeader";
@@ -72,9 +72,9 @@ function ShedCard({ shed }: { shed: ShedRow }) {
         <span className="heading text-[17px] tracking-[-0.02em]">
           {shed.name}
         </span>
-        {shed.kind === "privat" && (
-          <span className="flex items-center gap-1 rounded-full bg-divider px-2 py-0.5 text-[10.5px] font-bold uppercase tracking-[0.05em] text-muted">
-            <Lock size={10} strokeWidth={2.5} /> Privat
+        {shed.kind === "delat" && (
+          <span className="flex items-center gap-1 rounded-full bg-primary-light px-2 py-0.5 text-[10.5px] font-bold uppercase tracking-[0.05em] text-primary">
+            <Users size={10} strokeWidth={2.5} /> Delat
           </span>
         )}
       </div>

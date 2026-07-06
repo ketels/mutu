@@ -140,10 +140,24 @@ export const create = mutation({
       name: trimmed,
       colorIdx,
       createdBy: userId,
-      kind: kind ?? "delat",
+      kind: kind ?? "privat",
     });
     await ctx.db.insert("shedMembers", { shedId, userId, role: "owner" });
     return shedId;
+  },
+});
+
+/** Slå på/av "Delat skjul". Bara ägaren. */
+export const setKind = mutation({
+  args: {
+    shedId: v.id("sheds"),
+    kind: v.union(v.literal("delat"), v.literal("privat")),
+  },
+  handler: async (ctx, { shedId, kind }) => {
+    const { membership } = await assertShedMember(ctx, shedId);
+    if (membership.role !== "owner")
+      throw new Error("Bara ägaren kan ändra skjulets inställningar");
+    await ctx.db.patch(shedId, { kind });
   },
 });
 

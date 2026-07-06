@@ -29,7 +29,7 @@ export async function assertCanContribute(ctx: Ctx, shedId: Id<"sheds">) {
   const shed = await ctx.db.get(shedId);
   if (!shed) throw new Error("Skjulet finns inte");
   if (shed.kind === "privat" && membership.role !== "owner")
-    throw new Error("Skjulet är privat — bara ägaren kan lägga till");
+    throw new Error("Bara ägaren kan lägga till i det här skjulet");
   return { userId, membership, shed };
 }
 

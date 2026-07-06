@@ -179,7 +179,37 @@ describe("privata skjul", () => {
         itemId: jonasSak,
         shedId: privat,
       }),
-    ).rejects.toThrow("privat");
+    ).rejects.toThrow("Bara ägaren");
+  });
+
+  it("nya skjul är privata om inget anges", async () => {
+    const { t, berit, jonas } = await setup();
+    const shedId = await asUser(t, berit).mutation(api.sheds.create, {
+      name: "Vänner",
+    });
+    await asUser(t, berit).mutation(api.people.addToShed, {
+      shedId,
+      userId: jonas,
+    });
+    await expect(
+      asUser(t, jonas).mutation(api.invites.createForShed, { shedId }),
+    ).rejects.toThrow("Bara ägaren");
+  });
+
+  it("bara ägaren kan slå på Delat skjul", async () => {
+    const { t, berit, jonas, shed } = await setup();
+    await expect(
+      asUser(t, jonas).mutation(api.sheds.setKind, {
+        shedId: shed,
+        kind: "privat",
+      }),
+    ).rejects.toThrow("Bara ägaren");
+    await asUser(t, berit).mutation(api.sheds.setKind, {
+      shedId: shed,
+      kind: "privat",
+    });
+    const list = await asUser(t, jonas).query(api.sheds.list, {});
+    expect(list.find((s) => s._id === shed)?.canShare).toBe(false);
   });
 
   it("medlem kan inte bjuda in till privat skjul", async () => {
@@ -194,7 +224,7 @@ describe("privata skjul", () => {
     });
     await expect(
       asUser(t, jonas).mutation(api.invites.createForShed, { shedId: privat }),
-    ).rejects.toThrow("privat");
+    ).rejects.toThrow("Bara ägaren");
     // Ägaren kan fortfarande
     const token = await asUser(t, berit).mutation(api.invites.createForShed, {
       shedId: privat,
