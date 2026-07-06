@@ -12,8 +12,7 @@ const schibsted = Schibsted_Grotesk({
 
 export const metadata: Metadata = {
   title: "Mutu — låna av folk du litar på",
-  description:
-    "Gratis delningstjänst för verktyg och saker. Dela i skjul med vänner, grannar och familj.",
+  description: "Gratis delningstjänst för verktyg och saker.",
 };
 
 export const viewport: Viewport = {
