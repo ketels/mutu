@@ -122,9 +122,10 @@ export default function SkjulDetaljPage({
             ) : (
               <div className="mt-3 flex flex-wrap gap-2">
                 {shed.myItems.map((item) => (
-                  <span
+                  <Link
                     key={item._id}
-                    className="rounded-full border px-3.5 py-2 text-[13.5px] font-semibold"
+                    href={`/saker/${item._id}`}
+                    className="rounded-full border px-3.5 py-2 text-[13.5px] font-semibold transition-opacity active:opacity-70"
                     style={{
                       background: palette.light,
                       borderColor: palette.color + "55",
@@ -132,7 +133,7 @@ export default function SkjulDetaljPage({
                     }}
                   >
                     {item.name}
-                  </span>
+                  </Link>
                 ))}
               </div>
             )}
@@ -147,31 +148,47 @@ export default function SkjulDetaljPage({
               något.
             </p>
           )}
-          {shed.items.map((item) => (
-            <div key={item._id} className="flex items-center gap-3 p-3.5">
-              <div className="h-10 w-10 shrink-0 overflow-hidden rounded-[10px] bg-photo">
-                {item.photoUrl && (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    src={item.photoUrl}
-                    alt=""
-                    className="h-full w-full object-cover"
-                  />
-                )}
-              </div>
-              <div className="min-w-0">
-                <p className="flex items-center gap-2 text-[14.5px] font-bold">
-                  {item.name}
-                  {item.isMine && (
-                    <span className="rounded-[4px] bg-divider px-1.5 py-0.5 text-[10px] font-extrabold tracking-[0.05em] text-muted">
-                      DIN
-                    </span>
+          {shed.items.map((item) => {
+            const row = (
+              <>
+                <div className="h-10 w-10 shrink-0 overflow-hidden rounded-[10px] bg-photo">
+                  {item.photoUrl && (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={item.photoUrl}
+                      alt=""
+                      className="h-full w-full object-cover"
+                    />
                   )}
-                </p>
-                <p className="text-[12.5px] text-muted">{item.ownerName}</p>
+                </div>
+                <div className="min-w-0 flex-1">
+                  <p className="flex items-center gap-2 text-[14.5px] font-bold">
+                    {item.name}
+                    {item.isMine && (
+                      <span className="rounded-[4px] bg-divider px-1.5 py-0.5 text-[10px] font-extrabold tracking-[0.05em] text-muted">
+                        DIN
+                      </span>
+                    )}
+                  </p>
+                  <p className="text-[12.5px] text-muted">{item.ownerName}</p>
+                </div>
+              </>
+            );
+            return item.isMine ? (
+              <Link
+                key={item._id}
+                href={`/saker/${item._id}`}
+                className="flex items-center gap-3 p-3.5 transition-opacity active:opacity-70"
+              >
+                {row}
+                <ChevronRight size={16} className="shrink-0 text-faint" />
+              </Link>
+            ) : (
+              <div key={item._id} className="flex items-center gap-3 p-3.5">
+                {row}
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {shed.iAmOwner && <OwnerSettings shed={shed} />}
